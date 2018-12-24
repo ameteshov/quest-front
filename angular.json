@@ -23,7 +23,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/css/font-face.css",
+              "src/assets/css/font-awesome.css",
+              "src/assets/css/fontawesome-all.min.css",
+              "src/assets/css/mdi-font.min.css",
+              "src/assets/css/hamburgers.min.css",
+              "src/assets/css/theme.css"
             ],
             "scripts": []
           },
@@ -51,6 +58,30 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "development": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ],
+              "optimization": false,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
@@ -62,6 +93,9 @@
           "configurations": {
             "production": {
               "browserTarget": "quest-front:build:production"
+            },
+            "development": {
+              "browserTarget": "quest-front:build:development"
             }
           }
         },

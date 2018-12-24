@@ -1,0 +1,32 @@
+<div class="table-responsive m-b-40">
+    <table class="table table-borderless table-data3">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Used count</th>
+                <th>Visible</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of list; index as i">
+                <td>{{ i + 1}}</td>
+                <td>{{ item?.name }}</td>
+                <td>{{ item?.results.length }}</td>
+                <td>
+                    <label class="switch switch-default switch-pill switch-primary mr-2">
+                        <input [checked]="item.is_active" 
+                               (change)="toggle(item.id)"
+                               type="checkbox"
+                               class="switch-input">
+                        <span class="switch-label"></span>
+                        <span class="switch-handle"></span>
+                    </label>
+                </td>
+            </tr>
+            <tr *ngIf="list.length === 0">
+                <td colspan="4">No results found</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

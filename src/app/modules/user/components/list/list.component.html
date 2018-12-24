@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="overview-wrap">
+            <h2 class="title-1">users list</h2>
+            <a routerLink="/users/new" class="au-btn au-btn-icon au-btn--blue">
+                <i class="zmdi zmdi-plus"></i>add item</a>
+        </div>
+    </div>
+</div>
+<div class="row mt-2">
+    <div class="col-md-12">
+        <div class="table-responsive m-b-40">
+            <table class="table table-borderless table-data3">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Email</th>
+                        <th>Name</th>
+                        <th>Plan</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="users.length > 0">
+                    <tr *ngFor="let user of users; index as i">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ user?.name }}</td>
+                        <td>{{ user?.email }}</td>
+                        <td>{{ user?.plan?.name || 'Free' }}</td>
+                        <td>
+                            <label class="switch switch-default switch-pill switch-primary mr-2">
+                                <input [checked]="user.is_active" 
+                                       (change)="toggle(user.id)"
+                                       type="checkbox"
+                                       class="switch-input">
+                                <span class="switch-label"></span>
+                                <span class="switch-handle"></span>
+                            </label>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody *ngIf="users.length === 0">
+                    <tr>
+                        <td colspan="5">No users found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- END DATA TABLE-->
+    </div>
+</div>
