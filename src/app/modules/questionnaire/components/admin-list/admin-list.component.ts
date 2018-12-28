@@ -24,4 +24,13 @@ export class AdminListComponent implements OnInit {
       });
   }
 
+  public onToggle(id: number): void {
+    const index = this.list.findIndex(item => item.id === id);
+    const isActive = !this.list[index].is_active;
+
+    this.questApiService
+      .update(id, { is_active: isActive })
+      .subscribe();
+  }
+
 }

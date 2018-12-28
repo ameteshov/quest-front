@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { ILoginForm } from '../interfaces/ILoginForm';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { IRegisterForm } from '../interfaces/IRegisterForm';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +18,9 @@ export class AuthApiService extends ApiService {
 
   public confirm(data: any): Observable<any> {
     return this.post('auth/confirm-password', data);
+  }
+
+  public register(data: IRegisterForm): Observable<any> {
+    return this.post('auth/register', data);
   }
 }

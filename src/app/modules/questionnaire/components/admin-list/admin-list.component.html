@@ -16,7 +16,7 @@
                 <td>
                     <label class="switch switch-default switch-pill switch-primary mr-2">
                         <input [checked]="item.is_active" 
-                               (change)="toggle(item.id)"
+                               (change)="onToggle(item.id)"
                                type="checkbox"
                                class="switch-input">
                         <span class="switch-label"></span>

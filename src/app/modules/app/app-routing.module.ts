@@ -41,35 +41,35 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () => DashboardModule,
+    loadChildren: '../dashboard/dashboard.module#DashboardModule',
     component: BodyComponent,
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard]
   },
   {
     path: 'users',
-    loadChildren: () => UserModule,
+    loadChildren: '../user/user.module#UserModule',
     component: BodyComponent,
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard]
   },
   {
     path: 'questionnaires',
-    loadChildren: () => QuestionnaireModule,
+    loadChildren: '../questionnaire/questionnaire.module#QuestionnaireModule',
     component: BodyComponent,
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard]
   },
   {
     path: 'payments',
-    loadChildren: () => PaymentModule,
+    loadChildren: '../payment/payment.module#PaymentModule',
     component: BodyComponent,
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard]
   },
   {
     path: 'plans',
-    loadChildren: () => PlanModule,
+    loadChildren: '../plan/plan.module#PlanModule',
     component: BodyComponent,
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard]

@@ -1,7 +1,8 @@
-import { IQuestion } from './IQuestion';
+import { IQuestionnaireContent } from './IQuestionnaireContent';
 
 export interface IQuestionnaire {
   id?: number;
   name: string;
-  content: Array<IQuestion>;
+  content: IQuestionnaireContent;
+  is_active?: boolean;
 }

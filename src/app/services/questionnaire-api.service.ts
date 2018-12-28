@@ -22,4 +22,8 @@ export class QuestionnaireApiService extends ApiService {
   public getByHash(hash: string): Observable<any> {
     return this.get(`forms/${hash}`, {});
   }
+
+  public update(id: number, data: Object): Observable<any> {
+    return this.put(`questionnaires/${id}`, data);
+  }
 }
