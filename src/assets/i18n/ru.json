@@ -1,0 +1,23 @@
+{
+  "USER_SURVEY": {
+    "STATISTIC_HEAD": "Статистика",
+    "SURVEY_SENT": "Тестов отправлено",
+    "SURVEY_PASS": "Тестов пройдено",
+    "SURVEY_SUCCESS": "Пройдено успешно",
+    "BEST_CANDIDATE": "Лучшие кандидаты",
+    "SENT_SURVEY_FORM": {
+      "HEAD": "Отправить тест",
+      "SUBMIT": "Отправить"
+    }
+  },
+  "PANEL": {
+    "FORMS_AVAILABLE": "Доступно {{value}} тестов",
+    "BUTTONS": {
+      "SUBMIT": "Отправить"
+    },
+    "HEADER_BUTTONS": {
+      "INCREASE_BUDGET": "Пополнить бюджет",
+      "LOGOUT": "Выйти"
+    }
+  }
+}

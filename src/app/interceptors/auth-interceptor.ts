@@ -33,8 +33,6 @@ export class AuthInterceptor implements HttpInterceptor {
         }, (error) => {
           this.authService.logout();
           this.isRefreshing = false;
-
-          return Observable.throw(error);
         });
     }
 
@@ -67,7 +65,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   protected isPublicRequest(req: HttpRequest<any>): boolean {
-    const paths = ['auth', 'forms'];
+    const paths = ['auth', 'forms', 'assets/i18n'];
     const result = paths.filter( item => req.url.indexOf(item) !== -1);
 
     return result.length !== 0;

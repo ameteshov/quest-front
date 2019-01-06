@@ -11,7 +11,10 @@ const routes: Routes = [
   },
   {
     path: 'new',
-    pathMatch: 'full',
+    component: NewItemComponent
+  },
+  {
+    path: 'edit/:id',
     component: NewItemComponent
   }
 ];

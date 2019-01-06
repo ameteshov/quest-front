@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from './../../environments/environment';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -69,5 +70,31 @@ export class ApiService {
       body,
       { ...{ responseType: 'json' }, ...options }
     );
+  }
+
+  public getQueryParams(params: HttpParams | {
+    [param: string]: string | string[];
+  }): HttpParams {
+    if (params instanceof HttpParams) {
+      return params;
+    }
+
+    if (params === {}) {
+      return new HttpParams();
+    }
+
+    let payload = new HttpParams();
+
+    _.each(params, (value, key) => {
+      if (params[key] instanceof Array) {
+        _.each(params[key], (val, i) => {
+          payload = payload.append(`${key}[]`, val);
+        });
+      } else {
+        payload = payload.append(`${key}`, params[key].toString());
+      }
+    });
+
+    return payload;
   }
 }

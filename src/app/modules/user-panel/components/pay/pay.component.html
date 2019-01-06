@@ -1,0 +1,16 @@
+<div class="row px-3">
+    <div *ngFor="let plan of plans" class="col-xs-12 col-sm-6 col-md-3 plan">
+        <ul class="pricing p-green">
+          <li>
+            <h2>{{ plan?.name }}</h2>
+          </li>
+          <li *ngFor="let item of plan?.description">{{ item.text }}</li>
+          <li>
+            <h3>{{plan?.price}}</h3>
+          </li>
+          <li>
+            <button>Join Now</button>
+          </li>
+        </ul>
+    </div>
+</div>

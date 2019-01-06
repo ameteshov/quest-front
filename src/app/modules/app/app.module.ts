@@ -1,13 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
 import { AppRoutingModule } from './app-routing.module';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { DashboardModule } from '../dashboard/dashboard.module';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { UserModule } from '../user/user.module';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { FormService } from './../../services/form.service';
 import { AuthApiService } from './../../services/auth-api.service';
 import { AuthInterceptor } from './../../interceptors/auth-interceptor';
@@ -19,10 +23,19 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormComponent } from './components/form/form.component';
+import { PlanApiService } from '../../services/plan-api.service';
 
 export function jwtTokenGetter() {
   return localStorage.getItem('token');
 }
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 
 @NgModule({
   declarations: [
@@ -44,15 +57,25 @@ export function jwtTokenGetter() {
       }
     }),
     SweetAlert2Module.forRoot(),
+    PerfectScrollbarModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (HttpLoaderFactory),
+        deps: [HttpClient]
+      }
+    }),
     AppRoutingModule,
     SharedModule
   ],
-  exports: [],
+  exports: [ PerfectScrollbarModule, TranslateModule ],
   providers: [
     FormService,
     AuthApiService,
     QuestionnaireApiService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    PlanApiService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }
   ],
   bootstrap: [AppComponent]
 })

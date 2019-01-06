@@ -1,62 +1,45 @@
 <div class="row">
-  <div class="col-md-4">
-    <div class="card border-secondary">
-      <div class="card-body">
-        <div class="mx-auto d-flex">
-          <h3 class="mx-auto">Basic</h3>
+    <div class="col-md-12">
+        <div class="overview-wrap">
+            <h2 class="title-1">Plans list</h2>
+            <a routerLink="/plans/new" class="au-btn au-btn-icon au-btn--blue">
+                <i class="zmdi zmdi-plus"></i>add item</a>
         </div>
-        <hr>
-        <div class="mx-auto d-block">
-          <h5 class="text-sm-center mt-2 mb-1">100 req/month</h5>
-          <h5 class="text-sm-center mt-2 mb-1">info</h5>
-          <h5 class="text-sm-center mt-2 mb-1">info</h5>
-          <h5 class="text-sm-center mt-2 mb-1">1000 $</h5>
-        </div>
-        <hr>
-        <div class="card-text text-sm-center">
-          <button class="btn btn-secondary">Already used</button>
-        </div>
-      </div>
     </div>
-  </div>
-  <div class="col-md-4">
-    <div class="card border-primary">
-      <div class="card-body">
-        <div class="mx-auto d-flex">
-          <h3 class="mx-auto">Normal</h3>
+</div>
+<div class="row mt-2">
+    <div class="col-md-12">
+        <div class="table-responsive m-b-40">
+            <table class="table table-borderless table-data3">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Points</th>
+                        <th>Price</th>
+                        <th>Visible</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="plans.length > 0">
+                    <tr *ngFor="let plan of plans; index as i">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ plan?.name }}</td>
+                        <td>{{ plan?.points }}</td>
+                        <td>{{ plan?.price }}</td>
+                        <td>{{ plan?.is_visible === 1 ? 'Yes' : 'No' }}</td>
+                        <td>
+                            <a (click)="goToEdit(plan.id)"><i class="fa fa-pencil-square-o"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody *ngIf="plans.length === 0">
+                    <tr>
+                        <td colspan="7">No plans found</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <hr>
-        <div class="mx-auto d-block">
-          <h5 class="text-sm-center mt-2 mb-1">500 req/month</h5>
-          <h5 class="text-sm-center mt-2 mb-1">info</h5>
-          <h5 class="text-sm-center mt-2 mb-1">info</h5>
-          <h5 class="text-sm-center mt-2 mb-1">3000 $</h5>
-        </div>
-        <hr>
-        <div class="card-text text-sm-center">
-          <button class="btn btn-primary">Get it!</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-      <div class="card border-success">
-        <div class="card-body">
-          <div class="mx-auto d-flex">
-            <h3 class="mx-auto">Premium</h3>
-          </div>
-          <hr>
-          <div class="mx-auto d-block">
-            <h5 class="text-sm-center mt-2 mb-1">1000 req/month</h5>
-            <h5 class="text-sm-center mt-2 mb-1">info</h5>
-            <h5 class="text-sm-center mt-2 mb-1">info</h5>
-            <h5 class="text-sm-center mt-2 mb-1">5000 $</h5>
-          </div>
-          <hr>
-          <div class="card-text text-sm-center">
-            <button class="btn btn-success">Get it!</button>
-          </div>
-        </div>
-      </div>
+        <!-- END DATA TABLE-->
     </div>
 </div>

@@ -1,37 +1,29 @@
 <div class="page-content--bge5">
-  <div class="container">
+  <div class="container pt-5">
     <div class="row">
       <div class="col-8 mx-auto">
         <div class="card">
           <div class="card-body">
-            <div class="card-header mb-5">
-              name
-            </div>
-            <div class="mx-auto d-block">
-              <p>This is a first question</p>
-              <div class="col">
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
-                      checked>
-                    <label class="form-check-label" for="exampleRadios1">
-                      Default radio
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                    <label class="form-check-label" for="exampleRadios2">
-                      Second default radio
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
-                    <label class="form-check-label" for="exampleRadios3">
-                      Disabled radio
-                    </label>
+            <h3 class="mb-3">{{ qustionnaire?.name }}</h3>
+            <form [formGroup]="form" (submit)="onSubmit()">
+              <div *ngFor="let item of content.controls; let i=index" [formGroup]="item" class="mx-auto d-block">
+                <p class="survey-text">{{ qustionnaire?.content.questions[i].text }}</p>
+                <div class="col">
+                  <div *ngFor="let answer of qustionnaire?.content.answers" class="form-check">
+                    <input formControlName="result" class="form-check-input" type="radio" value="{{ answer.points }}">
+                    <label class="form-check-label" for="exampleRadios1">{{ answer.text }}</label>
                   </div>
                 </div>
-            </div>
-            <hr>
+              </div>
+              <hr>
+              <div class="form-group text-center">
+                <button (click)="onSubmit()" 
+                        [disabled]="form.invalid"
+                        type="button"
+                        class="btn btn-primary"
+                        >Submit</button>
+              </div>
+              </form>
           </div>
         </div>
       </div>

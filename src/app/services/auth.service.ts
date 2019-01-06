@@ -4,6 +4,7 @@ import { ILoginResponse } from '../interfaces/ILoginResponse';
 import { IUser } from '../interfaces/IUser';
 import { Router } from '@angular/router';
 import { User } from '../models/User';
+import { Roles } from '../enums/roles.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +47,9 @@ export class AuthService {
     this.setToken(data.token);
     this.setUser(data.user);
 
-    this.router.navigate(['dashboard']);
+    const url = data.user.role_id === Roles.admin ? 'dashboard' : 'panel';
+
+    this.router.navigate([url]);
   }
 
   public logout(): void {

@@ -1,0 +1,8 @@
+<div class="au-progress">
+    <span class="au-progress__title">{{ title | translate }}</span>
+    <span class="au-progress__percent">{{ percent }}%</span>
+    <div class="au-progress__bar">
+      <div [ngStyle]="{ width: percent + '%'}" class="au-progress__inner" role="progressbar">
+      </div>
+    </div>
+  </div>

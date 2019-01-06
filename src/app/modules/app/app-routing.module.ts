@@ -3,15 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { AuthGuard } from './../../guards/auth.guard';
 import { RedirectAuthorized } from './../../guards/redirect-authorized.guard';
-import { UserModule } from '../user/user.module';
-import { QuestionnaireModule } from '../questionnaire/questionnaire.module';
 import { BodyComponent } from '../shared/components/body/body.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
-import { PaymentModule } from '../payment/payment.module';
-import { PlanModule } from '../plan/plan.module';
 import { FormComponent } from './components/form/form.component';
+import { PanelBodyComponent } from '../shared/components/panel-body/panel-body.component';
 
 const routes: Routes = [
   {
@@ -36,8 +33,14 @@ const routes: Routes = [
   },
   {
     path: 'forms/:hash',
-    component: FormComponent,
-    canActivate: [RedirectAuthorized]
+    component: FormComponent
+  },
+  {
+    path: 'panel',
+    loadChildren: '../user-panel/user-panel.module#UserPanelModule',
+    component: PanelBodyComponent,
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard]
   },
   {
     path: 'dashboard',

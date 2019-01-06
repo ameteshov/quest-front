@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IQuestionnaire } from '../../../../interfaces/IQuestionnaire';
 import { QuestionnaireApiService } from '../../../../services/questionnaire-api.service';
 import { IApiResponse } from '../../../../interfaces/IApiResponse';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-list',
@@ -12,6 +13,7 @@ export class AdminListComponent implements OnInit {
   public list: Array<IQuestionnaire>;
   constructor(
     private questApiService: QuestionnaireApiService,
+    private router: Router
   ) {
     this.list = [];
   }
@@ -31,6 +33,10 @@ export class AdminListComponent implements OnInit {
     this.questApiService
       .update(id, { is_active: isActive })
       .subscribe();
+  }
+
+  public onEdit(id: number): void {
+    this.router.navigate(['/questionnaires/edit', id]);
   }
 
 }
