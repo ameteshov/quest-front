@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="overview-wrap">
-            <h2 class="title-1">new user</h2>
+            <h2 class="title-1" translate>USERS.FORM.TITLE</h2>
         </div>
     </div>
 </div>
@@ -12,25 +12,37 @@
             <div class="card-body card-block">
                 <form [formGroup]="userForm" (onSubmit)="onSubmit()" class="form-horizontal">
                     <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="hf-password" class=" form-control-label">Name</label>
-                        </div>
                         <div class="col-12 col-md-9">
-                            <input formControlName="name" type="text" placeholder="Enter name..." class="form-control">
-                            <!-- <span class="help-block">Please enter name</span> -->
+                            <input formControlName="name"
+                                   type="text"
+                                   placeholder="{{ 'USERS.FORM.NAME' | translate }}"
+                                   class="form-control">
+                            <span *ngIf="formService.hasError(userForm, 'name', 'required')"
+                                  translate
+                                  class="help-block text-danger">ERRORS.REQUIRED</span>
                         </div>
                     </div>
                     <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="hf-email" class=" form-control-label">Email</label>
-                        </div>
                         <div class="col-12 col-md-9">
-                            <input type="email" formControlName="email" placeholder="Enter Email..." class="form-control">
-                            <!-- <span class="help-block">Please enter your email</span> -->
+                            <input type="email"
+                                   formControlName="email"
+                                   placeholder="{{ 'USERS.FORM.EMAIL' | translate }}"
+                                   class="form-control">
+                            <span *ngIf="formService.hasError(userForm, 'email', 'required')"
+                                  translate
+                                  class="help-block text-danger">ERRORS.REQUIRED</span>
+                            <span *ngIf="formService.hasError(userForm, 'email', 'email')"
+                                  translate
+                                  class="help-block text-danger">ERRORS.EMAIL</span>
+                            <span *ngIf="formService.hasError(userForm, 'email', 'apiError')"
+                                  class="help-block text-danger">{{ apiErrors.email }}</span>
                         </div>
                     </div>
                     <div class="row pr-3">
-                      <button (click)="onSubmit()" class="btn btn-primary ml-auto" type="submit">Submit</button>
+                      <button (click)="onSubmit()"
+                              translate
+                              class="btn btn-primary ml-auto"
+                              type="submit">BUTTONS.SUBMIT</button>
                     </div>
                 </form>
             </div>

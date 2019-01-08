@@ -18,6 +18,9 @@ export class PanelBodyComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.authService.userUpdated.subscribe(() => {
+      this.user = this.authService.getUser();
+    });
   }
 
   public onPay(): void {

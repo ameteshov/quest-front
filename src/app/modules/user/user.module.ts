@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/components/shared.module';
 import { RouterModule } from '@angular/router';
 import { NewUserComponent } from './components/new-user/new-user.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [ListComponent, NewUserComponent],
@@ -15,7 +16,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     UserRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    TranslateModule.forChild()
   ]
 })
 export class UserModule { }

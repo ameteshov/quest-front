@@ -25,7 +25,9 @@ export class RedirectAuthorized implements CanActivate, CanActivateChild {
 
   private process(): boolean {
     if (this.authService.isAuthorized()) {
-      this.router.navigate(['/dashboard']);
+      const url = this.authService.getUser().isAdmin ? '/dashboard' : '/panel';
+
+      this.router.navigate([url]);
     }
 
     return true;

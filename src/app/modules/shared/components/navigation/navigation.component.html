@@ -123,28 +123,28 @@
       <nav class="navbar-sidebar">
           <ul class="list-unstyled navbar__list">
               <li routerLinkActive="active">
-                  <a routerLink="/dashboard">
-                    <i class="fas fa-tachometer-alt"></i>Dashboard
-                  </a>
-              </li>
-              <li *ngIf="user.isAdmin" routerLinkActive="active">
-                  <a routerLink="/users">
-                    <i class="fas fa-users"></i>Users
+                  <a routerLink="/dashboard" translate>
+                    <i class="fas fa-tachometer-alt"></i>ADMIN_NAVIGATION.DASHBOARD
                   </a>
               </li>
               <li routerLinkActive="active">
-                  <a routerLink="/plans">
-                    <i class="fas fa-shopping-cart"></i>Plans
+                  <a routerLink="/users" translate>
+                    <i class="fas fa-users"></i>ADMIN_NAVIGATION.USERS
                   </a>
               </li>
               <li routerLinkActive="active">
-                  <a routerLink="/payments">
-                    <i class="fas fa-credit-card"></i>Payments
+                  <a routerLink="/plans" translate>
+                    <i class="fas fa-shopping-cart"></i>ADMIN_NAVIGATION.PLANS
                   </a>
               </li>
               <li routerLinkActive="active">
-                  <a routerLink="/questionnaires">
-                    <i class="fas fa-check-square"></i>Questionnaires
+                  <a routerLink="/payments" translate>
+                    <i class="fas fa-credit-card"></i>ADMIN_NAVIGATION.PAYMENTS
+                  </a>
+              </li>
+              <li routerLinkActive="active">
+                  <a routerLink="/questionnaires" translate>
+                    <i class="fas fa-check-square"></i>ADMIN_NAVIGATION.QUESTIONNAIRES
                   </a>
               </li>
           </ul>

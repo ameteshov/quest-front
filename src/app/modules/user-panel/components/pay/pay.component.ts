@@ -5,6 +5,7 @@ import { IApiResponse } from '../../../../interfaces/IApiResponse';
 import { HttpErrorResponse } from '@angular/common/http';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-pay',
@@ -16,6 +17,7 @@ export class PayComponent implements OnInit {
 
   constructor(
     private planService: PlanApiService,
+    private translationService: TranslateService,
     private router: Router
   ) { }
 
@@ -30,6 +32,24 @@ export class PayComponent implements OnInit {
           swal('Api Request Error', 'Oops, something went wrong', 'error')
             .then(() => {
               this.router.navigate(['forms']);
+            });
+        }
+      );
+  }
+
+  public onPay(id: number): void {
+    this.planService
+      .pay(id)
+      .subscribe(
+        (response: any) => {
+          window.location.href = response.url;
+        },
+        (error: HttpErrorResponse) => {
+          this.translationService
+            .get('ERRORS.HEADER')
+            .toPromise()
+            .then((value) => {
+              swal(value, error.error.message, 'error');
             });
         }
       );

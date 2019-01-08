@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +16,14 @@ export class FormService {
 
   public hasError(form: FormGroup, control: string, error: string): boolean {
     return this.inputInvalid(form, control) && form.controls[control].errors[error];
+  }
+
+  public setFormErrors(response: HttpErrorResponse, form: FormGroup, errors: Object): void {
+    _.forIn(response.error.errors, (value, key) => {
+      if (form.controls[key]) {
+        form.controls[key].setErrors({ 'apiError': true });
+        errors[key] = value;
+      }
+    });
   }
 }

@@ -8,6 +8,7 @@ import { AdminListComponent } from './components/admin-list/admin-list.component
 import { UserListComponent } from './components/user-list/user-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [ListComponent, NewItemComponent, AdminListComponent, UserListComponent],
@@ -16,7 +17,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     QuestionnaireRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    TranslateModule.forChild()
   ]
 })
 export class QuestionnaireModule { }

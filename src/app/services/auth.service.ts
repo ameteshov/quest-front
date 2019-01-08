@@ -5,15 +5,20 @@ import { IUser } from '../interfaces/IUser';
 import { Router } from '@angular/router';
 import { User } from '../models/User';
 import { Roles } from '../enums/roles.enum';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  public userUpdated: Subject<IUser>;
+
   constructor(
     private jwtHelper: JwtHelperService,
     private router: Router
-  ) { }
+  ) {
+    this.userUpdated = new Subject<IUser>();
+  }
 
   public getToken(): string | null {
     return localStorage.getItem('token');
@@ -31,6 +36,8 @@ export class AuthService {
 
   public setUser(user: IUser): void {
     localStorage.setItem('user', JSON.stringify(user));
+
+    this.userUpdated.next(user);
   }
 
   public isAuthorized(): boolean {

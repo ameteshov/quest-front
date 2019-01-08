@@ -1,0 +1,4 @@
+.table-top-campaign.table tr.empty td:last-child {
+  text-align: center;
+  color: #808080;
+}

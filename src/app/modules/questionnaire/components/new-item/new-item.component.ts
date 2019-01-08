@@ -27,7 +27,7 @@ export class NewItemComponent implements OnInit {
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
       success_score: ['', [Validators.required]],
-      type: ['', [Validators.required]],
+      type: ['sum', [Validators.required]],
       questions: this.fb.array([
         this.fb.group(this.getQuestionGroup())
       ]),

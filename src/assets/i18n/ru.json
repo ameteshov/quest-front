@@ -7,8 +7,11 @@
     "BEST_CANDIDATE": "Лучшие кандидаты",
     "SENT_SURVEY_FORM": {
       "HEAD": "Отправить тест",
-      "SUBMIT": "Отправить"
-    }
+      "SUBMIT": "Отправить",
+      "ADD_USER": "Добавить получателя",
+      "SUCCESS_MESSAGE": "Анкеты отправлены"
+    },
+    "NO_CANDIDATES_FOUND": "Нет пройденных тестов"
   },
   "PANEL": {
     "FORMS_AVAILABLE": "Доступно {{value}} тестов",
@@ -19,5 +22,96 @@
       "INCREASE_BUDGET": "Пополнить бюджет",
       "LOGOUT": "Выйти"
     }
+  },
+  "LOGIN": {
+    "EMAIL": "Почтовый ящик",
+    "PASSWORD": "Пароль",
+    "FORGOT_PASSWORD": "Забыли пароль?",
+    "HAVE_NO_ACCOUNT": "Нет аккаунта?",
+    "SIGN_IN": "Войти",
+    "SIGN_UP": "Зарегистрироваться"
+  },
+  "SIGN_UP": {
+    "NAME": "Ваше имя",
+    "EMAIL": "Почтовый ящик",
+    "PASSWORD": "Пароль",
+    "CONFIRM_PASSWORD": "Повторите пароль",
+    "SUBMIT_BTN": "Зарегистрироваться",
+    "ACCOUNT_EXISTS": "Уже есть аккаунт?",
+    "SIGN_IN": "Войти"
+  },
+  "ERRORS": {
+    "HEADER": "Ошибка",
+    "REQUIRED": "Пожалуйста, заполните поле",
+    "EMAIL": "Некорректный адрес почтового ящика",
+    "EMAIL_BUSY": "Почтовый ящик уже зарегистрирован",
+    "EQUAL_PASSWORD": "Пароли не совпадают"
+  },
+  "SUCCESS": {
+    "HEADER": "Успешно"
+  },
+  "ADMIN_NAVIGATION": {
+    "QUESTIONNAIRES": "Анкеты",
+    "USERS": "Пользователи",
+    "PLANS": "Тарифы",
+    "PAYMENTS": "Платежи",
+    "DASHBOARD": "Панель управления"
+  },
+  "USERS": {
+    "LIST": "Список пользователей",
+    "TABLE": {
+      "EMAIL": "Почта",
+      "NAME": "Имя",
+      "PLAN": "Доступно анкет",
+      "STATUS": "Статус",
+      "EMPTY": "Пользователей не найдено"
+    },
+    "FORM": {
+      "TITLE": "Добавление пользователя",
+      "EMAIL": "Почтовый ящик",
+      "NAME": "Имя",
+      "SUCCESS": "Пользователь был создан"
+    }
+  },
+  "QUESTIONNAIRES": {
+    "LIST": {
+      "TITLE": "Список анкет",
+      "NAME": "Название",
+      "USED_COUNT": "Отправлено",
+      "VISIBILITY": "Доступно на сайте"
+    },
+    "FORM": {
+      "NAME": "Название",
+      "SURVEY_POINTS": "Оценка теста",
+      "DESCRIPTION": "Описание",
+      "QUESTION": "Текст вопроса",
+      "ANSWER": "Текст ответа",
+      "POINTS": "Балл"
+    }
+  },
+  "PLANS": {
+    "LIST": {
+      "TITLE": "Список тарифов",
+      "TABLE": {
+        "NAME": "Название",
+        "POINTS": "Количество анкет",
+        "PRICE": "Цена",
+        "VISIBLE": "Видимость на сайте",
+        "ACTIONS": "Действия",
+        "EMPTY": "Тарфиов не найдено"
+      }
+    },
+    "FORM": {
+      "NAME": "Название",
+      "VISIBLE": "Видимость",
+      "POINTS": "Анкет доступно",
+      "PRICE": "Цена",
+      "DESCRIPTION": "Описание"
+    }
+  },
+  "BUTTONS": {
+    "ADD": "Добавить",
+    "SUBMIT": "Отправить",
+    "BACK": "Назад"
   }
 }

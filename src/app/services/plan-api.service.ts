@@ -24,4 +24,8 @@ export class PlanApiService extends ApiService {
   public update(id: number, data: Object): Observable<HttpResponse<any>> {
     return this.put(`plans/${id}`, data);
   }
+
+  public pay(id: number): Observable<any> {
+    return this.post(`payments`, { plan_id: id });
+  }
 }

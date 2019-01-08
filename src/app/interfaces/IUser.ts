@@ -6,6 +6,7 @@ export interface IUser {
   is_active: boolean;
   reset_token: string;
   questionnaires_count: number;
+  points: number;
   created_at: string;
   updated_at: string;
 

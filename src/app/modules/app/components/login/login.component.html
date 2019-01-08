@@ -11,40 +11,41 @@
                   <div class="login-form">
                       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                           <div class="form-group">
-                              <label>Email Address</label>
+                              <label translate>LOGIN.EMAIL</label>
                               <input formControlName="email"
                                      class="au-input au-input--full"
-                                     type="email" 
-                                     placeholder="Email">
+                                     type="email" >
                               <span *ngIf="formService.hasError(loginForm, 'email', 'required')"
-                                    class="help-block text-danger">Please enter your email</span>
+                                    translate
+                                    class="help-block text-danger">ERRORS.REQUIRED</span>
                               <span *ngIf="formService.hasError(loginForm, 'email', 'email')"
-                                    class="help-block text-danger">Please enter valid email</span>
+                                    translate
+                                    class="help-block text-danger">ERRORS.EMAIL</span>
+                              <span *ngIf="formService.hasError(loginForm, 'email', 'apiError')"
+                                    class="help-block text-danger">{{ apiErrors.email }}</span>
                           </div>
                           <div class="form-group">
-                              <label>Password</label>
+                              <label translate>LOGIN.PASSWORD</label>
                               <input formControlName="password"
                                      class="au-input au-input--full" 
-                                     type="password"
-                                     name="password"
-                                     placeholder="Password">
+                                     type="password">
                               <span *ngIf="formService.hasError(loginForm, 'password', 'required')"
-                                    class="help-block text-danger">Please enter your password</span>
+                                    translate
+                                    class="help-block text-danger">ERRORS.REQUIRED</span>
                           </div>
                           <div class="login-checkbox">
                               <label>
-                                  <input type="checkbox" name="remember">Remember Me
-                              </label>
-                              <label>
-                                  <a href="#">Forgotten Password?</a>
+                                  <a translate routerLink="/reset">LOGIN.FORGOT_PASSWORD</a>
                               </label>
                           </div>
-                          <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
+                          <button translate
+                                  class="au-btn au-btn--block au-btn--green m-b-20"
+                                  type="submit">LOGIN.SIGN_IN</button>
                       </form>
                       <div class="register-link">
-                          <p>
-                              Don't you have account?
-                              <a href="/sign-up">Sign Up Here</a>
+                          <p translate>
+                              LOGIN.HAVE_NO_ACCOUNT
+                              <a translate routerLink="/sign-up">LOGIN.SIGN_UP</a>
                           </p>
                       </div>
                   </div>

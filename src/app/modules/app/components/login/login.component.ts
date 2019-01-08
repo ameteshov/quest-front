@@ -4,6 +4,9 @@ import { AuthApiService } from '../../../../services/auth-api.service';
 import { AuthService } from '../../../../services/auth.service';
 import { FormService } from '../../../../services/form.service';
 import { ILoginResponse } from '../../../../interfaces/ILoginResponse';
+import swal from 'sweetalert2';
+import { HttpErrorResponse } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -12,17 +15,21 @@ import { ILoginResponse } from '../../../../interfaces/ILoginResponse';
 })
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
+  public apiErrors: Object;
 
   constructor(
     private fb: FormBuilder,
     private authApiService: AuthApiService,
     private authService: AuthService,
+    private translateService: TranslateService,
     public formService: FormService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     });
+
+    this.apiErrors = {};
   }
 
   ngOnInit() {
@@ -36,8 +43,17 @@ export class LoginComponent implements OnInit {
           (response: ILoginResponse) => {
             this.authService.authorize(response);
           },
-          (error) => {
-            console.log(error);
+          (error: HttpErrorResponse) => {
+            if (error.status === 422) {
+              this.formService.setFormErrors(error, this.loginForm, this.apiErrors);
+            } else {
+              this.translateService
+                .get('ERRORS.HEADER')
+                .toPromise()
+                .then((value) => {
+                  swal(value, error.error.message, 'error');
+                });
+            }
           }
         );
     }

@@ -1,70 +1,70 @@
 <div class="col-8">
-    <div class="card">
-        <form [formGroup]="form" class="card-body card-block">
-            <div class="form-group">
-                <input formControlName="name" 
-                       type="text"
-                       class="form-control col-8"
-                       placeholder="Questionnaire name">
-            </div>
-            <div class="form-group row">
-              <div class="col-6">
-                <input formControlName="success_score" 
-                  type="text"
-                  class="form-control"
-                  placeholder="Points">
-              </div>
-              <div class="col-6">
-                <select formControlName="type" class="form-control">
-                  <option value="sum">Sum</option>
-                  <option value="avg">Avg</option>
-                </select>
-              </div>
-            </div>
-            <hr>
-            <div class="form-group">
-                <textarea formControlName="description"
-                       class="form-control"
-                       placeholder="Description"></textarea>
-            </div>
-            <hr>
-            <div *ngFor="let question of questions.controls; let i=index" [formGroup]="question" class="form-group row">
-                <div class="col-11 pr-0">
-                    <textarea formControlName="text" class="form-control" placeholder="Question"></textarea>
-                </div>
-                <div class="col-1 d-flex flex-column">
-                    <span (click)="onRemoveQuestion(i)" class="mr-auto my-auto">
-                        <i class="fa fa-minus-circle"></i>
-                    </span>
-                    <span (click)="addQuestion()" class="mr-auto my-auto">
-                        <i class="fa fa-plus-circle"></i>
-                    </span>
-                </div>
-            </div>
-            <hr>
-            <div class="form-group">
-              <div *ngFor="let answer of answers.controls; let i=index" [formGroup]="answer" class="row mb-2">
-                <div class="col-9">
-                  <input formControlName="text" class="form-control" placeholder="Answer text">
-                </div>
-                <div class="col-2">
-                  <input formControlName="points" class="form-control" placeholder="Points">
-                </div>
-                <div class="col-1 d-flex flex-row pl-0">
-                  <span (click)="onRemoveAnswer(i)" class="my-auto">
-                    <i class="fa fa-minus-circle"></i>
-                  </span>
-                  <span (click)="addAnswer()" class="ml-auto my-auto">
-                    <i class="fa fa-plus-circle"></i>
-                  </span>
-                </div>
-              </div>    
-            </div>
-            <hr>
-            <div class="form-group d-flex justify-content-end">
-              <button (click)="onCancel()" class="btn btn-secondary ml-2">Back</button>
-              <button (click)="onSubmit()" class="btn btn-success ml-2">Submit</button>
-            </div>
-          </form>
-    </div>
+  <div class="card">
+    <form [formGroup]="form" class="card-body card-block">
+      <div class="form-group">
+        <input formControlName="name"
+               type="text"
+               class="form-control col-8"
+               placeholder="{{'QUESTIONNAIRES.FORM.NAME' | translate}}">
+      </div>
+      <div class="form-group row">
+        <div class="col-6">
+          <input formControlName="success_score"
+                 type="text"
+                 class="form-control"
+                 placeholder="{{'QUESTIONNAIRES.FORM.SURVEY_POINTS' | translate}}">
+        </div>
+        <div class="col-6">
+          <select formControlName="type" class="form-control">
+            <option value="sum">Sum</option>
+            <option value="avg">Avg</option>
+          </select>
+        </div>
+      </div>
+      <hr>
+      <div class="form-group">
+        <textarea formControlName="description"
+                  class="form-control" 
+                  placeholder="{{'QUESTIONNAIRES.FORM.DESCRIPTION' | translate}}"></textarea>
+      </div>
+      <hr>
+      <div *ngFor="let question of questions.controls; let i=index" [formGroup]="question" class="form-group row">
+        <div class="col-11 pr-0">
+          <textarea formControlName="text" class="form-control" placeholder="{{'QUESTIONNAIRES.FORM.QUESTION' | translate}}"></textarea>
+        </div>
+        <div class="col-1 d-flex flex-column">
+          <span (click)="onRemoveQuestion(i)" class="mr-auto my-auto">
+            <i class="fa fa-minus-circle"></i>
+          </span>
+          <span (click)="addQuestion()" class="mr-auto my-auto">
+            <i class="fa fa-plus-circle"></i>
+          </span>
+        </div>
+      </div>
+      <hr>
+      <div class="form-group">
+        <div *ngFor="let answer of answers.controls; let i=index" [formGroup]="answer" class="row mb-2">
+          <div class="col-9">
+            <input formControlName="text" class="form-control" placeholder="{{'QUESTIONNAIRES.FORM.ANSWER' | translate}}">
+          </div>
+          <div class="col-2">
+            <input formControlName="points" class="form-control" placeholder="{{'QUESTIONNAIRES.FORM.POINTS' | translate}}">
+          </div>
+          <div class="col-1 d-flex flex-row pl-0">
+            <span (click)="onRemoveAnswer(i)" class="my-auto">
+              <i class="fa fa-minus-circle"></i>
+            </span>
+            <span (click)="addAnswer()" class="ml-auto my-auto">
+              <i class="fa fa-plus-circle"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="form-group d-flex justify-content-end">
+        <button (click)="onCancel()" class="btn btn-secondary ml-2">{{'BUTTONS.BACK' | translate}}</button>
+        <button (click)="onSubmit()" class="btn btn-success ml-2">{{'BUTTONS.SUBMIT' | translate}}</button>
+      </div>
+    </form>
+  </div>
 </div>

@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { IQuestionnaire } from '../../../../interfaces/IQuestionnaire';
 import { QuestionnaireApiService } from '../../../../services/questionnaire-api.service';
-import { IApiResponse } from '../../../../interfaces/IApiResponse';
 import swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
-import { map, switchMap, filter } from 'rxjs/operators';
+import { switchMap, filter, mergeMap } from 'rxjs/operators';
 import { Questionnaire } from '../../../../models/Questionnaire';
+import { UserApiService } from '../../../../services/user-api.service';
+import { AuthService } from '../../../../services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-form-view',
@@ -16,11 +18,15 @@ import { Questionnaire } from '../../../../models/Questionnaire';
 export class FormViewComponent implements OnInit {
   public sendForm: FormGroup;
   public survey: IQuestionnaire;
+  public disabled: boolean;
 
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private questionnaireService: QuestionnaireApiService
+    private questionnaireService: QuestionnaireApiService,
+    private userService: UserApiService,
+    private authService: AuthService,
+    private translateService: TranslateService
   ) {
     this.survey = new Questionnaire({});
 
@@ -56,21 +62,43 @@ export class FormViewComponent implements OnInit {
 
   public onSubmit(): void {
     if (this.sendForm.valid) {
+      this.disabled = true;
       this.questionnaireService
-      .send(this.survey.id, this.sendForm.controls.list.value)
-      .subscribe((response: IApiResponse) => {
-        swal('success', 'Form was sent successfully', 'success')
-        .then(() => {
-          this.sendForm.reset();
-        });
-      }, (error) => {
-        swal('error', 'Please check data', 'error');
-      });
+        .send(this.survey.id, this.sendForm.controls.list.value)
+        .pipe(
+          switchMap((response) => {
+            return this.userService.read(this.authService.getUser().id);
+          }),
+          mergeMap((response) => {
+            this.authService.setUser(response);
+
+            return this.translateService.get('USER_SURVEY.SENT_SURVEY_FORM.SUCCESS_MESSAGE');
+          })
+        )
+        .subscribe(
+          (value) => {
+            swal('', value, 'success')
+              .then(() => {
+                this.resetForm();
+              });
+          },
+          (error) => {
+            swal('error', 'Please check data', 'error');
+          }
+        );
     }
   }
 
   public get list(): FormArray {
     return this.sendForm.get('list') as FormArray;
+  }
+
+  protected resetForm(): void {
+    for (let i = this.list.length; i > 0; i--) {
+      this.list.removeAt(i);
+    }
+
+    this.sendForm.reset();
   }
 
   protected getListGroup(): Object {
