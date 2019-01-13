@@ -8,7 +8,7 @@
         <div class="col-4 d-flex justify-content-end">
           <label translate class="my-auto ml-auto">PLANS.FORM.VISIBLE</label>
           <label class="switch switch-default switch-pill switch-primary my-auto ml-auto">
-            <input formControlName="is_active" [checked]="is_active" type="checkbox" class="switch-input">
+            <input formControlName="is_active" [checked]="form.controls.is_active.value" type="checkbox" class="switch-input">
             <span class="switch-label"></span>
             <span class="switch-handle"></span>
           </label>

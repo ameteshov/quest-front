@@ -46,10 +46,10 @@ export class PayComponent implements OnInit {
         },
         (error: HttpErrorResponse) => {
           this.translationService
-            .get('ERRORS.HEADER')
+            .get(['ERRORS.HEADER', 'ERRORS.PAYMENT_UNAVAILABLE'])
             .toPromise()
             .then((value) => {
-              swal(value, error.error.message, 'error');
+              swal(value['ERRORS.HEADER'], value['ERRORS.PAYMENT_UNAVAILABLE'], 'error');
             });
         }
       );

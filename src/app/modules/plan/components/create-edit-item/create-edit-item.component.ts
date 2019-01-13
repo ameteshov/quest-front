@@ -6,9 +6,12 @@ import { PlanApiService } from '../../../../services/plan-api.service';
 import { filter, switchMap } from 'rxjs/operators';
 import { Plan } from '../../../../models/Plan';
 import { environment } from '../../../../../environments/environment';
-import { HttpResponse } from '@angular/common/http';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import swal from 'sweetalert2';
+import * as _ from 'lodash';
 import { Observable } from 'rxjs';
+import { FormService } from '../../../../services/form.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-edit-item',
@@ -23,7 +26,9 @@ export class CreateEditItemComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private planService: PlanApiService
+    private planService: PlanApiService,
+    private translateService: TranslateService,
+    public formService: FormService
   ) {
     this.plan = new Plan({});
 
@@ -31,7 +36,7 @@ export class CreateEditItemComponent implements OnInit {
       name: ['', [Validators.required]],
       price: ['', [Validators.required]],
       points: ['', [Validators.required]],
-      is_active: ['', [Validators.required]],
+      is_active: [true, [Validators.required]],
       description: this.fb.array(this.getDescription())
     });
   }
@@ -62,9 +67,20 @@ export class CreateEditItemComponent implements OnInit {
       }
 
       req.subscribe(() => {
-        swal('Plan', 'Plan was successfully saved', 'success')
-          .then(() => { this.router.navigate(['plans']); });
-      });
+        this.translateService
+          .get('PLANS.FORM.SUCCESS')
+          .toPromise()
+          .then((value) => {
+            swal('', value, 'success')
+              .then(() => { this.router.navigate(['plans']); });
+          });
+        }, (response: HttpErrorResponse) => {
+          swal('', this.formService.createRichMessage(response), 'error');
+        }
+      );
+    } else {
+      this.formService.markInvalid(this.form);
+      this.formService.markArrayInvalid(this.description);
     }
   }
 

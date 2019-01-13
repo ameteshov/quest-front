@@ -24,10 +24,10 @@
             </div>
           </div>
           <div class="form-group d-flex justify-content-end">
-            <button (click)="onAdd()" class="btn btn-primary mr-2">
+            <button (click)="onAdd()" [disabled]="disabled" class="btn btn-primary mr-2">
               {{ 'USER_SURVEY.SENT_SURVEY_FORM.ADD_USER' | translate }}
             </button>
-            <button (click)="onSubmit()" class="btn btn-success">
+            <button (click)="onSubmit()" [disabled]="disabled" class="btn btn-success">
               {{ 'USER_SURVEY.SENT_SURVEY_FORM.SUBMIT' | translate }}
             </button>
           </div>
@@ -37,7 +37,7 @@
     <div class="col-md-4">
       <!-- TASK PROGRESS-->
       <div class="block">
-        <app-form-statistic [results]="survey.results" [score]="survey.score"></app-form-statistic>
+        <app-form-statistic [results]="survey.results" [score]="survey.success_score"></app-form-statistic>
       </div>
       <div class="block">
         <app-form-best-candidate [survey]="survey"></app-form-best-candidate>

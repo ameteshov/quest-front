@@ -7,6 +7,7 @@ import { switchMap, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { IQuestionnaire } from '../../../../interfaces/IQuestionnaire';
 import { Questionnaire } from '../../../../models/Questionnaire';
+import { FormService } from '../../../../services/form.service';
 
 @Component({
   selector: 'app-new-item',
@@ -21,7 +22,8 @@ export class NewItemComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private questApiService: QuestionnaireApiService
+    private questApiService: QuestionnaireApiService,
+    public formService: FormService
   ) {
     this.form = this.fb.group({
       name: ['', [Validators.required]],
@@ -88,6 +90,10 @@ export class NewItemComponent implements OnInit {
         swal('Success', 'Questionnaire saved successfully', 'success')
           .then(() => { this.router.navigate(['questionnaires']); });
       });
+    } else {
+      this.formService.markInvalid(this.form);
+      this.formService.markArrayInvalid(this.questions);
+      this.formService.markArrayInvalid(this.answers);
     }
   }
 

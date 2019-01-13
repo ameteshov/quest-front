@@ -4,3 +4,11 @@
   padding: 2em;
   margin-bottom: 1.5em;
 }
+
+.ng-valid.ng-touched {
+  border-color: #28a745;
+}
+
+.ng-touched.ng-invalid {
+  border-color: #dc3545;
+}

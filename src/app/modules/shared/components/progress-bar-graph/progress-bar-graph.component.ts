@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProgressBarGraphComponent implements OnInit {
   @Input() percent: number;
   @Input() title: string;
+  @Input() mode: 'abs' | 'relative' = 'relative';
 
   constructor() {
     this.percent = 0;

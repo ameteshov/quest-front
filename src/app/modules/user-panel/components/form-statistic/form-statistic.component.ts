@@ -38,7 +38,7 @@ export class FormStatisticComponent implements OnInit, OnChanges {
   }
 
   protected fillStatistic(): void {
-    this.sent = Math.round((this.results.length / this.user.points) * 100) || 0;
+    this.sent = this.results.length;
     this.pass = Math.round((this.getPassedCount() / this.results.length) * 100) || 0;
     this.success = Math.round((this.getPassedSuccessCount() / this.results.length) * 100) || 0;
   }

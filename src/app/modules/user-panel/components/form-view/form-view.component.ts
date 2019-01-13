@@ -9,6 +9,8 @@ import { Questionnaire } from '../../../../models/Questionnaire';
 import { UserApiService } from '../../../../services/user-api.service';
 import { AuthService } from '../../../../services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
+import { FormService } from '../../../../services/form.service';
+import { RfcEmailValidator } from '../../../../validators/rfc-email.validator';
 
 @Component({
   selector: 'app-form-view',
@@ -26,7 +28,8 @@ export class FormViewComponent implements OnInit {
     private questionnaireService: QuestionnaireApiService,
     private userService: UserApiService,
     private authService: AuthService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    public formService: FormService
   ) {
     this.survey = new Questionnaire({});
 
@@ -80,12 +83,16 @@ export class FormViewComponent implements OnInit {
             swal('', value, 'success')
               .then(() => {
                 this.resetForm();
+                this.disabled = false;
               });
           },
           (error) => {
             swal('error', 'Please check data', 'error');
+            this.disabled = false;
           }
         );
+    } else {
+      this.formService.markArrayInvalid(this.list);
     }
   }
 
@@ -103,7 +110,7 @@ export class FormViewComponent implements OnInit {
 
   protected getListGroup(): Object {
     return {
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, RfcEmailValidator()]],
       name: ['', [Validators.required]]
     };
   }

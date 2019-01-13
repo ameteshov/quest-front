@@ -7,6 +7,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import swal from 'sweetalert2';
 import { HttpErrorResponse } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-form',
@@ -23,6 +24,7 @@ export class FormComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private questionnarieService: QuestionnaireApiService,
     private router: Router,
+    private translateService: TranslateService,
     public formService: FormService
   ) {
     this.form = this.fb.group({
@@ -44,7 +46,12 @@ export class FormComponent implements OnInit {
         this.qustionnaire = result;
         this.buildForm();
       }, (error: HttpErrorResponse) => {
-        swal('Error', 'Oops, it seems survey not available anymore', 'error')
+        this.translateService
+          .get('FORM.ERROR')
+          .toPromise()
+          .then((value) => {
+            return swal('', value, 'error');
+          })
           .then(() => { this.router.navigate(['login']); });
       });
   }
@@ -79,7 +86,10 @@ export class FormComponent implements OnInit {
 
   protected onSuccess(): ((value: any) => void) {
     return (response) => {
-      swal('success', 'Thank you for your time!', 'success')
+      this.translateService
+        .get('FORM.SUCCESS')
+        .toPromise()
+        .then(value => swal('', value, 'success'))
         .then(() => this.router.navigate(['login']));
     };
   }
