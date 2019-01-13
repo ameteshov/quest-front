@@ -46,6 +46,8 @@ export class FormViewComponent implements OnInit {
       .pipe(
         filter(params => params.id ),
         switchMap((params) => {
+          this.resetForm();
+
           return this.questionnaireService.read(params.id, { with: ['results'] });
         })
       )

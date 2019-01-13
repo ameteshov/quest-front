@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardModule } from '../dashboard/dashboard.module';
 import { AuthGuard } from './../../guards/auth.guard';
 import { RedirectAuthorized } from './../../guards/redirect-authorized.guard';
 import { BodyComponent } from '../shared/components/body/body.component';
@@ -80,7 +79,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
+  imports: [RouterModule.forRoot(routes, { enableTracing: false })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

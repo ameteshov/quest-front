@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormViewComponent } from './components/form-view/form-view.component';
 import { RedirectLastSurvey } from '../../guards/redirect-last-survey.guard';
 import { PayComponent } from './components/pay/pay.component';
+import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'pay',
     component: PayComponent
+  },
+  {
+    path: 'payments/finished',
+    component: PaymentSuccessComponent
   }
 ];
 
