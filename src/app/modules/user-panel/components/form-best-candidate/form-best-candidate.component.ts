@@ -39,7 +39,7 @@ export class FormBestCandidateComponent implements OnInit, OnChanges {
         ];
 
         if ('undefined' !== typeof recipient.recipient_phone) {
-          text.push(`${values['USER_SURVEY.RECIPIENT_INFO.PHONE']}: ${recipient.recipient_phone}`);
+          text.push(`+7 ${values['USER_SURVEY.RECIPIENT_INFO.PHONE']}: ${recipient.recipient_phone}`);
         }
 
         return swal('', text.join('<br>'), 'info');
