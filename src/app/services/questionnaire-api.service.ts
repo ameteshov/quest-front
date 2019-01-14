@@ -31,10 +31,11 @@ export class QuestionnaireApiService extends ApiService {
     return this.get(`forms/${hash}`, {});
   }
 
-  public submit(hash: string, data: Object): Observable<any> {
+  public submit(hash: string, data: { content: Object, phone: string }): Observable<any> {
     return this.post(`forms`, {
       hash: hash,
-      content: data
+      content: data.content,
+      phone: data.phone
     });
   }
 }

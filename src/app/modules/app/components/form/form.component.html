@@ -16,15 +16,27 @@
                 </div>
               </div>
               <hr>
-              <div class="form-group text-center">
-                <button (click)="onSubmit()" 
-                        [disabled]="form.invalid"
-                        type="button"
-                        class="btn btn-primary"
-                        translate
-                        >BUTTONS.SUBMIT</button>
+              <div class="mx-auto d-block">
+                <h4 translate class="mb-3">FORM.CONTACT_INFO</h4>
+                <p translate class="mb-3">FORM.CONTACT_TEXT</p>
+                <div class="form-group d-flex align-items-center flex-row">
+                  <label translate class="m-0">FORM.CONTACT_PHONE_LABEL</label>
+                  <input formControlName="phone"
+                         prefix="+7 "
+                         mask="(000) 000 00 00"
+                         class="form-control col-md-4 ml-3"
+                         type="text">
+                </div>
               </div>
-              </form>
+              <hr>
+              <div class="form-group text-center">
+                <button (click)="onSubmit()"
+                        [disabled]="form.invalid"
+                        translate
+                        type="button"
+                        class="btn btn-primary">BUTTONS.SUBMIT</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>

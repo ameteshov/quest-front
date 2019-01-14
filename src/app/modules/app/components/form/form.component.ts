@@ -28,7 +28,8 @@ export class FormComponent implements OnInit {
     public formService: FormService
   ) {
     this.form = this.fb.group({
-      content: this.fb.array([])
+      content: this.fb.array([]),
+      phone: ['', [Validators.required]]
     });
   }
 
@@ -59,7 +60,10 @@ export class FormComponent implements OnInit {
   public onSubmit(): void {
     if (this.form.valid) {
       this.questionnarieService
-        .submit(this.hash, this.form.controls.content.value)
+        .submit(this.hash, {
+          content: this.form.controls.content.value,
+          phone: this.form.controls.phone.value
+        })
         .subscribe(this.onSuccess(), this.onError());
     }
   }
