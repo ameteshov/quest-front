@@ -10,9 +10,14 @@ import { FormStatisticComponent } from './components/form-statistic/form-statist
 import { FormBestCandidateComponent } from './components/form-best-candidate/form-best-candidate.component';
 import { PayComponent } from './components/pay/pay.component';
 import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
+import { QuestionnaireModule } from '../questionnaire/questionnaire.module';
+import { FormCreateEditComponent } from './components/form-create-edit/form-create-edit.component';
 
 @NgModule({
-  declarations: [FormViewComponent, FormStatisticComponent, FormBestCandidateComponent, PayComponent, PaymentSuccessComponent],
+  declarations: [
+    FormViewComponent, FormStatisticComponent, FormBestCandidateComponent, PayComponent,
+    PaymentSuccessComponent, FormCreateEditComponent
+  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -20,6 +25,7 @@ import { PaymentSuccessComponent } from './components/payment-success/payment-su
     FormsModule,
     ReactiveFormsModule,
     UserPanelRoutingModule,
+    QuestionnaireModule,
     TranslateModule.forChild()
   ]
 })

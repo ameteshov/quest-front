@@ -9,7 +9,8 @@ export class Questionnaire implements IQuestionnaire {
   public content: IQuestionnaireContent;
   public success_score: number;
   public results: Array<IQuestionnaireResult>;
-  public type: 'avg' | 'sum' | '';
+  public result_type: 'avg' | 'sum' | '';
+  public type_id: number;
   public created_at: string;
   public updated_at: string;
 
@@ -19,7 +20,8 @@ export class Questionnaire implements IQuestionnaire {
     this.description = data.description || '';
     this.content = data.content || {};
     this.success_score = data.success_score || null;
-    this.type = data.type || '';
+    this.result_type = data.result_type || '';
+    this.type_id = data.type_id || null;
     this.results = data.results || [];
 
     this.created_at = data.created_at || '';

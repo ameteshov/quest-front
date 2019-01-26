@@ -1,11 +1,22 @@
 <div class="col-8">
   <div class="card">
     <form [formGroup]="form" class="card-body card-block">
-      <div class="form-group">
-        <input formControlName="name"
-               type="text"
-               class="form-control col-8"
-               placeholder="{{'QUESTIONNAIRES.FORM.NAME' | translate}}">
+      <div class="form-group row">
+        <div class="col-6">
+          <input formControlName="name"
+                 type="text"
+                 class="form-control"
+                 placeholder="{{ 'QUESTIONNAIRES.FORM.NAME' | translate }}">
+        </div>
+        <div class="col-6 d-flex">
+          <select formControlName="type_id" class="form-control col-11">
+            <option translate value="0">QUESTIONNAIRES.FORM.DEFAULT_TYPE</option>
+            <option *ngFor="let type of types" value="{{ type?.id }}">{{ type?.name }}</option>
+          </select>
+          <span (click)="onAddType()" class="col-1 d-flex justify-content-center align-items-center point-cursor">
+            <i class="fa fa-plus"></i>
+          </span>
+        </div>
       </div>
       <div class="form-group row">
         <div class="col-6">
@@ -15,7 +26,8 @@
                  placeholder="{{'QUESTIONNAIRES.FORM.SURVEY_POINTS' | translate}}">
         </div>
         <div class="col-6">
-          <select formControlName="type" class="form-control">
+          <select formControlName="result_type" class="form-control">
+            <option translate value="default">QUESTIONNAIRES.FORM.DEFAULT_RESULT_TYPE</option>
             <option value="sum">Sum</option>
             <option value="avg">Avg</option>
           </select>
@@ -62,8 +74,8 @@
       </div>
       <hr>
       <div class="form-group d-flex justify-content-end">
-        <button (click)="onCancel()" class="btn btn-secondary ml-2">{{'BUTTONS.BACK' | translate}}</button>
-        <button (click)="onSubmit()" class="btn btn-success ml-2">{{'BUTTONS.SUBMIT' | translate}}</button>
+        <button (click)="onCancel()" translate class="btn btn-secondary ml-2">BUTTONS.BACK</button>
+        <button (click)="onSubmit()" translate class="btn btn-success ml-2">BUTTONS.SUBMIT</button>
       </div>
     </form>
   </div>

@@ -4,12 +4,21 @@ import { FormViewComponent } from './components/form-view/form-view.component';
 import { RedirectLastSurvey } from '../../guards/redirect-last-survey.guard';
 import { PayComponent } from './components/pay/pay.component';
 import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
+import { FormCreateEditComponent } from './components/form-create-edit/form-create-edit.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
     redirectTo: 'forms'
+  },
+  {
+    path: 'forms/new',
+    component: FormCreateEditComponent
+  },
+  {
+    path: 'forms/:id/edit',
+    component: FormCreateEditComponent
   },
   {
     path: 'forms/:id',

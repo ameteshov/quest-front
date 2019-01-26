@@ -5,9 +5,10 @@ export interface IQuestionnaire {
   id?: number;
   name: string;
   content: IQuestionnaireContent;
-  description: string;
+  description?: string;
   results?: Array<IQuestionnaireResult>;
   is_active?: boolean;
-  type?: 'sum' | 'avg' | '';
+  result_type?: 'sum' | 'avg' | '';
+  type_id?: number;
   success_score?: number;
 }
