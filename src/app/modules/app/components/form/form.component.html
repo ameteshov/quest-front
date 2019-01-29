@@ -1,9 +1,9 @@
 <div class="form-wrapper">
   <div class="container pt-5">
     <div class="row">
-      <div class="col-8 mx-auto">
+      <div [ngClass]="{'col-8': isFormStep, 'col-5': isInfoStep}" class="mx-auto">
         <div class="card">
-          <div class="card-body">
+          <div [ngStyle]="{'display': isFormStep ? 'block' : 'none'}" class="card-body">
             <h3 class="mb-3">{{ qustionnaire?.name }}</h3>
             <form [formGroup]="form" (submit)="onSubmit()">
               <div *ngFor="let item of content.controls; let i=index" [formGroup]="item" class="mx-auto d-block">
@@ -16,27 +16,43 @@
                 </div>
               </div>
               <hr>
-              <div class="mx-auto d-block">
-                <h4 translate class="mb-3">FORM.CONTACT_INFO</h4>
-                <p translate class="mb-3">FORM.CONTACT_TEXT</p>
-                <div class="form-group d-flex align-items-center flex-row">
-                  <label translate class="m-0">FORM.CONTACT_PHONE_LABEL</label>
-                  <input formControlName="phone"
-                         prefix="+7 "
-                         mask="(000) 000 00 00"
-                         class="form-control col-md-4 ml-3"
-                         type="text">
-                </div>
-              </div>
-              <hr>
-              <div class="form-group text-center">
-                <button (click)="onSubmit()"
-                        [disabled]="form.invalid"
-                        translate
-                        type="button"
-                        class="btn btn-primary">BUTTONS.SUBMIT</button>
+              <div class="form-group text-center d-flex">
+                <button (click)="onChangeStep()" translate type="button" class="btn btn-secondary mr-auto">FORM.INFO.RETURN_BTN</button>
+                <button (click)="onSubmit()" [disabled]="form.invalid" translate type="button" class="btn btn-primary">BUTTONS.SUBMIT</button>
               </div>
             </form>
+          </div>
+          <div [ngStyle]="{'display': isInfoStep ? 'block' : 'none'}" class="login-content">
+            <div class="login-form">
+              <form [formGroup]="form.controls.info">
+                <div class="form-group">
+                  <label translate>FORM.INFO.EMAIL</label>
+                  <input formControlName="email" class="au-input au-input--full" type="email">
+                </div>
+                <div class="form-group">
+                  <label translate>FORM.INFO.NAME</label>
+                  <input formControlName="name" class="au-input au-input--full" type="text">
+                </div>
+                <div class="form-group">
+                  <label translate class="m-0">FORM.INFO.PHONE</label>
+                  <input formControlName="phone" 
+                         prefix="+7 "
+                         mask="(000) 000 00 00"
+                         class="au-input au-input--full"
+                         type="text">
+                </div>
+                <div class="form-group">
+                  <label translate>FORM.INFO.BIRTHDAY</label>
+                  <input formControlName="birthday" [owlDateTime]="dt" [owlDateTimeTrigger]="dt" class="au-input au-input--full" readonly>
+                  <owl-date-time #dt [pickerType]="'calendar'"></owl-date-time>
+                </div>
+                <button translate 
+                        (click)="onChangeStep()"
+                        class="au-btn au-btn--block au-btn--blue m-b-20"
+                        type="button">FORM.INFO.CONTINUE_BTN
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

@@ -8,6 +8,8 @@ import { switchMap } from 'rxjs/operators';
 import swal from 'sweetalert2';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
+import * as moment from 'moment';
+import { DateTimeAdapter } from 'ng-pick-datetime';
 
 @Component({
   selector: 'app-form',
@@ -17,6 +19,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class FormComponent implements OnInit {
   public form: FormGroup;
   public qustionnaire: IQuestionnaire;
+  public step: number;
   private hash: string;
 
   constructor(
@@ -25,15 +28,23 @@ export class FormComponent implements OnInit {
     private questionnarieService: QuestionnaireApiService,
     private router: Router,
     private translateService: TranslateService,
+    public dateTimeAdapter: DateTimeAdapter<any>,
     public formService: FormService
   ) {
     this.form = this.fb.group({
       content: this.fb.array([]),
-      phone: ['', [Validators.required]]
+      info: this.fb.group({
+        phone: ['', [Validators.required]],
+        birthday: [moment.now(), [Validators.required]],
+        name: ['', [Validators.required]],
+        email: ['', [Validators.required, Validators.email]]
+      })
     });
+    this.step = 1;
+    this.dateTimeAdapter.setLocale('ru');
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.activeRoute
       .paramMap
       .pipe(
@@ -60,16 +71,33 @@ export class FormComponent implements OnInit {
   public onSubmit(): void {
     if (this.form.valid) {
       this.questionnarieService
-        .submit(this.hash, {
-          content: this.form.controls.content.value,
-          phone: this.form.controls.phone.value
-        })
+        .submit(this.hash, this.form.value)
         .subscribe(this.onSuccess(), this.onError());
+    }
+  }
+
+  public onChangeStep(): void {
+    if (this.step === 1) {
+      if (this.form.controls.info.valid) {
+        this.step++;
+      } else {
+        this.formService.markInvalid(this.form.get('info') as FormGroup);
+      }
+    } else {
+      this.step--;
     }
   }
 
   public get content(): FormArray {
     return this.form.get('content') as FormArray;
+  }
+
+  public get isFormStep(): boolean {
+    return this.step === 2;
+  }
+
+  public get isInfoStep(): boolean {
+    return this.step === 1;
   }
 
   protected buildForm(): void {
@@ -79,6 +107,15 @@ export class FormComponent implements OnInit {
       .forEach((elem, i) => {
         this.content.push(this.getQuestionGroup(i));
       });
+
+    this.fillInfo();
+  }
+
+  protected fillInfo(): void {
+    const infoForm = this.form.get('info') as FormGroup;
+
+    infoForm.controls.email.patchValue(this.qustionnaire.results[0].email);
+    infoForm.controls.name.patchValue(this.qustionnaire.results[0].recipient_name);
   }
 
   protected getQuestionGroup(index: number): FormGroup {

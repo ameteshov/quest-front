@@ -40,7 +40,7 @@ export class FormViewComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.route
       .params
       .pipe(
@@ -113,7 +113,8 @@ export class FormViewComponent implements OnInit {
   protected getListGroup(): Object {
     return {
       email: ['', [Validators.required, RfcEmailValidator()]],
-      name: ['', [Validators.required]]
+      name: ['', [Validators.required]],
+      vacancy: ['', [Validators.required]]
     };
   }
 

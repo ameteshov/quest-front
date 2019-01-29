@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
 import { IQuestionnaire } from '../interfaces/IQuestionnaire';
+import { IFilledQuestionnaire } from '../interfaces/IFilledQuestionnaire';
 
 @Injectable({
   providedIn: 'root'
@@ -31,11 +32,7 @@ export class QuestionnaireApiService extends ApiService {
     return this.get(`forms/${hash}`, {});
   }
 
-  public submit(hash: string, data: { content: Object, phone: string }): Observable<any> {
-    return this.post(`forms`, {
-      hash: hash,
-      content: data.content,
-      phone: data.phone
-    });
+  public submit(hash: string, data: IFilledQuestionnaire): Observable<any> {
+    return this.post(`forms`, { hash: hash, ...data });
   }
 }

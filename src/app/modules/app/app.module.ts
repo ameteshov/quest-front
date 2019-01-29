@@ -8,6 +8,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 import { AppRoutingModule } from './app-routing.module';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -26,6 +27,7 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormComponent } from './components/form/form.component';
 import { PlanApiService } from '../../services/plan-api.service';
+import { CommonModule } from '@angular/common';
 
 export function jwtTokenGetter() {
   return localStorage.getItem('token');
@@ -50,6 +52,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    CommonModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
@@ -69,6 +72,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     }),
     NgxMaskModule.forRoot(),
     NgxSmartModalModule.forRoot(),
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     AppRoutingModule,
     SharedModule
   ],
