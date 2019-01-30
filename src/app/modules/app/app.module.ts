@@ -28,6 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormComponent } from './components/form/form.component';
 import { PlanApiService } from '../../services/plan-api.service';
 import { CommonModule } from '@angular/common';
+import { QuestionnaireEventsService } from '../../services/questionnaire-events.service';
 
 export function jwtTokenGetter() {
   return localStorage.getItem('token');
@@ -83,6 +84,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AuthApiService,
     QuestionnaireApiService,
     PlanApiService,
+    QuestionnaireEventsService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }
   ],

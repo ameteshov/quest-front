@@ -23,4 +23,8 @@ export class AuthApiService extends ApiService {
   public register(data: IRegisterForm): Observable<any> {
     return this.post('auth/register', data);
   }
+
+  public loginWithGoogle(): Observable<any> {
+    return this.get('social-login/google', {});
+  }
 }

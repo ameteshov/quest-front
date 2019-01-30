@@ -11,4 +11,5 @@ export interface IQuestionnaire {
   result_type?: 'sum' | 'avg' | '';
   type_id?: number;
   success_score?: number;
+  user_id?: number;
 }

@@ -9,6 +9,7 @@ import { Questionnaire } from '../../../../models/Questionnaire';
 import { Observable, from } from 'rxjs';
 import swal from 'sweetalert2';
 import { TranslateService } from '@ngx-translate/core';
+import { QuestionnaireEventsService } from '../../../../services/questionnaire-events.service';
 
 @Component({
   selector: 'app-form-create-edit',
@@ -25,6 +26,7 @@ export class FormCreateEditComponent implements OnInit {
     private fb: FormBuilder,
     private questApiService: QuestionnaireApiService,
     private translateService: TranslateService,
+    private questionnaireEventService: QuestionnaireEventsService,
     public formService: FormService
   ) {
     this.form = this.fb.group({
@@ -57,11 +59,14 @@ export class FormCreateEditComponent implements OnInit {
   public onSubmit(): void {
     if (this.form.valid) {
       let req = new Observable<null>();
+      let event = '';
 
       if (this.survey.id) {
+        event = 'updated';
         req = this.questApiService
           .update(this.survey.id, this.getFormData());
       } else {
+        event = 'created';
         req = this.questApiService
           .create(this.getFormData());
       }
@@ -77,6 +82,7 @@ export class FormCreateEditComponent implements OnInit {
       )
       .subscribe(() => {
         this.router.navigate(['panel/forms']);
+        this.questionnaireEventService.emit(event);
       });
     } else {
       this.formService.markInvalid(this.form);
@@ -85,7 +91,7 @@ export class FormCreateEditComponent implements OnInit {
   }
 
   public onCancel(): void {
-    this.router.navigate(['/questionnaires']);
+    this.router.navigate(['panel/forms']);
   }
 
   public onRemoveQuestion(index: number): void {

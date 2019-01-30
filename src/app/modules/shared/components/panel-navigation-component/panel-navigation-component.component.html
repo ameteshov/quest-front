@@ -3,7 +3,7 @@
         <li *ngFor="let item of list" routerLinkActive="active">
           <a [routerLink]="['forms', item.id]" class="d-flex align-items-center" href="#">
             <i class="fas fa-copy"></i>
-            <span>{{ item.name }}</span>
+            <span class="flex-grow-1">{{ item.name }}</span>
             <span class="m-l-5"><i class="fas fa-angle-right"></i></span>
           </a>
         </li>

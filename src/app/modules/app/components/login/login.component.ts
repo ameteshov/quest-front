@@ -59,4 +59,12 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  public onGoogleAuth(): void {
+    this.authApiService
+      .loginWithGoogle()
+      .subscribe((data) => {
+        window.location = data.url;
+      });
+  }
+
 }

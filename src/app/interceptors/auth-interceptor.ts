@@ -65,7 +65,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   protected isPublicRequest(req: HttpRequest<any>): boolean {
-    const paths = ['auth', 'forms', 'assets/i18n'];
+    const paths = ['auth', 'forms', 'assets/i18n', 'social-login'];
     const result = paths.filter( item => req.url.indexOf(item) !== -1);
 
     return result.length !== 0;

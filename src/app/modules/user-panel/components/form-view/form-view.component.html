@@ -1,16 +1,19 @@
 <div class="row">
     <div class="col-md-8">
       <div class="block">
-        <h3 class="title">{{ survey.name }}</h3>
+        <div class="row">
+          <div class="col d-flex">
+            <h3 class="title flex-grow-1">{{ survey.name }}</h3>
+            <button *ngIf="user.id === survey?.user_id" (click)="onEdit()" class="btn btn-primary mr-2">Редактировать</button>
+            <button *ngIf="user.id === survey?.user_id" (click)="onDelete()" class="btn btn-danger">Удалить</button>
+          </div>
+        </div>
         <div class="mt-1">{{ survey.description }}</div>
       </div>
       <div class="block">
         <h3 class="title">{{ 'USER_SURVEY.SENT_SURVEY_FORM.HEAD' | translate }}</h3>
         <form [formGroup]="sendForm" class="mt-3">
           <div *ngFor="let user of list.controls; index as i; first as isFirst" [formGroup]="user" class="row form-group">
-            <!-- <div class="col-1 p-0 d-flex">
-              <span class="mx-auto my-auto">{{ i + 1 }}</span>
-            </div> -->
             <div class="col row pr-0">
               <div class="col-md-11">
                 <div class="row mb-2">

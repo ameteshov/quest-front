@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { IQuestionnaire } from '../../../../interfaces/IQuestionnaire';
 import { QuestionnaireApiService } from '../../../../services/questionnaire-api.service';
 import swal from 'sweetalert2';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, filter, mergeMap } from 'rxjs/operators';
 import { Questionnaire } from '../../../../models/Questionnaire';
 import { UserApiService } from '../../../../services/user-api.service';
@@ -11,6 +11,7 @@ import { AuthService } from '../../../../services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
 import { FormService } from '../../../../services/form.service';
 import { RfcEmailValidator } from '../../../../validators/rfc-email.validator';
+import { IUser } from '../../../../interfaces/IUser';
 
 @Component({
   selector: 'app-form-view',
@@ -21,9 +22,11 @@ export class FormViewComponent implements OnInit {
   public sendForm: FormGroup;
   public survey: IQuestionnaire;
   public disabled: boolean;
+  public user: IUser;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private fb: FormBuilder,
     private questionnaireService: QuestionnaireApiService,
     private userService: UserApiService,
@@ -38,6 +41,8 @@ export class FormViewComponent implements OnInit {
         this.fb.group(this.getListGroup())
       ])
     });
+
+    this.user = this.authService.getUser();
   }
 
   public ngOnInit(): void {
@@ -63,6 +68,14 @@ export class FormViewComponent implements OnInit {
       return;
     }
     this.list.removeAt(index);
+  }
+
+  public onEdit(): void {
+    this.router.navigate(['panel/forms', this.survey.id, 'edit']);
+  }
+
+  public onDelete(): void {
+
   }
 
   public onSubmit(): void {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionnaireApiService } from '../../../../services/questionnaire-api.service';
 import { IQuestionnaire } from '../../../../interfaces/IQuestionnaire';
 import { IApiResponse } from '../../../../interfaces/IApiResponse';
+import { QuestionnaireEventsService } from '../../../../services/questionnaire-events.service';
 
 @Component({
   selector: 'app-panel-navigation-component',
@@ -12,12 +13,23 @@ export class PanelNavigationComponentComponent implements OnInit {
   public list: Array<IQuestionnaire>;
 
   constructor(
-    private questService: QuestionnaireApiService
+    private questService: QuestionnaireApiService,
+    private questEventsService: QuestionnaireEventsService
   ) {
     this.list = [];
   }
 
   ngOnInit() {
+    this.getList();
+
+    this.questEventsService
+      .emitter
+      .subscribe((event) => {
+        this.getList();
+      });
+  }
+
+  protected getList(): void {
     this.questService
       .search({ all: 1 })
       .subscribe((response: IApiResponse) => {

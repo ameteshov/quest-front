@@ -11,6 +11,7 @@ export class Questionnaire implements IQuestionnaire {
   public results: Array<IQuestionnaireResult>;
   public result_type: 'avg' | 'sum' | '';
   public type_id: number;
+  public user_id: number;
   public created_at: string;
   public updated_at: string;
 
@@ -22,6 +23,7 @@ export class Questionnaire implements IQuestionnaire {
     this.success_score = data.success_score || null;
     this.result_type = data.result_type || '';
     this.type_id = data.type_id || null;
+    this.user_id = data.user_id || null;
     this.results = data.results || [];
 
     this.created_at = data.created_at || '';

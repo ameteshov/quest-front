@@ -1,8 +1,8 @@
 .plan {
-  padding: 0;
+	margin-bottom: 10px;
+}
+.plan > ul {
   background: white;
-  margin-left: 10px;
-  margin-bottom: 10px;
 }
 .pricing {
 	text-align: center;
