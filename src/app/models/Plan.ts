@@ -1,4 +1,5 @@
 import { IPlan } from '../interfaces/IPlan';
+import { PlanTypes } from '../enums/plan-types.enum';
 
 export class Plan implements IPlan {
   public id: number;
@@ -7,6 +8,7 @@ export class Plan implements IPlan {
   public price: number;
   public points: number;
   public is_active: boolean;
+  public type: PlanTypes;
   public created_at: string;
   public updated_at: string;
 
@@ -17,6 +19,7 @@ export class Plan implements IPlan {
     this.price = data.price || null;
     this.points = data.points || null;
     this.is_active = data.is_active || null;
+    this.type = data.type;
     this.created_at = data.created_at || '';
     this.updated_at = data.updated_at || '';
   }

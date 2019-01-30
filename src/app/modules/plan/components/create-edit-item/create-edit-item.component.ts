@@ -12,6 +12,9 @@ import * as _ from 'lodash';
 import { Observable } from 'rxjs';
 import { FormService } from '../../../../services/form.service';
 import { TranslateService } from '@ngx-translate/core';
+import { PlanTypes } from '../../../../enums/plan-types.enum';
+import { PlanTypesLabels } from '../../../../enums/plan-types-labels.enum';
+import { requiredWithValidator } from '../../../../validators/required-with.validator';
 
 @Component({
   selector: 'app-create-edit-item',
@@ -21,6 +24,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class CreateEditItemComponent implements OnInit {
   public form: FormGroup;
   public plan: IPlan;
+  public types: any;
+  public typesLabels: any;
 
   constructor(
     private router: Router,
@@ -35,10 +40,14 @@ export class CreateEditItemComponent implements OnInit {
     this.form = this.fb.group({
       name: ['', [Validators.required]],
       price: ['', [Validators.required]],
-      points: ['', [Validators.required]],
+      points: ['', [requiredWithValidator('type', PlanTypes.purchase)]],
       is_active: [true, [Validators.required]],
+      type: [PlanTypes.purchase],
       description: this.fb.array(this.getDescription())
     });
+
+    this.types = PlanTypes;
+    this.typesLabels = PlanTypesLabels;
   }
 
   public ngOnInit(): void {
@@ -88,6 +97,10 @@ export class CreateEditItemComponent implements OnInit {
     this.router.navigate(['plans']);
   }
 
+  public onChangeType(): void {
+    this.form.controls.price.markAsTouched();
+  }
+
   public get description(): FormArray {
     return this.form.get('description') as FormArray;
   }
@@ -99,6 +112,7 @@ export class CreateEditItemComponent implements OnInit {
     this.form.controls.price.patchValue(this.plan.price);
     this.form.controls.points.patchValue(this.plan.points);
     this.form.controls.is_active.patchValue(this.plan.is_active);
+    this.form.controls.type.patchValue(this.plan.type);
 
     for (let i = 0; i < environment.planDescriptionLength; i++) {
       const control = this.description.controls[i] as FormGroup;

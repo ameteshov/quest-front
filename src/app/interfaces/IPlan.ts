@@ -1,3 +1,5 @@
+import { PlanTypes } from '../enums/plan-types.enum';
+
 export interface IPlan {
   id?: number;
   name: string;
@@ -5,6 +7,7 @@ export interface IPlan {
   price: number;
   points: number;
   is_active: boolean;
+  type: PlanTypes;
   created_at?: string;
   updated_at?: string;
 }
