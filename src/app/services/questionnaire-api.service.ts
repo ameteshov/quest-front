@@ -35,4 +35,11 @@ export class QuestionnaireApiService extends ApiService {
   public submit(hash: string, data: IFilledQuestionnaire): Observable<any> {
     return this.post(`forms`, { hash: hash, ...data });
   }
+
+  public getVacancies(): Observable<any> {
+    return this.get(`questionnaires/results/vacancies`, {})
+  }
+  public getStatistic(): Observable<any> {
+    return this.get(`questionnaires/statistic`, {})
+  }
 }

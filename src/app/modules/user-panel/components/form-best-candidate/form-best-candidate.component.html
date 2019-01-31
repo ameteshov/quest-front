@@ -5,12 +5,14 @@
       <tr>
         <th translate>BEST_CANDIDATE.NAME</th>
         <th translate>BEST_CANDIDATE.POINTS</th>
+        <th translate>BEST_CANDIDATE.VACANCY</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of results; let i = index" (click)="onInfo(i)">
+      <tr *ngFor="let item of results; let i = index" (click)="onInfo(i)" class="table-item">
         <td>{{ i + 1 }}. {{ item?.recipient_name }}</td>
-        <td>{{ item?.score }} / {{ survey?.success_score }}</td>
+        <td>{{ item?.score_sum }} / {{ item?.score_max }}</td>
+        <td>{{ item?.vacancy }}</td>
       </tr>
       <tr *ngIf="results.length === 0" class="empty">
         <td translate colspan="2">USER_SURVEY.NO_CANDIDATES_FOUND</td>

@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { IQuestionnaire } from '../../../../interfaces/IQuestionnaire';
-import { IQuestionnaireResult } from '../../../../interfaces/IQuestionnaireResult';
+import { IBestCandidate } from '../../../../interfaces/IBestCandidate';
 import { TranslateService } from '@ngx-translate/core';
 import swal from 'sweetalert2';
+import { QuestionnaireApiService } from '../../../../services/questionnaire-api.service';
 
 @Component({
   selector: 'app-form-best-candidate',
@@ -10,47 +10,24 @@ import swal from 'sweetalert2';
   styleUrls: ['./form-best-candidate.component.css']
 })
 export class FormBestCandidateComponent implements OnInit, OnChanges {
-  @Input() survey: IQuestionnaire;
-  public results: Array<IQuestionnaireResult>;
+  public results: Array<IBestCandidate>
 
   constructor(
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private questionnaireApiService: QuestionnaireApiService
   ) {
     this.results = [];
   }
 
   public ngOnInit(): void {
-    this.fillCandidates();
+    this.questionnaireApiService
+      .getStatistic()
+      .subscribe((response: Array<IBestCandidate>) => {
+        this.results = response;
+      })
   }
 
-  public ngOnChanges(): void {
-    this.fillCandidates();
-  }
+  public ngOnChanges(): void {}
 
-  public onInfo(index: number): void {
-    const recipient = this.results[index];
-    this.translateService
-      .get(['USER_SURVEY.RECIPIENT_INFO.PHONE', 'USER_SURVEY.RECIPIENT_INFO.NAME', 'USER_SURVEY.RECIPIENT_INFO.EMAIL'])
-      .toPromise()
-      .then((values) => {
-        const text = [
-          `${values['USER_SURVEY.RECIPIENT_INFO.NAME']}: ${recipient.recipient_name}`,
-          `${values['USER_SURVEY.RECIPIENT_INFO.EMAIL']}: ${recipient.email}`,
-        ];
-
-        if ('undefined' !== typeof recipient.recipient_phone) {
-          text.push(`${values['USER_SURVEY.RECIPIENT_INFO.PHONE']}: +7 ${recipient.recipient_phone}`);
-        }
-
-        return swal('', text.join('<br>'), 'info');
-      });
-  }
-
-  protected fillCandidates(): void {
-    this.results = this.survey.results.filter(
-      (item) => {
-        return item.is_passed && item.score >= this.survey.success_score;
-      });
-  }
-
+  public onInfo(index: number): void {}
 }

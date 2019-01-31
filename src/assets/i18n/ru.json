@@ -150,7 +150,8 @@
   },
   "BEST_CANDIDATE": {
     "NAME": "Имя",
-    "POINTS": "Баллы"
+    "POINTS": "Баллы",
+    "VACANCY": "Должность"
   },
   "BUTTONS": {
     "ADD": "Добавить",

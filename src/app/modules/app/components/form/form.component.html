@@ -4,17 +4,17 @@
       <div [ngClass]="{'col-8': isFormStep, 'col-5': isInfoStep}" class="mx-auto">
         <div class="card">
           <div [ngStyle]="{'display': isFormStep ? 'block' : 'none'}" class="card-body">
-            <h3 class="mb-3">{{ qustionnaire?.name }}</h3>
+            <h3 class="mb-3">{{ questionnaire?.name }}</h3>
             <form [formGroup]="form" (submit)="onSubmit()">
               <div *ngFor="let item of content.controls; let i=index" [formGroup]="item" class="mx-auto d-block">
-                <p class="survey-text">{{ qustionnaire?.content.questions[i].text }}</p>
-                <div *ngIf="questionnaire?.type_id !== null" class="col">
-                  <div *ngFor="let answer of qustionnaire?.content.answers" class="form-check">
+                <p class="survey-text">{{ questionnaire?.content.questions[i].text }}</p>
+                <div *ngIf="(questionnaire?.type_id !== null)" class="col">
+                  <div *ngFor="let answer of questionnaire?.content.answers" class="form-check">
                     <input formControlName="result" class="form-check-input" type="radio" value="{{ answer.points }}">
                     <label class="form-check-label" for="exampleRadios1">{{ answer.text }}</label>
                   </div>
                 </div>
-                <div *ngIf="questionnaire?.type_id === null" class="form-group">
+                <div *ngIf="(questionnaire?.type_id === null)" class="form-group">
                   <textarea formControlName="result" class="form-control"></textarea>
                 </div>
               </div>

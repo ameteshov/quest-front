@@ -18,7 +18,7 @@ import { DateTimeAdapter } from 'ng-pick-datetime';
 })
 export class FormComponent implements OnInit {
   public form: FormGroup;
-  public qustionnaire: IQuestionnaire;
+  public questionnaire: IQuestionnaire;
   public step: number;
   private hash: string;
 
@@ -55,7 +55,7 @@ export class FormComponent implements OnInit {
         })
       )
       .subscribe((result: any) => {
-        this.qustionnaire = result;
+        this.questionnaire = result;
         this.buildForm();
       }, (error: HttpErrorResponse) => {
         this.translateService
@@ -101,7 +101,7 @@ export class FormComponent implements OnInit {
   }
 
   protected buildForm(): void {
-    this.qustionnaire
+    this.questionnaire
       .content
       .questions
       .forEach((elem, i) => {
@@ -114,8 +114,8 @@ export class FormComponent implements OnInit {
   protected fillInfo(): void {
     const infoForm = this.form.get('info') as FormGroup;
 
-    infoForm.controls.email.patchValue(this.qustionnaire.results[0].email);
-    infoForm.controls.name.patchValue(this.qustionnaire.results[0].recipient_name);
+    infoForm.controls.email.patchValue(this.questionnaire.results[0].email);
+    infoForm.controls.name.patchValue(this.questionnaire.results[0].recipient_name);
   }
 
   protected getQuestionGroup(index: number): FormGroup {
