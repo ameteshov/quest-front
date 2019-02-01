@@ -46,7 +46,10 @@
     "FORGOT_PASSWORD": "Забыли пароль?",
     "HAVE_NO_ACCOUNT": "Нет аккаунта?",
     "SIGN_IN": "Войти",
-    "SIGN_UP": "Зарегистрироваться"
+    "SIGN_UP": "Зарегистрироваться",
+    "SIGN_IN_GOOGLE": "Google",
+    "SIGN_IN_FACEBOOK": "Facebook",
+    "SIGN_IN_VK": "VKontakte"
   },
   "SIGN_UP": {
     "NAME": "Ваше имя",
@@ -151,7 +154,8 @@
   "BEST_CANDIDATE": {
     "NAME": "Имя",
     "POINTS": "Баллы",
-    "VACANCY": "Должность"
+    "VACANCY": "Должность",
+    "VIEW_DETAILS": "Смотреть результат"
   },
   "BUTTONS": {
     "ADD": "Добавить",

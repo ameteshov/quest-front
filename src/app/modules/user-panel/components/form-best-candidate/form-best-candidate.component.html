@@ -30,13 +30,24 @@
       <div class="col-md-4">Телефон</div>
       <div class="col-md-8">{{ modal.getData()[0].recipient_phone }}</div>
     </div>
-    <div class="row">
+    <div class="row mb-3">
       <div class="col-md-4">Почта</div>
       <div class="col-md-8">{{ modal.getData()[0].email }}</div>
     </div>
-    <div *ngFor="let test of modal.getData()" class="row d-flex">
+    <div *ngFor="let test of modal.getData()" class="row d-flex col">
         <div>{{ test.name }}</div>
-        <div>{{ test.score }} / {{ test.max_score }}</div>
+        <div *ngIf="test.type_id !== null" class="ml-auto">{{ test.score }} / {{ test.max_score }}</div>
+        <div *ngIf="test.type_id === null" class="ml-auto">
+          <a (click)="onViewDetails($event, test.id)" translate>BEST_CANDIDATE.VIEW_DETAILS</a>
+        </div>
       </div>
+  </div>
+</ngx-smart-modal>
+<ngx-smart-modal #resultModal identifier="viewResult" customClass="justify-content-center col-6">
+  <div *ngIf="resultModal.hasData()" class="col mt-5">
+    <div *ngFor="let question of resultModal.getData().questionnaire.content.questions; let i = index;" class="row mb-2">
+      <h4 class="col-12 mb-1">{{ question.text }}</h4>
+      <p class="col-12">{{ resultModal.getData().content[i].result }}</p>
+    </div>
   </div>
 </ngx-smart-modal>

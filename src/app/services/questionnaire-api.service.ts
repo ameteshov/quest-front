@@ -46,4 +46,8 @@ export class QuestionnaireApiService extends ApiService {
   public getCandidate(emailAddress: string): Observable<any> {
     return this.get(`questionnaire-results`, { params: {email: emailAddress} });
   }
+
+  public getSingleResult(id: number): Observable<any> {
+    return this.get(`questionnaire-results/${id}`, {});
+  }
 }

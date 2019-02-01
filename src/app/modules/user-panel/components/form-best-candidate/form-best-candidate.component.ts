@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { IBestCandidate } from '../../../../interfaces/IBestCandidate';
 import { TranslateService } from '@ngx-translate/core';
-import swal from 'sweetalert2';
 import { QuestionnaireApiService } from '../../../../services/questionnaire-api.service';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { map } from 'rxjs/operators';
@@ -44,5 +43,18 @@ export class FormBestCandidateComponent implements OnInit, OnChanges {
         })
       )
       .subscribe();
+  }
+
+  public onViewDetails(event: Event, id: number): void {
+    event.preventDefault();
+
+    this.questionnaireApiService
+      .getSingleResult(id)
+      .subscribe((response) => {
+        const modal = this.modalService.getModal('viewResult');
+          modal.removeData();
+          modal.setData(response);
+          modal.open();
+      });
   }
 }

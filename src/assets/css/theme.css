@@ -477,6 +477,14 @@ section {
     background: #4272d7;
 }
 
+.au-btn--red {
+    background: #ff3300;
+}
+
+.au-btn--red:hover {
+    background: #ff4000;
+}
+
 .au-btn--green {
     background: #63c76a;
 }
