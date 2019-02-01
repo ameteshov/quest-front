@@ -12,6 +12,7 @@ import { PayComponent } from './components/pay/pay.component';
 import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
 import { QuestionnaireModule } from '../questionnaire/questionnaire.module';
 import { FormCreateEditComponent } from './components/form-create-edit/form-create-edit.component';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FormCreateEditComponent } from './components/form-create-edit/form-crea
     ReactiveFormsModule,
     UserPanelRoutingModule,
     QuestionnaireModule,
-    TranslateModule.forChild()
+    TranslateModule.forChild(),
+    NgxSmartModalModule.forChild()
   ]
 })
 export class UserPanelModule { }

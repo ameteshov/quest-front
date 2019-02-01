@@ -37,9 +37,13 @@ export class QuestionnaireApiService extends ApiService {
   }
 
   public getVacancies(): Observable<any> {
-    return this.get(`questionnaires/results/vacancies`, {})
+    return this.get(`questionnaires/results/vacancies`, {});
   }
   public getStatistic(): Observable<any> {
-    return this.get(`questionnaires/statistic`, {})
+    return this.get(`questionnaires/statistic`, {});
+  }
+
+  public getCandidate(emailAddress: string): Observable<any> {
+    return this.get(`questionnaire-results`, { params: {email: emailAddress} });
   }
 }

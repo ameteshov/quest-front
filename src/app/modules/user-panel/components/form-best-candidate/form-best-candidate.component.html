@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of results; let i = index" (click)="onInfo(i)" class="table-item">
+      <tr *ngFor="let item of results; let i = index" (click)="onInfo(item?.email)" class="table-item">
         <td>{{ i + 1 }}. {{ item?.recipient_name }}</td>
         <td>{{ item?.score_sum }} / {{ item?.score_max }}</td>
         <td>{{ item?.vacancy }}</td>
@@ -20,3 +20,23 @@
     </tbody>
   </table>
 </div>
+<ngx-smart-modal #modal identifier="candidateDetails" customClass="justify-content-center">
+  <div *ngIf="modal.hasData()" class="col mt-5">
+    <div class="row">
+      <div class="col-md-4">Имя</div>
+      <div class="col-md-8">{{ modal.getData()[0].recipient_name }}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">Телефон</div>
+      <div class="col-md-8">{{ modal.getData()[0].recipient_phone }}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">Почта</div>
+      <div class="col-md-8">{{ modal.getData()[0].email }}</div>
+    </div>
+    <div *ngFor="let test of modal.getData()" class="row d-flex">
+        <div>{{ test.name }}</div>
+        <div>{{ test.score }} / {{ test.max_score }}</div>
+      </div>
+  </div>
+</ngx-smart-modal>
