@@ -63,12 +63,21 @@
                           <button class="au-btn au-btn--block au-btn--green m-b-20"
                                   translate
                                   type="submit">SIGN_UP.SUBMIT_BTN</button>
-                          <!-- <div class="social-login-content">
+                          <div class="social-login-content">
                               <div class="social-button">
-                                  <button class="au-btn au-btn--block au-btn--blue m-b-20">register with facebook</button>
-                                  <button class="au-btn au-btn--block au-btn--blue2">register with twitter</button>
+                                  <button translate
+                                          (click)="onSocialAuth('google')"
+                                          class="au-btn au-btn--block au-btn--red m-b-20"
+                                          type="button">LOGIN.SIGN_IN_GOOGLE</button>
+                                <!-- <button translate 
+                                        class="au-btn au-btn--block au-btn--blue m-b-20"
+                                        type="button">LOGIN.SIGN_IN_FACEBOOK</button> -->
+                                  <button (click)="onSocialAuth('vkontakte')"
+                                          translate
+                                          class="au-btn au-btn--block au-btn--blue2"
+                                          type="button">LOGIN.SIGN_IN_VK</button>
                               </div>
-                          </div> -->
+                          </div>
                       </form>
                       <div class="register-link">
                           <p translate>

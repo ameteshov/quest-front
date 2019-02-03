@@ -5,7 +5,19 @@
       <tr>
         <th translate>BEST_CANDIDATE.NAME</th>
         <th translate>BEST_CANDIDATE.POINTS</th>
-        <th translate>BEST_CANDIDATE.VACANCY</th>
+        <th>
+          <span translate class="">BEST_CANDIDATE.VACANCY</span>
+          <i (click)="onToggleVacancyList($event)" class="fa fa-caret-square-o-down vacancy-list-icon m-l-5"></i>
+          <ul *ngIf="vacancyListOpen" class="vacancy-list">
+            <li *ngFor="let vacancy of vacancies">
+              <input (change)="onFilterChange($event)" [checked]="isFilterActive(vacancy)" value="{{vacancy}}" type="checkbox">
+              <label>{{ vacancy | titlecase}}</label>
+            </li>
+            <li class="justify-content-center m-t-5">
+              <button translate (click)="updateStatistic()" class="btn btn-sm btn-secondary">BEST_CANDIDATE.FILTER_BTN</button>
+            </li>
+          </ul>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -15,7 +27,7 @@
         <td>{{ item?.vacancy }}</td>
       </tr>
       <tr *ngIf="results.length === 0" class="empty">
-        <td translate colspan="2">USER_SURVEY.NO_CANDIDATES_FOUND</td>
+        <td translate colspan="3">USER_SURVEY.NO_CANDIDATES_FOUND</td>
       </tr>
     </tbody>
   </table>

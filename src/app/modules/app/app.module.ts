@@ -29,7 +29,7 @@ import { FormComponent } from './components/form/form.component';
 import { PlanApiService } from '../../services/plan-api.service';
 import { CommonModule } from '@angular/common';
 import { QuestionnaireEventsService } from '../../services/questionnaire-events.service';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { CompleteSocialAuthComponent } from './components/complete-social-auth/complete-social-auth.component';
 
 export function jwtTokenGetter() {
   return localStorage.getItem('token');
@@ -49,7 +49,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     LoginComponent,
     SignupComponent,
     ConfirmComponent,
-    FormComponent
+    FormComponent,
+    CompleteSocialAuthComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +75,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     }),
     NgxMaskModule.forRoot(),
     NgxSmartModalModule.forRoot(),
-    BsDropdownModule.forRoot(),
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     AppRoutingModule,

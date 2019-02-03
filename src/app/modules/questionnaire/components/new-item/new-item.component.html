@@ -10,7 +10,7 @@
         </div>
         <div class="col-6 d-flex">
           <select formControlName="type_id" class="form-control col-11">
-            <option translate value="0">QUESTIONNAIRES.FORM.DEFAULT_TYPE</option>
+            <option translate value="0">QUESTIONNAIRES.FORM.DEFAULT_RESULT_TYPE</option>
             <option *ngFor="let type of types" value="{{ type?.id }}">{{ type?.name }}</option>
           </select>
           <span (click)="onAddType()" class="col-1 d-flex justify-content-center align-items-center point-cursor">
@@ -24,13 +24,6 @@
                  type="text"
                  class="form-control"
                  placeholder="{{'QUESTIONNAIRES.FORM.SURVEY_POINTS' | translate}}">
-        </div>
-        <div class="col-6">
-          <select formControlName="result_type" class="form-control">
-            <option translate value="default">QUESTIONNAIRES.FORM.DEFAULT_RESULT_TYPE</option>
-            <option value="sum">Sum</option>
-            <option value="avg">Avg</option>
-          </select>
         </div>
       </div>
       <hr>
@@ -74,9 +67,25 @@
       </div>
       <hr>
       <div class="form-group d-flex justify-content-end">
-        <button (click)="onCancel()" translate class="btn btn-secondary ml-2">BUTTONS.BACK</button>
-        <button (click)="onSubmit()" translate class="btn btn-success ml-2">BUTTONS.SUBMIT</button>
+        <button (click)="onCancel()" [disabled]="formSubmitting" translate class="btn btn-secondary ml-2">BUTTONS.BACK</button>
+        <button (click)="onSubmit()" [disabled]="formSubmitting" translate class="btn btn-success ml-2">BUTTONS.SUBMIT</button>
       </div>
     </form>
   </div>
+  <ngx-smart-modal #typeModal 
+                   identifier="typeModal" 
+                   (onOpen)="modalEventService.onOpen()" 
+                   (onAnyCloseEventFinished)="onTypeModalClose()">
+      <form [formGroup]="typeForm" class="mt-4 pt-2">
+        <div class="form-group">
+          <label>Название характеристики</label>
+          <input formControlName="name"
+                 type="text"
+                 class="form-control">
+        </div>
+        <div class="d-flex">
+          <button translate (click)="onSubmitTypeForm()" class="btn btn-primary mx-auto">Отправить</button>
+        </div>
+      </form>
+    </ngx-smart-modal>
 </div>

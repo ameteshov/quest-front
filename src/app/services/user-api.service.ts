@@ -22,4 +22,8 @@ export class UserApiService extends ApiService {
   public read(id: number): Observable<any> {
     return this.get(`users/${id}`, {});
   }
+
+  public profile(): Observable<any> {
+    return this.get(`users/profile`, {});
+  }
 }

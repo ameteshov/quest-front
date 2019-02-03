@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { FormService } from '../../../../services/form.service';
 import { RfcEmailValidator } from '../../../../validators/rfc-email.validator';
 import { IUser } from '../../../../interfaces/IUser';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-form-view',
@@ -101,8 +102,10 @@ export class FormViewComponent implements OnInit {
                 this.disabled = false;
               });
           },
-          (error) => {
-            swal('error', 'Please check data', 'error');
+          (response: HttpErrorResponse) => {
+            if (response.status === 400) {
+              this.showFormApiErrors(response);
+            }
             this.disabled = false;
           }
         );
@@ -129,6 +132,20 @@ export class FormViewComponent implements OnInit {
       name: ['', [Validators.required]],
       vacancy: ['', [Validators.required]]
     };
+  }
+
+  protected showFormApiErrors(response: HttpErrorResponse) {
+    const messageBag = JSON.parse(response.error.message);
+    let message = '';
+    messageBag.forEach((item) => {
+      message += `${item.email} - ${item.vacancy} <br>`;
+    });
+
+    this.translateService.get('USER_SURVEY.SENT_SURVEY_FORM.VACANCY_ERROR')
+      .toPromise()
+      .then((value: string) => {
+        swal('', value + message, 'error');
+      });
   }
 
 }

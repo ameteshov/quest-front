@@ -5,3 +5,7 @@
 .ng-touched.ng-invalid {
   border-color: #dc3545;
 }
+
+.header-desktop > .nsm-overlay-open {
+  z-index: -1;
+}

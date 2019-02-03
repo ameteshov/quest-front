@@ -8,6 +8,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { FormComponent } from './components/form/form.component';
 import { PanelBodyComponent } from '../shared/components/panel-body/panel-body.component';
+import { CompleteSocialAuthComponent } from './components/complete-social-auth/complete-social-auth.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,11 @@ const routes: Routes = [
   {
     path: 'confirm',
     component: ConfirmComponent,
+    canActivate: [RedirectAuthorized]
+  },
+  {
+    path: 'complete-social-auth',
+    component: CompleteSocialAuthComponent,
     canActivate: [RedirectAuthorized]
   },
   {

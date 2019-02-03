@@ -10,6 +10,7 @@ import { PanelNavigationComponentComponent } from './panel-navigation-component/
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { ProgressBarGraphComponent } from './progress-bar-graph/progress-bar-graph.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     RouterModule,
     PerfectScrollbarModule,
-    TranslateModule.forChild()
+    TranslateModule.forChild(),
+    NgxSmartModalModule.forChild()
   ],
   exports: [
     NavigationComponent, HeaderComponent, SubHeaderComponent, BodyComponent,

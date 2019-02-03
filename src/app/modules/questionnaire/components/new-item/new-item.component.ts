@@ -4,14 +4,16 @@ import { QuestionnaireApiService } from '../../../../services/questionnaire-api.
 import swal from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
 import { switchMap, filter, mergeMap, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { IQuestionnaire } from '../../../../interfaces/IQuestionnaire';
 import { Questionnaire } from '../../../../models/Questionnaire';
 import { FormService } from '../../../../services/form.service';
 import { QuestionnaireTypeApiService } from '../../../../services/questionnaire-type-api.service';
 import { IApiResponse } from '../../../../interfaces/IApiResponse';
 import { IQuestionnaireType } from '../../../../interfaces/IQuestionnaireType';
-import { defaultValidator } from '../../../../validators/default.validator';
+import { NgxSmartModalService } from 'ngx-smart-modal';
+import { ModalEventsService } from '../../../../services/modal-events.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-new-item',
@@ -20,8 +22,11 @@ import { defaultValidator } from '../../../../validators/default.validator';
 })
 export class NewItemComponent implements OnInit {
   public form: FormGroup;
+  public typeForm: FormGroup;
   public survey: IQuestionnaire;
   public types: Array<IQuestionnaireType>;
+  public typeFormSubmitting: boolean;
+  public formSubmitting: boolean;
 
   constructor(
     private router: Router,
@@ -29,13 +34,15 @@ export class NewItemComponent implements OnInit {
     private fb: FormBuilder,
     private questApiService: QuestionnaireApiService,
     private questionnaireTypeApiService: QuestionnaireTypeApiService,
+    private modalService: NgxSmartModalService,
+    private translateService: TranslateService,
+    public modalEventService: ModalEventsService,
     public formService: FormService
   ) {
     this.form = this.fb.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
       success_score: ['', [Validators.required]],
-      result_type: ['default', [Validators.required, defaultValidator()]],
       type_id: [0, [Validators.required]],
       questions: this.fb.array([
         this.fb.group(this.getQuestionGroup())
@@ -45,8 +52,14 @@ export class NewItemComponent implements OnInit {
       ])
     });
 
+    this.typeForm = this.fb.group({
+      name: ['', [Validators.required]]
+    });
+
     this.survey = new Questionnaire({});
     this.types = [];
+    this.typeFormSubmitting = false;
+    this.formSubmitting = false;
   }
 
   ngOnInit() {
@@ -61,14 +74,7 @@ export class NewItemComponent implements OnInit {
       )
       .subscribe((response) => this.fillForm(response));
 
-    this.questionnaireTypeApiService
-      .search({ all: 1 })
-      .pipe(
-        map((response: IApiResponse) => {
-          this.types = response.data;
-        })
-      )
-      .subscribe();
+    this.fetchTypes().subscribe();
   }
 
   public get questions(): FormArray {
@@ -93,6 +99,7 @@ export class NewItemComponent implements OnInit {
 
   public onSubmit(): void {
     if (this.form.valid) {
+      this.formSubmitting = true;
       let req = new Observable<null>();
 
       if (this.survey.id) {
@@ -103,15 +110,63 @@ export class NewItemComponent implements OnInit {
           .create(this.getFormData());
       }
 
-      req.subscribe(() => {
-        swal('Success', 'Questionnaire saved successfully', 'success')
-          .then(() => { this.router.navigate(['questionnaires']); });
-      });
+      req
+        .pipe(
+          map(() => {
+            return new Observable<null>();
+          }),
+          mergeMap(() => {
+            return this.translateService.get('QUESTIONNAIRES.FORM.SUCCESS');
+          }),
+          mergeMap((value: string) => {
+            return from(swal('', value, 'success'));
+          })
+        )
+        .subscribe(() => {
+          this.formSubmitting = false;
+          this.router.navigate(['questionnaires']);
+        });
     } else {
       this.formService.markInvalid(this.form);
       this.formService.markArrayInvalid(this.questions);
       this.formService.markArrayInvalid(this.answers);
     }
+  }
+
+  public onSubmitTypeForm(): void {
+    if (this.typeForm.valid) {
+      this.questionnaireTypeApiService
+        .create(this.typeForm.value)
+        .pipe(
+          map(() => {
+            this.modalService
+              .getModal('typeModal')
+              .close();
+            return new Observable<null>();
+          }),
+          mergeMap(() => {
+            return this.translateService.get('QUESTIONNAIRES.TYPE_FORM.SUCCESS');
+          }),
+          mergeMap((value: string) => {
+            return from(swal('', value, 'success'));
+          }),
+          mergeMap(() => {
+            return this.fetchTypes();
+          })
+        )
+        .subscribe();
+    }
+  }
+
+  public onAddType(): void {
+    this.modalService
+      .getModal('typeModal')
+      .open();
+  }
+
+  public onTypeModalClose(): void {
+    this.typeForm.reset();
+    this.modalEventService.onClose();
   }
 
   public onRemoveQuestion(index: number): void {
@@ -122,6 +177,15 @@ export class NewItemComponent implements OnInit {
     this.answers.removeAt(index);
   }
 
+  protected fetchTypes(): Observable<any> {
+    return this.questionnaireTypeApiService
+      .search({ all: 1 })
+      .pipe(
+        map((response: IApiResponse) => {
+          this.types = response.data;
+        })
+      );
+  }
   protected fillForm(data: IQuestionnaire): void {
     this.survey = new Questionnaire(data);
 
@@ -135,7 +199,6 @@ export class NewItemComponent implements OnInit {
       name: this.form.controls.name.value,
       description: this.form.controls.description.value,
       success_score: this.form.controls.success_score.value,
-      result_type: this.form.controls.result_type.value,
       type_id: +this.form.controls.type_id.value === 0 ? null : this.form.controls.type_id.value,
       content: {
         questions: this.form.controls.questions.value,
@@ -148,7 +211,7 @@ export class NewItemComponent implements OnInit {
     this.form.controls.name.patchValue(this.survey.name);
     this.form.controls.description.patchValue(this.survey.description);
     this.form.controls.success_score.patchValue(this.survey.success_score);
-    this.form.controls.result_type.patchValue(this.survey.result_type);
+    this.form.controls.type_id.patchValue(this.survey.type_id);
   }
 
   protected fillQuestions(): void {

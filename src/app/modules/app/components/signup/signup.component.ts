@@ -42,6 +42,14 @@ export class SignupComponent implements OnInit {
     }
   }
 
+  public onSocialAuth(provider: string): void {
+    this.auth
+      .loginWith(provider)
+      .subscribe((data) => {
+        window.location = data.url;
+      });
+  }
+
   protected onSuccess(): any {
     return (response: HttpResponse<any>) => {
       swal('Sign up success', 'You registration was successfull. Now you can login', 'success')

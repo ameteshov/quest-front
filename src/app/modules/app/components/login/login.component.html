@@ -11,8 +11,8 @@
                   <div class="login-form">
                       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                           <div class="form-group">
-                              <label translate>LOGIN.EMAIL</label>
                               <input formControlName="email"
+                                     placeholder="{{ 'LOGIN.EMAIL' | translate }}"
                                      class="au-input au-input--full"
                                      type="email" >
                               <span *ngIf="formService.hasError(loginForm, 'email', 'required')"
@@ -25,9 +25,9 @@
                                     class="help-block text-danger">{{ apiErrors.email }}</span>
                           </div>
                           <div class="form-group">
-                              <label translate>LOGIN.PASSWORD</label>
                               <input formControlName="password"
-                                     class="au-input au-input--full" 
+                                     placeholder="{{ 'LOGIN.PASSWORD' | translate }}"
+                                     class="au-input au-input--full"
                                      type="password">
                               <span *ngIf="formService.hasError(loginForm, 'password', 'required')"
                                     translate
@@ -47,9 +47,9 @@
                                     (click)="onSocialAuth('google')"
                                     class="au-btn au-btn--block au-btn--red m-b-20"
                                     type="button">LOGIN.SIGN_IN_GOOGLE</button>
-                                <button translate 
+                                <!-- <button translate 
                                         class="au-btn au-btn--block au-btn--blue m-b-20"
-                                        type="button">LOGIN.SIGN_IN_FACEBOOK</button>
+                                        type="button">LOGIN.SIGN_IN_FACEBOOK</button> -->
                                 <button (click)="onSocialAuth('vkontakte')"
                                         translate
                                         class="au-btn au-btn--block au-btn--blue2"

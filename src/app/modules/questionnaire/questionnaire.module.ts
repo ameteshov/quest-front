@@ -8,6 +8,7 @@ import { AdminListComponent } from './components/admin-list/admin-list.component
 import { UserListComponent } from './components/user-list/user-list.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 @NgModule({
   declarations: [ListComponent, NewItemComponent, AdminListComponent, UserListComponent],
@@ -17,7 +18,8 @@ import { TranslateModule } from '@ngx-translate/core';
     ReactiveFormsModule,
     FormsModule,
     MatExpansionModule,
-    TranslateModule.forChild()
+    TranslateModule.forChild(),
+    NgxSmartModalModule.forChild()
   ]
 })
 export class QuestionnaireModule { }
