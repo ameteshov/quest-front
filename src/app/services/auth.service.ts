@@ -42,8 +42,16 @@ export class AuthService {
 
   public isAuthorized(): boolean {
     const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
 
-    return token !== null;
+    if (token === null || user === null) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+
+      return false;
+    }
+
+    return localStorage.getItem('user') !== null;
   }
 
   public isTokenExpired(): boolean {

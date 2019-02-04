@@ -14,6 +14,7 @@ export class FormBestCandidateComponent implements OnInit, OnChanges {
   public results: Array<IBestCandidate>;
   public vacancyListOpen: boolean;
   public vacancies: Array<string>;
+  public vacancyListUpdating: boolean;
   private filters: Array<string>;
 
   constructor(
@@ -25,6 +26,7 @@ export class FormBestCandidateComponent implements OnInit, OnChanges {
     this.vacancies = [];
     this.filters = [];
     this.vacancyListOpen = false;
+    this.vacancyListUpdating = false;
   }
 
   public ngOnInit(): void {
@@ -80,10 +82,18 @@ export class FormBestCandidateComponent implements OnInit, OnChanges {
   }
 
   public updateStatistic(): void {
+    if (this.vacancyListOpen) {
+      this.vacancyListUpdating = true;
+    }
+
     this.questionnaireApiService
       .getStatistic({vacancies: this.vacancies})
       .subscribe((response: Array<IBestCandidate>) => {
         this.results = response;
+        if (this.vacancyListOpen) {
+          this.vacancyListUpdating = false;
+          this.vacancyListOpen = false;
+        }
       });
   }
 

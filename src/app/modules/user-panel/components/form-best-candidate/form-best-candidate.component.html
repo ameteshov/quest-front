@@ -14,7 +14,11 @@
               <label>{{ vacancy | titlecase}}</label>
             </li>
             <li class="justify-content-center m-t-5">
-              <button translate (click)="updateStatistic()" class="btn btn-sm btn-secondary">BEST_CANDIDATE.FILTER_BTN</button>
+              <button translate
+                      (click)="updateStatistic()"
+                      [disabled]="vacancyListUpdating"
+                      class="btn btn-sm btn-secondary">BEST_CANDIDATE.FILTER_BTN<i *ngIf="vacancyListUpdating" class="fa fa-spinner fa-spin fa-fw"></i>
+              </button>
             </li>
           </ul>
         </th>

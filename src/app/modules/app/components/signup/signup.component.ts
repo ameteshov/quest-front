@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import * as _ from 'lodash';
 import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { AuthService } from '../../../../services/auth.service';
+import { ILoginResponse } from '../../../../interfaces/ILoginResponse';
 
 @Component({
   selector: 'app-signup',
@@ -20,6 +22,7 @@ export class SignupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private auth: AuthApiService,
+    private authService: AuthService,
     private router: Router,
     public formService: FormService
   ) {
@@ -51,9 +54,10 @@ export class SignupComponent implements OnInit {
   }
 
   protected onSuccess(): any {
-    return (response: HttpResponse<any>) => {
-      swal('Sign up success', 'You registration was successfull. Now you can login', 'success')
-        .then(() => this.router.navigate(['login']));
+    return (response: ILoginResponse) => {
+      this.authService.setToken(response.token);
+      this.authService.setUser(response.user);
+      this.router.navigate(['login']);
     };
   }
 
@@ -69,8 +73,6 @@ export class SignupComponent implements OnInit {
   }
 
   protected errorHandler(response: HttpErrorResponse): any {
-    console.log(response);
-    console.log(response.error.errors);
     if (response.status === 422) {
       const fields = _.keys(response.error.errors);
       for (const key of fields) {

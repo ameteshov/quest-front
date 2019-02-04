@@ -10,6 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import { DateTimeAdapter } from 'ng-pick-datetime';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-form',
@@ -28,6 +29,7 @@ export class FormComponent implements OnInit {
     private questionnarieService: QuestionnaireApiService,
     private router: Router,
     private translateService: TranslateService,
+    private location: Location,
     public dateTimeAdapter: DateTimeAdapter<any>,
     public formService: FormService
   ) {
@@ -131,7 +133,9 @@ export class FormComponent implements OnInit {
         .get('FORM.SUCCESS')
         .toPromise()
         .then(value => swal('', value, 'success'))
-        .then(() => this.router.navigate(['login']));
+        .then(() => {
+          document.location.href = '/';
+        });
     };
   }
 
