@@ -111,6 +111,7 @@ export class CreateEditItemComponent implements OnInit {
 
     this.form.controls.name.patchValue(this.plan.name);
     this.form.controls.price.patchValue(this.plan.price);
+    this.form.controls.slug.patchValue(this.plan.slug);
     this.form.controls.points.patchValue(this.plan.points);
     this.form.controls.is_active.patchValue(this.plan.is_active);
     this.form.controls.type.patchValue(this.plan.type);
