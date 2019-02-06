@@ -40,6 +40,7 @@ export class CreateEditItemComponent implements OnInit {
     this.form = this.fb.group({
       name: ['', [Validators.required]],
       price: ['', [Validators.required]],
+      slug: ['', [Validators.required]],
       points: ['', [requiredWithValidator('type', PlanTypes.purchase)]],
       is_active: [true, [Validators.required]],
       type: [PlanTypes.purchase],

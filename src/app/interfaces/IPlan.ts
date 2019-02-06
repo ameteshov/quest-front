@@ -5,6 +5,7 @@ export interface IPlan {
   name: string;
   description: Array<{text: string}>;
   price: number;
+  slug: string;
   points: number;
   is_active: boolean;
   type: PlanTypes;

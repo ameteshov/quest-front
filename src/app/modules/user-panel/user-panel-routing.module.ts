@@ -34,7 +34,7 @@ const routes: Routes = [
     component: PayComponent
   },
   {
-    path: 'payments/finished',
+    path: 'payments/finished/:slug',
     component: PaymentSuccessComponent
   }
 ];
