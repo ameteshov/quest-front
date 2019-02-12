@@ -180,5 +180,13 @@
     "SUBMIT": "Отправить",
     "BACK": "Назад",
     "NEW_SURVEY": "Добавить анкету"
+  },
+  "PAYMENT_METHODS": {
+    "BANK_CARD": "Банковская карта",
+    "YANDEX_MONEY": "Яндекс деньги",
+    "SBERBANK": "Сбербанк онлайн",
+    "B2B_SBERBANK": "Сбербанк онлайн Бизнес",
+    "QIWI": "QIWI Кошелек",
+    "WEBMONEY": "Web-money"
   }
 }
