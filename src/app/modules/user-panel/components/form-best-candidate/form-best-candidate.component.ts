@@ -87,7 +87,7 @@ export class FormBestCandidateComponent implements OnInit, OnChanges {
     }
 
     this.questionnaireApiService
-      .getStatistic({vacancies: this.vacancies})
+      .getStatistic({vacancies: this.filters})
       .subscribe((response: Array<IBestCandidate>) => {
         this.results = response;
         if (this.vacancyListOpen) {
