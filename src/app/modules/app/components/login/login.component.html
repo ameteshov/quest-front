@@ -44,16 +44,24 @@
                           <div class="social-login-content">
                             <div class="social-button">
                                 <button translate
-                                    (click)="onSocialAuth('google')"
-                                    class="au-btn au-btn--block au-btn--red m-b-20"
-                                    type="button">LOGIN.SIGN_IN_GOOGLE</button>
+                                        (click)="onSocialAuth('google')"
+                                        class="au-btn au-btn--block au-btn--red m-b-20"
+                                        type="button">LOGIN.SIGN_IN_GOOGLE</button>
                                 <!-- <button translate 
                                         class="au-btn au-btn--block au-btn--blue m-b-20"
                                         type="button">LOGIN.SIGN_IN_FACEBOOK</button> -->
                                 <button (click)="onSocialAuth('vkontakte')"
                                         translate
-                                        class="au-btn au-btn--block au-btn--blue2"
+                                        class="au-btn au-btn--block au-btn--blue2 m-b-20"
                                         type="button">LOGIN.SIGN_IN_VK</button>
+                                <button (click)="onSocialAuth('odnoklassniki')"
+                                        translate
+                                        class="au-btn au-btn--block au-btn--orange m-b-20"
+                                        type="button">LOGIN.SIGN_IN_ODNOKLASSNIKI</button>
+                                <!-- <button (click)="onSocialAuth('odnoklassniki')"
+                                        translate
+                                        class="au-btn au-btn--block au-btn--blue2"
+                                        type="button">LOGIN.SIGN_IN_TWITTER</button> -->
                             </div>
                         </div>
                       </form>

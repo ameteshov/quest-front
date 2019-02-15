@@ -50,7 +50,9 @@
     "SIGN_UP": "Зарегистрироваться",
     "SIGN_IN_GOOGLE": "Google",
     "SIGN_IN_FACEBOOK": "Facebook",
-    "SIGN_IN_VK": "VKontakte"
+    "SIGN_IN_VK": "VKontakte",
+    "SIGN_IN_ODNOKLASSNIKI": "Одноклассники",
+    "SIGN_IN_TWITTER": "Twitter"
   },
   "SIGN_UP": {
     "NAME": "Ваше имя",

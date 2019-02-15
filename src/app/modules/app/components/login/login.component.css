@@ -1,3 +1,6 @@
 .login-logo>a>img {
   max-width: 60%;
 }
+.au-btn--orange {
+  background: #ee8208;
+}
