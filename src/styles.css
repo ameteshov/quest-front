@@ -4,6 +4,17 @@
 @import '~perfect-scrollbar/css/perfect-scrollbar.css';
 @import "~ngx-smart-modal/ngx-smart-modal";
 @import "~ng-pick-datetime/assets/style/picker.min.css";
+
+/*adminla*/
+.menu-admin.menu-admin .logo{
+  padding: 0;
+}
+
+
+
+
+
+
 a {
   color: inherit;
 }
@@ -816,6 +827,11 @@ flex-direction: column; */
   min-width: 230px;
   right: 0px;
   top: 33px;
+  z-index: 2;
+}
+.vacancy-list-all-up{
+  bottom: 33px;
+  top: unset;
 }
 
 .vacancy-box {
@@ -1828,6 +1844,10 @@ flex-direction: column; */
     left: 65px;
     height: 65px;
   }
+  .header-desktop-admin{
+    left: 295px;
+    height: 75px;
+  }
   .user-available-block {
     background: none;
   }
@@ -1892,6 +1912,11 @@ flex-direction: column; */
   }
   .header-desktop {
     display: none;
+  }
+  .header-desktop-admin{
+    left: 295px;
+    height: 75px;
+    display: block;
   }
   .header-desktop-mob {
     display: flex;
@@ -2185,6 +2210,10 @@ flex-direction: column; */
     border: 1px solid #E4E7EE;
     box-shadow: 0px 5px 20px rgba(3, 39, 94, 0.1);
     border-radius: 2px;
+  }
+  .vacancy-list-all-up{
+    top: unset;
+    bottom: 44px;
   }
   .filter-wrapper-mob {
     width: 100%;

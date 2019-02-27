@@ -9,7 +9,7 @@
         <th class="vacancy-box">
           <span translate class="">BEST_CANDIDATE.VACANCY</span>
           <img class="filter-img" src="/assets/images/filter.png" (click)="onToggleVacancyList($event)">
-          <ul *ngIf="vacancyListOpen" class="vacancy-list-all">
+          <ul *ngIf="vacancyListOpen" class="vacancy-list-all" [ngClass]="{ 'vacancy-list-all-up' : listUp  }">
             <li *ngFor="let vacancy of vacancies" class="vacancy-item">
               <label class="vacancy-label">
                 <input (change)="onFilterChange($event)" [checked]="isFilterActive(vacancy)" value="{{vacancy}}" type="checkbox"
