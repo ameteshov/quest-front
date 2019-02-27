@@ -1,4 +1,103 @@
-<h3 class="title text-center">{{ 'USER_SURVEY.BEST_CANDIDATE' | translate }}</h3>
+<div class="page-content-child">
+  <div class="main-block">
+    <h3 class="candidate-title">{{ 'USER_SURVEY.BEST_CANDIDATE' | translate }}</h3>
+
+    <table class="candidate-table">
+      <tr class="candidate-row-head">
+        <th translate>BEST_CANDIDATE.NAME</th>
+        <th translate>BEST_CANDIDATE.POINTS</th>
+        <th class="vacancy-box">
+          <span translate class="">BEST_CANDIDATE.VACANCY</span>
+          <img class="filter-img" src="/assets/images/filter.png" (click)="onToggleVacancyList($event)">
+          <ul *ngIf="vacancyListOpen" class="vacancy-list-all">
+            <li *ngFor="let vacancy of vacancies" class="vacancy-item">
+              <label class="vacancy-label">
+                <input (change)="onFilterChange($event)" [checked]="isFilterActive(vacancy)" value="{{vacancy}}" type="checkbox"
+                  class="vacancy-checkbox">
+                <div class="alias-checkbox-filter"></div>
+                <div class="vacancy-name">{{ vacancy | titlecase}}</div>
+              </label>
+            </li>
+            <li class="vacancy-filter-btn-li">
+              <button translate (click)="updateStatistic()" [disabled]="vacancyListUpdating" class="vacancy-filter-btn">BEST_CANDIDATE.FILTER_BTN
+                <i *ngIf="vacancyListUpdating" class="fa fa-spinner fa-spin fa-fw"></i>
+              </button>
+            </li>
+          </ul>
+        </th>
+      </tr>
+      <tr *ngFor="let item of results; let i = index" (click)="onInfo(item?.email)" class="candidate-item">
+        <td>{{ item?.recipient_name }}</td>
+        <td><span class="candidate-score">{{ item?.score_sum }}</span><span class="candidate-score-max"> /{{
+            item?.score_max }}</span></td>
+        <td>{{ item?.vacancy }}</td>
+      </tr>
+      <tr *ngIf="results.length === 0" class="empty-candidate">
+        <td translate colspan="3">USER_SURVEY.NO_CANDIDATES_FOUND</td>
+      </tr>
+    </table>
+
+    <div class="candidate-table-mob">
+      <div class="vacancy-filter-mob">
+        <div class="filter-wrapper-mob" (click)="onToggleVacancyList($event)"><span>Отфильтровать по должности</span>
+          <img src="/assets/images/filter.png"></div>
+        <!-- <div class="vacancy-wrapper">
+          <div class="triangle"></div> -->
+          <ul *ngIf="vacancyListOpen" class="vacancy-list-all">
+            <li *ngFor="let vacancy of vacancies" class="vacancy-item">
+              <label class="vacancy-label">
+                <input (change)="onFilterChange($event)" [checked]="isFilterActive(vacancy)" value="{{vacancy}}" type="checkbox"
+                  class="vacancy-checkbox">
+                <div class="alias-checkbox-filter"></div>
+                <div class="vacancy-name">{{ vacancy | titlecase}}</div>
+              </label>
+            </li>
+            <li class="vacancy-filter-btn-li">
+              <button translate (click)="updateStatistic()" [disabled]="vacancyListUpdating" class="vacancy-filter-btn">BEST_CANDIDATE.FILTER_BTN
+                <i *ngIf="vacancyListUpdating" class="fa fa-spinner fa-spin fa-fw"></i>
+              </button>
+            </li>
+          </ul>
+        <!-- </div> -->
+      </div>
+      <div class="candidate-wrapper-mob">
+        <div *ngFor="let item of results; let i = index" (click)="onInfo(item?.email)" class="candidate-block">
+          <div class="candidate-data">
+            <div class="candidate-name">{{ item?.recipient_name }}</div>
+            <div class="candidate-vacancy">{{ item?.vacancy }}</div>
+          </div>
+          <div class="candidate-score-box">
+            <span class="candidate-score">{{ item?.score_sum }} </span><span class="candidate-score-max"> /{{
+              item?.score_max }}</span>
+          </div>
+        </div>
+        <div *ngIf="results.length === 0" class="empty-candidate" translate>USER_SURVEY.NO_CANDIDATES_FOUND</div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <h3 class="title text-center">{{ 'USER_SURVEY.BEST_CANDIDATE' | translate }}</h3>
 <div class="table-responsive">
   <table class="table table-top-campaign">
     <thead>
@@ -35,8 +134,31 @@
       </tr>
     </tbody>
   </table>
-</div>
-<ngx-smart-modal #modal identifier="candidateDetails" customClass="justify-content-center">
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ngx-smart-modal #modal identifier="candidateDetails" customClass="nsm-centered">
   <div *ngIf="modal.hasData()" class="col mt-5">
     <div class="row">
       <div class="col-md-4">Имя</div>
@@ -51,15 +173,15 @@
       <div class="col-md-8">{{ modal.getData()[0].email }}</div>
     </div>
     <div *ngFor="let test of modal.getData()" class="row d-flex col">
-        <div>{{ test.name }}</div>
-        <div *ngIf="test.type_id !== null" class="ml-auto">{{ test.score }} / {{ test.max_score }}</div>
-        <div *ngIf="test.type_id === null" class="ml-auto">
-          <a (click)="onViewDetails($event, test.id)" translate>BEST_CANDIDATE.VIEW_DETAILS</a>
-        </div>
+      <div>{{ test.name }}</div>
+      <div *ngIf="test.type_id !== null" class="ml-auto">{{ test.score }} / {{ test.max_score }}</div>
+      <div *ngIf="test.type_id === null" class="ml-auto">
+        <a (click)="onViewDetails($event, test.id)" translate>BEST_CANDIDATE.VIEW_DETAILS</a>
       </div>
+    </div>
   </div>
 </ngx-smart-modal>
-<ngx-smart-modal #resultModal identifier="viewResult" customClass="justify-content-center col-6">
+<ngx-smart-modal #resultModal identifier="viewResult" customClass="nsm-centered">
   <div *ngIf="resultModal.hasData()" class="col mt-5">
     <div *ngFor="let question of resultModal.getData().questionnaire.content.questions; let i = index;" class="row mb-2">
       <h4 class="col-12 mb-1">{{ question.text }}</h4>

@@ -1,72 +1,74 @@
 <div class="page-wrapper">
-    <aside class="menu-sidebar2">
-        <div class="">
-            <div class="logo"></div>
-            <perfect-scrollbar style="max-height: calc(100vh - 75px)">
-                <app-panel-navigation-component></app-panel-navigation-component>
-            </perfect-scrollbar>
+
+  <div class="sidebar-wrapprt" [ngClass]="{ 'open-mob-menu' : showMenu }" (click)="openMenu()">
+  </div>
+  <aside class="menu-sidebar2" [ngClass]="{ 'open-mob-menu' : showMenu }">
+
+    <div class="menu-side-box">
+      <div class="logo">
+        <img class="logo-menu-pc" src="assets/images/TOPhunter.png" alt="logo">
+        <img class="logo-menu-mob" src="assets/images/Th.png" alt="logo">
+      </div>
+      <!-- <div class="scrollbar-menu"> -->
+      <perfect-scrollbar class="scrollbar-menu">
+        <app-panel-navigation-component></app-panel-navigation-component>
+      </perfect-scrollbar>
+      <!-- </div> -->
+      <!-- <div class="panel-nav-hd"> -->
+      <app-panel-navigation-component class="panel-nav-hd"></app-panel-navigation-component>
+      <!-- </div> -->
+
+    </div>
+  </aside>
+
+  <div class="page-container2">
+    <header class="header-desktop">
+      <div class="user-block">
+        <div class="user-img-wrapper">
+          <img class="user-pc-img" src="/assets/images/ava.png">
         </div>
-    </aside>
-    <div class="page-container2">
-        <header class="header-desktop">
-            <div class="section__content section__content--p30">
-                <div class="container-fluid">
-                    <div class="header-wrap2 row">
-                        <div class="logo d-block d-lg-none">
-                            <a href="#">
-                                <img src="images/icon/logo-white.png" alt="CoolAdmin">
-                            </a>
-                        </div>
-                        <div class="header-button2">
-                            <div class="header-button-item js-item-menu">
-                              <h3 translate [translateParams]="{ value: user.points }">PANEL.FORMS_AVAILABLE</h3>
-                            </div>
-                            <div class="header-button-item has-noti js-item-menu">
-                              <button translate (click)="onPay()" class="btn btn-secondary">PANEL.HEADER_BUTTONS.INCREASE_BUDGET</button>
-                            </div>
-                            <div class="header-button-item mr-0 js-sidebar-btn">
-                              <button translate (click)="authService.logout()" class="btn btn-secondary">PANEL.HEADER_BUTTONS.LOGOUT</button>
-                            </div>
-                            <div class="setting-menu js-right-sidebar d-none d-lg-block">
-                                <div class="account-dropdown__body">
-                                    <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-account"></i>Account</a>
-                                    </div>
-                                    <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-settings"></i>Setting</a>
-                                    </div>
-                                    <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-money-box"></i>Billing</a>
-                                    </div>
-                                </div>
-                                <div class="account-dropdown__body">
-                                    <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-globe"></i>Language</a>
-                                    </div>
-                                    <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-pin"></i>Location</a>
-                                    </div>
-                                    <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-email"></i>Email</a>
-                                    </div>
-                                    <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-notifications"></i>Notifications</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="user-name-exit">
+          <div class="user-name">Василий петрович</div>
+          <div translate (click)="authService.logout()" class="user-exit">PANEL.HEADER_BUTTONS.LOGOUT</div>
+        </div>
+      </div>
+      <div class="user-available-block">
+        <div class="user-available-count" translate [translateParams]="{ value: user.points }">PANEL.FORMS_AVAILABLE</div>
+        <div translate (click)="onPay()" class="user-available-buy">PANEL.HEADER_BUTTONS.INCREASE_BUDGET</div>
+      </div>
+    </header>
+
+
+    <header class="header-desktop header-desktop-mob">
+      <div class="sidebar-burger" (click)="openMenu()"><img src="/assets/images/burger.png"></div>
+      <div class="logo-mob-wrapper">
+        <img src="/assets/images/logo-mob.png">
+      </div>
+      <div class="user-block-mob">
+        <div class="user-ava-block">
+          <div class="img-user-wrapper" (click)="openUser()"><img src="/assets/images/user-mob.svg"></div>
+          <div class="mini-modal" [ngClass]="{ 'open-user' : showUser }">
+            <div class="triangle"></div>
+            <div class="mini-modal-title">Василий Петрович</div>
+            <div class="mini-modal-btn" translate (click)="authService.logout()">PANEL.HEADER_BUTTONS.LOGOUT</div>
+          </div>
+        </div>
+        <div class="user-block-shop">
+          <div class="img-user-wrapper">
+            <div class="shop-mob-wrapper" (click)="openShop()"><img src="/assets/images/shop.svg">
+                <span class="tests-bay-mob" translate [translateParams]="{ value: user.points }">{{ user.points }}</span>
             </div>
-        </header>
-        <aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none">
+            <div class="mini-modal" [ngClass]="{ 'open-user' : showShop }">
+              <div class="triangle"></div>
+              <div class="mini-modal-title" translate [translateParams]="{ value: user.points }">PANEL.FORMS_AVAILABLE</div>
+              <div class="mini-modal-btn mini-modal-btn--points" translate (click)="onPay()">PANEL.HEADER_BUTTONS.INCREASE_BUDGET</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- <aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none">
             <div class="logo">
                 <a href="#">
                     <img src="images/icon/logo-white.png" alt="Cool Admin">
@@ -222,11 +224,11 @@
                     </ul>
                 </nav>
             <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px; height: 313px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 151px;"></div></div></div>
-        </aside>
-        <section class="page">
-            <div class="container-fluid">
-                <router-outlet></router-outlet>
-            </div>
-        </section>
-    </div>
+        </aside> -->
+    <section class="page">
+      <div class="page-box">
+        <router-outlet></router-outlet>
+      </div>
+    </section>
+  </div>
 </div>

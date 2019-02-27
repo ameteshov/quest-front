@@ -75,7 +75,8 @@
   <ngx-smart-modal #typeModal 
                    identifier="typeModal" 
                    (onOpen)="modalEventService.onOpen()" 
-                   (onAnyCloseEventFinished)="onTypeModalClose()">
+                   (onAnyCloseEventFinished)="onTypeModalClose()"
+                   customClass="nsm-centered">
       <form [formGroup]="typeForm" class="mt-4 pt-2">
         <div class="form-group">
           <label>Название характеристики</label>

@@ -83,4 +83,9 @@ export class PayComponent implements OnInit {
   public get isPayStep(): boolean {
     return this.step === 2;
   }
+  public fixedSum(sum){
+    sum = parseFloat(sum).toFixed(0);
+    var newsum = new Intl.NumberFormat('ru-RU', { style: 'decimal'}).format(sum);
+    return newsum;
+  }
 }

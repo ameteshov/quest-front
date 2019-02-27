@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { IQuestionnaire } from '../../../../interfaces/IQuestionnaire';
 import { QuestionnaireApiService } from '../../../../services/questionnaire-api.service';
@@ -14,12 +15,18 @@ import { RfcEmailValidator } from '../../../../validators/rfc-email.validator';
 import { IUser } from '../../../../interfaces/IUser';
 import { HttpErrorResponse } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-form-view',
   templateUrl: './form-view.component.html',
   styleUrls: ['./form-view.component.css']
 })
 export class FormViewComponent implements OnInit {
+  isOpenAcc = false;
+
+  openAcc() {
+    this.isOpenAcc = !this.isOpenAcc;
+  }
   public sendForm: FormGroup;
   public survey: IQuestionnaire;
   public disabled: boolean;
@@ -33,7 +40,8 @@ export class FormViewComponent implements OnInit {
     private userService: UserApiService,
     private authService: AuthService,
     private translateService: TranslateService,
-    public formService: FormService
+    public formService: FormService,
+    private modalService: NgxSmartModalService
   ) {
     this.survey = new Questionnaire({});
 
@@ -76,7 +84,8 @@ export class FormViewComponent implements OnInit {
   }
 
   public onDelete(): void {
-
+    const modal = this.modalService.getModal('confirmDelete');
+    modal.open();
   }
 
   public onSubmit(): void {

@@ -11,6 +11,8 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { ProgressBarGraphComponent } from './progress-bar-graph/progress-bar-graph.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
     CommonModule,
     RouterModule,
     PerfectScrollbarModule,
+    MatExpansionModule,
+    MatMenuModule,
     TranslateModule.forChild(),
     NgxSmartModalModule.forChild()
   ],

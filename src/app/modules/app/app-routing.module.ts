@@ -9,6 +9,8 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
 import { FormComponent } from './components/form/form.component';
 import { PanelBodyComponent } from '../shared/components/panel-body/panel-body.component';
 import { CompleteSocialAuthComponent } from './components/complete-social-auth/complete-social-auth.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -24,6 +26,11 @@ const routes: Routes = [
   {
     path: 'sign-up',
     component: SignupComponent,
+    canActivate: [RedirectAuthorized]
+  },
+  {
+    path: 'reset',
+    component: ResetPasswordComponent,
     canActivate: [RedirectAuthorized]
   },
   {
@@ -82,6 +89,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard]
   },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

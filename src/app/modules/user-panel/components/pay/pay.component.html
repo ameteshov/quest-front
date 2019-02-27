@@ -1,19 +1,23 @@
-<div *ngIf="isSelectStep" class="row px-3">
-    <div *ngFor="let plan of plans" class="col-xs-12 col-md-6 col-lg-3 plan">
-        <ul class="pricing p-green">
+<!-- <div class="plans-main-wrapper"> -->
+<div *ngIf="isSelectStep" class="plans-wrapper">
+    <div *ngFor="let plan of plans" class="plan">
+        <ul class="pricing p-green plan-box">
+          <li class="popular">Популярное</li>
           <li>
-            <h2>{{ plan?.name }}</h2>
+            <h2 class="plan-title">{{ plan?.name }}</h2>
           </li>
-          <li *ngFor="let item of plan?.description">{{ item.text }}</li>
-          <li>
-            <h3>{{plan?.price}}</h3>
+          <li class="count-test-plan">300 тестов</li>
+          <li class="plan-price">
+            <h3>{{ fixedSum(plan?.price) }}<span>руб.</span></h3>
           </li>
-          <li>
-            <button (click)="onNextStep(plan?.id)" translate>USER_PAY.PAY_BTN</button>
+          <li><div *ngFor="let item of plan?.description" class="text-plan-div"><div class="text-plan">{{ item.text }}</div></div></li>   
+          <li class="bay-plan-li">
+            <div (click)="onNextStep(plan?.id)" translate class="buy-plan-btn">USER_PAY.PAY_BTN</div>
           </li>
         </ul>
     </div>
 </div>
+<!-- </div> -->
 <div *ngIf="isPayStep" class="row px-3">
   <div class="card">
       <div class="card-body form-group">

@@ -30,6 +30,10 @@ import { PlanApiService } from '../../services/plan-api.service';
 import { CommonModule } from '@angular/common';
 import { QuestionnaireEventsService } from '../../services/questionnaire-events.service';
 import { CompleteSocialAuthComponent } from './components/complete-social-auth/complete-social-auth.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+
+import {MatExpansionModule} from '@angular/material/expansion';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 export function jwtTokenGetter() {
   return localStorage.getItem('token');
@@ -50,7 +54,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SignupComponent,
     ConfirmComponent,
     FormComponent,
-    CompleteSocialAuthComponent
+    CompleteSocialAuthComponent,
+    ResetPasswordComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +65,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    
     JwtModule.forRoot({
       config: {
         tokenGetter: jwtTokenGetter
@@ -78,9 +85,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    MatExpansionModule
   ],
-  exports: [ PerfectScrollbarModule, TranslateModule ],
+  exports: [ PerfectScrollbarModule, TranslateModule, MatExpansionModule ],
   providers: [
     FormService,
     AuthApiService,

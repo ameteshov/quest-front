@@ -13,6 +13,8 @@ import { PaymentSuccessComponent } from './components/payment-success/payment-su
 import { QuestionnaireModule } from '../questionnaire/questionnaire.module';
 import { FormCreateEditComponent } from './components/form-create-edit/form-create-edit.component';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,29 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
     ReactiveFormsModule,
     UserPanelRoutingModule,
     QuestionnaireModule,
+    MatExpansionModule,
+    NgCircleProgressModule.forRoot({
+      // set defaults here
+      "radius": 82,
+  "space": -13,
+  "unitsFontSize": "32",
+  "outerStrokeGradient": false,
+  "outerStrokeWidth": 13,
+  "outerStrokeLinecap": "butt",
+  "outerStrokeGradientStopColor": "#52C036",
+  backgroundGradient: false,
+  "innerStrokeColor": "#e7e8ea",
+  "innerStrokeWidth": 12,
+  "title": "UI",
+  "titleFontSize": "21",
+  "subtitleFontSize": "32",
+  "animationDuration": 500,
+  "showTitle": false,
+  "showUnits": false,
+  "showBackground": false,
+  "clockwise": false,
+  "startFromZero": false
+    }),
     TranslateModule.forChild(),
     NgxSmartModalModule.forChild()
   ]

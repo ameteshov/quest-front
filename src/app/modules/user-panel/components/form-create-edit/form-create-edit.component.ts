@@ -7,9 +7,9 @@ import { filter, switchMap, mergeMap, map } from 'rxjs/operators';
 import { IQuestionnaire } from '../../../../interfaces/IQuestionnaire';
 import { Questionnaire } from '../../../../models/Questionnaire';
 import { Observable, from } from 'rxjs';
-import swal from 'sweetalert2';
 import { TranslateService } from '@ngx-translate/core';
 import { QuestionnaireEventsService } from '../../../../services/questionnaire-events.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-create-edit',
@@ -19,6 +19,7 @@ import { QuestionnaireEventsService } from '../../../../services/questionnaire-e
 export class FormCreateEditComponent implements OnInit {
   public form: FormGroup;
   public survey: IQuestionnaire;
+  public isNew: boolean;
 
   constructor(
     private router: Router,
@@ -29,6 +30,7 @@ export class FormCreateEditComponent implements OnInit {
     private questionnaireEventService: QuestionnaireEventsService,
     public formService: FormService
   ) {
+    this.isNew = true;
     this.form = this.fb.group({
       name: ['', [Validators.required]],
       questions: this.fb.array([
@@ -46,6 +48,8 @@ export class FormCreateEditComponent implements OnInit {
           return params.id;
         }),
         switchMap((params) => {
+          this.isNew = false;
+
           return this.questApiService.read(params.id);
         })
       )

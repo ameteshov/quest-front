@@ -1,6 +1,49 @@
-<h3 class="title">{{ 'USER_SURVEY.STATISTIC_HEAD' | translate }}</h3>
+<div class="page-content-child">
+  <div class="main-block main-block--statistics">
+    <div class="statistic-info">
+      <h3 class="candidate-title candidate-title--stat">{{ 'USER_SURVEY.STATISTIC_HEAD' | translate }}</h3>
+      <div class="tests-count-wrapper">
+        <div class="tests-pretext">{{ 'USER_SURVEY.SURVEY_SENT' | translate }}</div>
+        <div class="tests-count">{{ sent }}</div>
+      </div>
+    </div>
+    <div class="stats-tests-wrapper">
+      <div class="stats-tests">
+        <div class="stat-percent">
+          <div class="stat-percent-box stat-percent-box--first">
+            <div class="stat-percent-prebox">
+              <div class="circle-inner"></div>
+              <div class="circle-svg">
+                <circle-progress [percent]="pass" [subtitle]="pass+'%'" [outerStrokeColor]="'#52C036'"></circle-progress>
+              </div>
+            </div>
+            <div class="stat-pretext">{{ 'USER_SURVEY.SURVEY_PASS' | translate }}</div>
+          </div>
+        </div>  
+      </div>
+      <div class="stats-tests">
+          <div class="stat-percent">
+            <div class="stat-percent-box stat-percent-box--second">
+              <div class="stat-percent-prebox">
+                <div class="circle-inner"></div>
+                <div class="circle-svg">
+                  <circle-progress [percent]="success" [subtitle]="success+'%'" [outerStrokeColor]="'#1356BC'"></circle-progress>
+                </div>
+              </div>
+              <div class="stat-pretext">{{ 'USER_SURVEY.SURVEY_SUCCESS' | translate }}</div>
+            </div>
+          </div>  
+        </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!-- <h3 class="title">{{ 'USER_SURVEY.STATISTIC_HEAD' | translate }}</h3>
 <div class="au-skill-container">
   <app-progress-bar-graph [title]="'USER_SURVEY.SURVEY_SENT'" [percent]="sent" [mode]="'abs'"></app-progress-bar-graph>
   <app-progress-bar-graph [title]="'USER_SURVEY.SURVEY_PASS'" [percent]="pass"></app-progress-bar-graph>
   <app-progress-bar-graph [title]="'USER_SURVEY.SURVEY_SUCCESS'" [percent]="success"></app-progress-bar-graph>
-</div>
+</div> -->
