@@ -1,0 +1,129 @@
+<div class="page-in-wrapper">
+    <div class="page-in-body">
+        <div class="in-logo-wrapper"><img src="assets/images/logo-enter.png"></div>
+        <div class="page-in-box">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="in-form">
+
+                <div class="in-form-group">
+                    <input formControlName="email" placeholder="{{ 'LOGIN.EMAIL' | translate }}" class="in-from-input"
+                        type="email">
+                    <!-- <span *ngIf="formService.hasError(loginForm, 'email', 'required')" translate
+                        class="help-block text-danger warning-text">ERRORS.REQUIRED</span>
+                    <span *ngIf="formService.hasError(loginForm, 'email', 'email')" translate
+                        class="help-block text-danger warning-text">ERRORS.EMAIL</span>
+                    <span *ngIf="formService.hasError(loginForm, 'email', 'apiError')"
+                        class="help-block text-danger warning-text">{{ apiErrors.email }}</span> -->
+                </div>
+
+                <div class="in-form-group">
+                    <input formControlName="password" placeholder="{{ 'LOGIN.PASSWORD' | translate }}" class="in-from-input"
+                        type="password">
+                    <!-- <span *ngIf="formService.hasError(loginForm, 'password', 'required')" translate
+                        class="help-block text-danger warning-text">ERRORS.REQUIRED</span> -->
+                </div>
+
+                <div class="in-form-checkbox">
+                    <label class="in-from-checkbox-label">
+                        <input class="try-checkbox" type="checkbox" checked>
+                        <div class="alias-checkbox"></div>
+                        <div class="memory-login-text">Запомнить мои учётные данные</div>
+                    </label>
+                </div>
+
+                <button translate class="in-form-enter" type="submit">LOGIN.SIGN_IN</button>
+
+                <div class="other-enter-text">Или войдите при помощи соц.сетей</div>
+
+                <div class="social-enter-wrapper">
+                    <button translate (click)="onSocialAuth('google')" class="social-enter" type="button"><img src="/assets/images/facebook-logo.png"></button>
+                    <button translate (click)="onSocialAuth('google')" class="social-enter" type="button"><img src="/assets/images/google-logo.png"></button>
+                    <button translate (click)="onSocialAuth('vkontakte')" class="social-enter" type="button"><img src="/assets/images/vkontakte-logo.png"></button>
+                    <button translate (click)="onSocialAuth('odnoklassniki')" class="social-enter" type="button"><img src="/assets/images/odnoklassniki-logo.png"></button>
+                    <button translate (click)="onSocialAuth('odnoklassniki')" class="social-enter" type="button"><img src="/assets/images/twitter-logo.png"></button>
+                </div>
+                
+            </form>
+        </div>
+        <a translate routerLink="/reset" class="forgot-btn">LOGIN.FORGOT_PASSWORD</a>
+    </div>
+</div>
+<!-- <div class="page-wrapper">
+  <div class="page-content--bge5">
+      <div class="container">
+          <div class="login-wrap">
+              <div class="login-content">
+                  <div class="login-logo">
+                      <a href="#">
+                          <img src="assets/images/logo.jpg" alt="CoolAdmin">
+                      </a>
+                  </div>
+                  <div class="login-form">
+                      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                          <div class="form-group">
+                              <input formControlName="email"
+                                     placeholder="{{ 'LOGIN.EMAIL' | translate }}"
+                                     class="au-input au-input--full"
+                                     type="email" >
+                              <span *ngIf="formService.hasError(loginForm, 'email', 'required')"
+                                    translate
+                                    class="help-block text-danger">ERRORS.REQUIRED</span>
+                              <span *ngIf="formService.hasError(loginForm, 'email', 'email')"
+                                    translate
+                                    class="help-block text-danger">ERRORS.EMAIL</span>
+                              <span *ngIf="formService.hasError(loginForm, 'email', 'apiError')"
+                                    class="help-block text-danger">{{ apiErrors.email }}</span>
+                          </div>
+                          <div class="form-group">
+                              <input formControlName="password"
+                                     placeholder="{{ 'LOGIN.PASSWORD' | translate }}"
+                                     class="au-input au-input--full"
+                                     type="password">
+                              <span *ngIf="formService.hasError(loginForm, 'password', 'required')"
+                                    translate
+                                    class="help-block text-danger">ERRORS.REQUIRED</span>
+                          </div>
+                          <div class="login-checkbox">
+                              <label>
+                                  <a translate routerLink="/reset">LOGIN.FORGOT_PASSWORD</a>
+                              </label>
+                          </div>
+                          <button translate
+                                  class="au-btn au-btn--block au-btn--green m-b-20"
+                                  type="submit">LOGIN.SIGN_IN</button>
+                          <div class="social-login-content">
+                            <div class="social-button">
+                                <button translate
+                                        (click)="onSocialAuth('google')"
+                                        class="au-btn au-btn--block au-btn--red m-b-20"
+                                        type="button">LOGIN.SIGN_IN_GOOGLE</button>
+                                <button translate 
+                                        class="au-btn au-btn--block au-btn--blue m-b-20"
+                                        type="button">LOGIN.SIGN_IN_FACEBOOK</button>
+                                <button (click)="onSocialAuth('vkontakte')"
+                                        translate
+                                        class="au-btn au-btn--block au-btn--blue2 m-b-20"
+                                        type="button">LOGIN.SIGN_IN_VK</button>
+                                <button (click)="onSocialAuth('odnoklassniki')"
+                                        translate
+                                        class="au-btn au-btn--block au-btn--orange m-b-20"
+                                        type="button">LOGIN.SIGN_IN_ODNOKLASSNIKI</button>
+                                <button (click)="onSocialAuth('odnoklassniki')"
+                                        translate
+                                        class="au-btn au-btn--block au-btn--blue2"
+                                        type="button">LOGIN.SIGN_IN_TWITTER</button>
+                            </div>
+                        </div>
+                      </form>
+                      <div class="register-link">
+                          <p translate>
+                              LOGIN.HAVE_NO_ACCOUNT
+                              <a translate routerLink="/sign-up">LOGIN.SIGN_UP</a>
+                          </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+</div> -->

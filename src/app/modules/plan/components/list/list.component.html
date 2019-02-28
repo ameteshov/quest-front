@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="overview-wrap">
+            <h2 translate class="title-1">PLANS.LIST.TITLE</h2>
+            <a translate routerLink="/plans/new" class="au-btn au-btn-icon au-btn--blue">
+                <i class="zmdi zmdi-plus"></i>BUTTONS.ADD</a>
+        </div>
+    </div>
+</div>
+<div class="row mt-2">
+    <div class="col-md-12">
+        <div class="table-responsive m-b-40">
+            <table class="table table-borderless table-data3">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th translate>PLANS.LIST.TABLE.NAME</th>
+                        <th translate>PLANS.LIST.TABLE.POINTS</th>
+                        <th translate>PLANS.LIST.TABLE.PRICE</th>
+                        <th translate>PLANS.LIST.TABLE.VISIBLE</th>
+                        <th translate>PLANS.LIST.TABLE.ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="plans.length > 0">
+                    <tr *ngFor="let plan of plans; index as i">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ plan?.name }}</td>
+                        <td>{{ plan?.points }}</td>
+                        <td>{{ plan?.price }}</td>
+                        <td>{{ plan?.is_visible === 1 ? 'Yes' : 'No' }}</td>
+                        <td>
+                            <a (click)="goToEdit(plan.id)"><i class="fa fa-pencil-square-o"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody *ngIf="plans.length === 0">
+                    <tr>
+                        <td translate colspan="7">PLANS.LIST.TABLE.EMPTY</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- END DATA TABLE-->
+    </div>
+</div>

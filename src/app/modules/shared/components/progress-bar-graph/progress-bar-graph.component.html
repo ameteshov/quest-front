@@ -1,0 +1,18 @@
+<!-- <div class="page-content-child">
+    <div class="main-block">
+      
+    </div>
+</div> -->
+
+
+
+
+<div class="au-progress">
+  <span class="au-progress__title">{{ title | translate }}</span>
+  <span class="au-progress__percent">{{ percent }} {{ mode === 'abs' ? '' : '%'}}</span>
+  <div class="au-progress__bar">
+    <div [ngStyle]="{ width: percent + '%'}" class="au-progress__inner" role="progressbar">
+    </div>
+  </div>
+</div>
+

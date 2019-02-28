@@ -1,0 +1,61 @@
+<!-- <div class="plans-main-wrapper"> -->
+<div *ngIf="isSelectStep" class="plans-wrapper">
+    <div *ngFor="let plan of plans" class="plan">
+        <ul class="pricing p-green plan-box">
+          <li class="popular">Популярное</li>
+          <li>
+            <h2 class="plan-title">{{ plan?.name }}</h2>
+          </li>
+          <li class="count-test-plan">300 тестов</li>
+          <li class="plan-price">
+            <h3>{{ fixedSum(plan?.price) }}<span>руб.</span></h3>
+          </li>
+          <li><div *ngFor="let item of plan?.description" class="text-plan-div"><div class="text-plan">{{ item.text }}</div></div></li>   
+          <li class="bay-plan-li">
+            <div (click)="onNextStep(plan?.id)" translate class="buy-plan-btn">USER_PAY.PAY_BTN</div>
+          </li>
+        </ul>
+    </div>
+</div>
+<!-- </div> -->
+<div *ngIf="isPayStep" class="row px-3">
+  <div class="card">
+      <div class="card-body form-group">
+        <div class="form-check mb-4">
+          <div class="radio">
+            <label translate class="form-check-label">
+              <input (change)="onSelectMethod($event.target.value)" type="radio" name="method" value="{{paymentMethods.card}}" class="form-check-input">PAYMENT_METHODS.BANK_CARD
+            </label>
+          </div>
+          <div class="radio">
+            <label translate class="form-check-label">
+              <input (change)="onSelectMethod($event.target.value)" type="radio" name="method" value="{{paymentMethods.yandex_money}}" class="form-check-input">PAYMENT_METHODS.YANDEX_MONEY
+            </label>
+          </div>
+          <div class="radio">
+            <label translate class="form-check-label">
+              <input (change)="onSelectMethod($event.target.value)" type="radio" name="method" value="{{paymentMethods.sberbank}}" class="form-check-input">PAYMENT_METHODS.SBERBANK
+            </label>
+          </div>
+          <div class="radio">
+            <label translate class="form-check-label">
+              <input (change)="onSelectMethod($event.target.value)" type="radio" name="method" value="{{paymentMethods.b2b_sberbank}}" class="form-check-input">PAYMENT_METHODS.B2B_SBERBANK
+            </label>
+          </div>
+          <div class="radio">
+            <label translate class="form-check-label">
+              <input (change)="onSelectMethod($event.target.value)" type="radio" name="method" value="{{paymentMethods.qiwi}}" class="form-check-input">PAYMENT_METHODS.QIWI
+            </label>
+          </div>
+          <div class="radio">
+            <label translate class="form-check-label">
+              <input (change)="onSelectMethod($event.target.value)" type="radio" name="method" value="{{paymentMethods.webmoney}}" class="form-check-input">PAYMENT_METHODS.WEBMONEY
+            </label>
+          </div>
+        </div>
+        <div class="text-center">
+          <button translate (click)="onPay()" class="btn btn-primary">USER_PAY.PAY_BTN</button>
+        </div>
+      </div>
+  </div>
+</div>

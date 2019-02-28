@@ -1,0 +1,183 @@
+<div class="sidebar-menu-left show-block-mob">
+  <nav class="navbar-menu">
+    <div class="nav-list-block">
+      <mat-expansion-panel class="nav-accordeon" [expanded]="isOpenAcc" (opened)="isOpenAcc">
+        <mat-expansion-panel-header class="nav-acc-title">
+          <div class="acc-header-wrapper">
+            <div><img src="/assets/images/nav-box.png"></div>
+            <div>Готовые тесты</div>
+          </div>
+        </mat-expansion-panel-header>
+        <a *ngFor="let item of generalList" routerLinkActive="active" [routerLink]="['forms', item.id]" class="nav-test-list">
+          <span class="">{{ item.name }}</span>
+        </a>
+      </mat-expansion-panel>
+    </div>
+    <div class="line-border"></div>
+    <div class="nav-list-block">
+      <mat-expansion-panel class="nav-accordeon">
+        <mat-expansion-panel-header class="nav-acc-title">
+          <div class="acc-header-wrapper">
+            <div><img src="/assets/images/nav-file.png"></div>
+            <div>Мои тесты</div>
+          </div>
+        </mat-expansion-panel-header>
+        <a *ngFor="let item of ownList" routerLinkActive="active" [routerLink]="['forms', item.id]" class="nav-test-list">
+          <span class="">{{ item.name }}</span>
+        </a>
+        <a routerLinkActive="active" routerLink="forms/new" class="nav-test-list">
+          <i class="fas fa-plus fa-custom-plus"></i>
+          <span translate class="">BUTTONS.NEW_SURVEY</span>
+        </a>
+      </mat-expansion-panel>
+    </div>
+
+    <div class="nav-support">
+
+    </div>
+  </nav>
+
+  <div class="support-block">
+    <div class="support-title">
+      <img src="/assets/images/info.png"><span>Поддержка</span>
+    </div>
+    <div class="support-chat">
+      <div class="chat-text">Онлайн чат</div>
+      <button class="chat-btn">Открыть</button>
+    </div>
+    <div class="support-email">hepl@hr-tophunter.ru</div>
+  </div>
+</div>
+
+
+<!-- for 1366px -->
+
+<div class="sidebar-menu-left-mob sidebar-menu-left-hd delete-from-mob">
+  <nav class="navbar-menu-hd">
+    <div class="menu-tests-hd stock-test">
+      <div class="menu-test-title-box" (click)="openStock()">
+        <div class="menu-tests-hd-title">
+          <img class="menu-tests-hd-title-img" src="/assets/images/nav-box.svg">
+          <span class="menu-tests-hd-title-span">Готовые тесты</span>
+          <img src="/assets/images/drop.png" class="drop-img" [ngClass]="{ 'drop-rotate' : isOpenStockTests }">
+        </div>
+      </div>
+      <div class="menu-tests-hd-list" [ngClass]="{ 'open-menu-hd' : isOpenStockTests }">
+        <a *ngFor="let item of generalList" routerLinkActive="active" [routerLink]="['forms', item.id]" class="nav-test-list-hd"
+          (click)="openStock()">
+          <span class="menu-tests-hd-list-one">{{ item.name }}</span>
+        </a>
+      </div>
+    </div>
+
+
+    <div class="menu-tests-hd stock-test">
+      <div class="menu-test-title-box" (click)="openCustoms()">
+        <div class="menu-tests-hd-title">
+          <img class="menu-tests-hd-title-img" src="/assets/images/nav-file.svg">
+          <span class="menu-tests-hd-title-span">Мои тесты</span>
+          <img src="/assets/images/drop.png" class="drop-img" [ngClass]="{ 'drop-rotate' : isOpenCustomTests }">
+        </div>
+      </div>
+      <div class="menu-tests-hd-list" [ngClass]="{ 'open-menu-hd' : isOpenCustomTests }">
+        <!-- <div> -->
+          <!-- <div class="menu-tests-hd-list-box"> -->
+            <a *ngFor="let item of ownList" routerLinkActive="active" [routerLink]="['forms', item.id]" class="nav-test-list-hd"
+              (click)="openCustoms()">
+              <span class="menu-tests-hd-list-one">{{ item.name }}</span>
+            </a>
+            <a routerLinkActive="active" routerLink="forms/new" class="nav-test-list-hd" (click)="openCustoms()">
+              <i class="fas fa-plus fa-custom-plus"></i>
+              <span translate class="menu-tests-hd-list-one">BUTTONS.NEW_SURVEY</span>
+            </a>
+          <!-- </div> -->
+        <!-- </div> -->
+      </div>
+    </div>
+
+    <div class="support-hd">
+      <div class="support-logo" (click)="openSupport()">
+        <img src="/assets/images/info.png">
+      </div>
+      <div class="support-info-hd" [ngClass]="{ 'open-menu-hd' : isOpenSupport }">
+        <div class="support-title-hd">Поддержка</div>
+        <div class="support-chat-hd">
+          <div class="chat-text-hd">Онлайн чат</div>
+          <button class="chat-btn-hd">Открыть</button>
+        </div>
+        <div class="support-email-hd">hepl@hr-tophunter.ru</div>
+      </div>
+    </div>
+
+
+
+  </nav>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <nav class="navbar-sidebar2">
+    <ul class="list-unstyled navbar__list">
+        <li *ngFor="let item of generalList" routerLinkActive="active">
+          <a [routerLink]="['forms', item.id]" class="d-flex align-items-center" href="#">
+            <i class="fas fa-copy"></i>
+            <span class="flex-grow-1">{{ item.name }}</span>
+            <span class="m-l-5"><i class="fas fa-angle-right"></i></span>
+          </a>
+        </li>
+        <li *ngFor="let item of ownList" routerLinkActive="active">
+          <a [routerLink]="['forms', item.id]" class="d-flex align-items-center" href="#">
+            <i class="fas fa-copy"></i>
+            <span class="flex-grow-1">{{ item.name }}</span>
+            <span class="m-l-5"><i class="fas fa-angle-right"></i></span>
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="forms/new" class="d-flex align-items-center">
+            <i class="fas fa-plus"></i>
+            <span translate class="flex-grow-1">BUTTONS.NEW_SURVEY</span>
+            <span class="m-l-5"><i class="fas fa-angle-right"></i></span>
+          </a>
+        </li>
+    </ul>
+</nav> -->

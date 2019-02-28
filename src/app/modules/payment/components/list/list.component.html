@@ -1,0 +1,25 @@
+<div class="table-responsive table--no-card m-b-30">
+  <table class="table table-borderless table-striped table-earning">
+    <thead>
+      <tr>
+        <th translate>PAYMENTS.TABLE.USERNAME</th>
+        <th translate>PAYMENTS.TABLE.AMOUNT</th>
+        <th translate>PAYMENTS.TABLE.TOKEN</th>
+        <th translate>PAYMENTS.TABLE.STATUS</th>
+        <th translate>PAYMENTS.TABLE.CREATED_AT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let payment of payments">
+        <td>{{ payment?.user?.name }}</td>
+        <td>{{ payment?.amount }}</td>
+        <td>{{ payment?.payment_id }}</td>
+        <td>{{ payment?.status }}</td>
+        <td>{{ payment?.created_at }}</td>
+      </tr>
+      <tr *ngIf="payments.length === 0">
+        <td translate colspan="5">PAYMENTS.TABLE.EMPTY</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

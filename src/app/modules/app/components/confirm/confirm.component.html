@@ -1,0 +1,64 @@
+<div class="page-in-wrapper">
+  <div class="page-in-body">
+    <div class="in-logo-wrapper"><img src="assets/images/logo-enter.png"></div>
+    <div class="page-in-box page-in-box--reset">
+      <div class="page-in-reset-text">Укажите новый пароль для вашего аккаунта</div>
+      <form [formGroup]="confirmForm" (ngSubmit)="onSubmit()" class="in-form">
+        <div class="in-form-group">
+          <input formControlName="password" placeholder="{{ 'SIGN_UP.NEW_PASSWORD' | translate }}" class="in-from-input"
+            type="password">
+        </div>
+        <div class="in-form-group">
+          <input formControlName="confirm" placeholder="{{ 'SIGN_UP.CONFIRM_PASSWORD' | translate }}" class="in-from-input"
+            type="password">
+        </div>
+
+        <button translate class="in-form-enter in-form-enter--reset" type="submit">SIGN_UP.CHANGE_PASSWORD</button>
+      </form>
+    </div>
+    <a translate routerLink="/login" class="forgot-btn authorisation-btn">LOGIN.AUTHORISATION</a>
+  </div>
+</div>
+
+
+<!-- <div class="page-wrapper">
+  <div class="page-content--bge5">
+      <div class="container">
+          <div class="login-wrap">
+              <div class="login-content">
+                  <div class="login-logo">
+                      <a href="#">
+                          <img src="assets/images/logo.jpg" alt="CoolAdmin">
+                      </a>
+                  </div>
+                  <div class="login-form">
+                      <form [formGroup]="confirmForm" (ngSubmit)="onSubmit()">
+                          <div class="form-group">
+                              <label>Password</label>
+                              <input formControlName="password"
+                                     class="au-input au-input--full"
+                                     type="password" 
+                                     placeholder="Password">
+                              <span *ngIf="formService.hasError(confirmForm, 'password', 'required')"
+                                    class="help-block text-danger">Please enter your password</span>
+                          </div>
+                          <div class="form-group">
+                              <label>Confirm Password</label>
+                              <input formControlName="confirm"
+                                     class="au-input au-input--full" 
+                                     type="password"
+                                     placeholder="Confirm password">
+                              <span *ngIf="formService.hasError(confirmForm, 'confirm', 'required')"
+                                    class="help-block text-danger">Please confirm your password</span>
+                              <span *ngIf="formService.hasError(confirmForm, 'confirm', 'same')"
+                                    class="help-block text-danger">Not equal to password</span>
+                          </div>
+                          <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Submit</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+</div> -->

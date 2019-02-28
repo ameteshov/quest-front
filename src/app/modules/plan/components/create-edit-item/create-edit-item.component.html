@@ -1,0 +1,49 @@
+<div class="col-8">
+  <div class="card">
+    <form [formGroup]="form" class="card-body card-block">
+      <div class="form-group row">
+        <div class="col-8">
+          <input formControlName="name" type="text" class="form-control" placeholder="{{'PLANS.FORM.NAME' | translate}}">
+        </div>
+        <div class="col-4 d-flex justify-content-end">
+          <label translate class="my-auto ml-auto">PLANS.FORM.VISIBLE</label>
+          <label class="switch switch-default switch-pill switch-primary my-auto ml-auto">
+            <input formControlName="is_active" [checked]="form.controls.is_active.value" type="checkbox" class="switch-input">
+            <span class="switch-label"></span>
+            <span class="switch-handle"></span>
+          </label>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-3">
+          <input formControlName="points" type="text" class="form-control" placeholder="{{'PLANS.FORM.POINTS' | translate}}">
+        </div>
+        <div class="col-3">
+          <input formControlName="price" class="form-control" placeholder="{{'PLANS.FORM.PRICE' | translate}}">
+        </div>
+        <div class="col-6">
+          <select formControlName="type" class="form-control">
+            <option value="{{ types.purchase }}">{{ typesLabels.purchase | translate }}</option>
+            <option value="{{ types.subscription }}">{{ typesLabels.subscription | translate }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col">
+          <input formControlName="slug" class="form-control" placeholder="{{'PLANS.FORM.SLUG' | translate}}">
+        </div>
+      </div>
+      <hr>
+      <div *ngFor="let item of description.controls; let i=index" [formGroup]="item" class="form-group row">
+        <div class="col">
+          <input formControlName="text" placeholder="{{'PLANS.FORM.DESCRIPTION' | translate}}" class="form-control">
+        </div>
+      </div>
+      <hr>
+      <div class="form-group d-flex justify-content-end">
+        <button (click)="onCancel()" translate class="btn btn-secondary ml-2">BUTTONS.BACK</button>
+        <button (click)="onSubmit()" translate class="btn btn-success ml-2">BUTTONS.SUBMIT</button>
+      </div>
+    </form>
+  </div>
+</div>

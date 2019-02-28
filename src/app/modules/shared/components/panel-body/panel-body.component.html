@@ -1,0 +1,234 @@
+<div class="page-wrapper">
+
+  <div class="sidebar-wrapprt" [ngClass]="{ 'open-mob-menu' : showMenu }" (click)="openMenu()">
+  </div>
+  <aside class="menu-sidebar2" [ngClass]="{ 'open-mob-menu' : showMenu }">
+
+    <div class="menu-side-box">
+      <div class="logo">
+        <img class="logo-menu-pc" src="assets/images/TOPhunter.png" alt="logo">
+        <img class="logo-menu-mob" src="assets/images/Th.png" alt="logo">
+      </div>
+      <!-- <div class="scrollbar-menu"> -->
+      <perfect-scrollbar class="scrollbar-menu">
+        <app-panel-navigation-component></app-panel-navigation-component>
+      </perfect-scrollbar>
+      <!-- </div> -->
+      <!-- <div class="panel-nav-hd"> -->
+      <app-panel-navigation-component class="panel-nav-hd"></app-panel-navigation-component>
+      <!-- </div> -->
+
+    </div>
+  </aside>
+
+  <div class="page-container2">
+    <header class="header-desktop">
+      <div class="user-block">
+        <div class="user-img-wrapper">
+          <img class="user-pc-img" src="/assets/images/ava.png">
+        </div>
+        <div class="user-name-exit">
+          <div class="user-name">Василий петрович</div>
+          <div translate (click)="authService.logout()" class="user-exit">PANEL.HEADER_BUTTONS.LOGOUT</div>
+        </div>
+      </div>
+      <div class="user-available-block">
+        <div class="user-available-count" translate [translateParams]="{ value: user.points }">PANEL.FORMS_AVAILABLE</div>
+        <div translate (click)="onPay()" class="user-available-buy">PANEL.HEADER_BUTTONS.INCREASE_BUDGET</div>
+      </div>
+    </header>
+
+
+    <header class="header-desktop header-desktop-mob">
+      <div class="sidebar-burger" (click)="openMenu()"><img src="/assets/images/burger.png"></div>
+      <div class="logo-mob-wrapper">
+        <img src="/assets/images/logo-mob.png">
+      </div>
+      <div class="user-block-mob">
+        <div class="user-ava-block">
+          <div class="img-user-wrapper" (click)="openUser()"><img src="/assets/images/user-mob.svg"></div>
+          <div class="mini-modal" [ngClass]="{ 'open-user' : showUser }">
+            <div class="triangle"></div>
+            <div class="mini-modal-title">Василий Петрович</div>
+            <div class="mini-modal-btn" translate (click)="authService.logout()">PANEL.HEADER_BUTTONS.LOGOUT</div>
+          </div>
+        </div>
+        <div class="user-block-shop">
+          <div class="img-user-wrapper">
+            <div class="shop-mob-wrapper" (click)="openShop()"><img src="/assets/images/shop.svg">
+                <span class="tests-bay-mob" translate [translateParams]="{ value: user.points }">{{ user.points }}</span>
+            </div>
+            <div class="mini-modal" [ngClass]="{ 'open-user' : showShop }">
+              <div class="triangle"></div>
+              <div class="mini-modal-title" translate [translateParams]="{ value: user.points }">PANEL.FORMS_AVAILABLE</div>
+              <div class="mini-modal-btn mini-modal-btn--points" translate (click)="onPay()">PANEL.HEADER_BUTTONS.INCREASE_BUDGET</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- <aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none">
+            <div class="logo">
+                <a href="#">
+                    <img src="images/icon/logo-white.png" alt="Cool Admin">
+                </a>
+            </div>
+            <div class="menu-sidebar2__content js-scrollbar2 ps ps--active-y">
+                <div class="account2">
+                    <div class="image img-cir img-120">
+                        <img src="images/icon/avatar-big-01.jpg" alt="John Doe">
+                    </div>
+                    <h4 class="name">john doe</h4>
+                    <a href="#">Sign out</a>
+                </div>
+                <nav class="navbar-sidebar2">
+                    <ul class="list-unstyled navbar__list">
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-tachometer-alt"></i>Dashboard
+                                <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="index.html">
+                                        <i class="fas fa-tachometer-alt"></i>Dashboard 1</a>
+                                </li>
+                                <li>
+                                    <a href="index2.html">
+                                        <i class="fas fa-tachometer-alt"></i>Dashboard 2</a>
+                                </li>
+                                <li>
+                                    <a href="index3.html">
+                                        <i class="fas fa-tachometer-alt"></i>Dashboard 3</a>
+                                </li>
+                                <li>
+                                    <a href="index4.html">
+                                        <i class="fas fa-tachometer-alt"></i>Dashboard 4</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="inbox.html">
+                                <i class="fas fa-chart-bar"></i>Inbox</a>
+                            <span class="inbox-num">3</span>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-shopping-basket"></i>eCommerce</a>
+                        </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-trophy"></i>Features
+                                <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="table.html">
+                                        <i class="fas fa-table"></i>Tables</a>
+                                </li>
+                                <li>
+                                    <a href="form.html">
+                                        <i class="far fa-check-square"></i>Forms</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-calendar-alt"></i>Calendar</a>
+                                </li>
+                                <li>
+                                    <a href="map.html">
+                                        <i class="fas fa-map-marker-alt"></i>Maps</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-copy"></i>Pages
+                                <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="login.html">
+                                        <i class="fas fa-sign-in-alt"></i>Login</a>
+                                </li>
+                                <li>
+                                    <a href="register.html">
+                                        <i class="fas fa-user"></i>Register</a>
+                                </li>
+                                <li>
+                                    <a href="forget-pass.html">
+                                        <i class="fas fa-unlock-alt"></i>Forget Password</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-desktop"></i>UI Elements
+                                <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="button.html">
+                                        <i class="fab fa-flickr"></i>Button</a>
+                                </li>
+                                <li>
+                                    <a href="badge.html">
+                                        <i class="fas fa-comment-alt"></i>Badges</a>
+                                </li>
+                                <li>
+                                    <a href="tab.html">
+                                        <i class="far fa-window-maximize"></i>Tabs</a>
+                                </li>
+                                <li>
+                                    <a href="card.html">
+                                        <i class="far fa-id-card"></i>Cards</a>
+                                </li>
+                                <li>
+                                    <a href="alert.html">
+                                        <i class="far fa-bell"></i>Alerts</a>
+                                </li>
+                                <li>
+                                    <a href="progress-bar.html">
+                                        <i class="fas fa-tasks"></i>Progress Bars</a>
+                                </li>
+                                <li>
+                                    <a href="modal.html">
+                                        <i class="far fa-window-restore"></i>Modals</a>
+                                </li>
+                                <li>
+                                    <a href="switch.html">
+                                        <i class="fas fa-toggle-on"></i>Switchs</a>
+                                </li>
+                                <li>
+                                    <a href="grid.html">
+                                        <i class="fas fa-th-large"></i>Grids</a>
+                                </li>
+                                <li>
+                                    <a href="fontawesome.html">
+                                        <i class="fab fa-font-awesome"></i>FontAwesome</a>
+                                </li>
+                                <li>
+                                    <a href="typo.html">
+                                        <i class="fas fa-font"></i>Typography</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px; height: 313px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 151px;"></div></div></div>
+        </aside> -->
+    <section class="page">
+      <div class="page-box">
+        <router-outlet></router-outlet>
+      </div>
+    </section>
+  </div>
+</div>

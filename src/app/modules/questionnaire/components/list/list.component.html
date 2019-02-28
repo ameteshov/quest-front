@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="overview-wrap">
+            <h2 translate class="title-1">QUESTIONNAIRES.LIST.TITLE</h2>
+            <a *ngIf="user.isAdmin"
+               routerLink="/questionnaires/new"
+               translate
+               class="au-btn au-btn-icon au-btn--blue"><i class="zmdi zmdi-plus"></i>BUTTONS.ADD</a>
+        </div>
+    </div>
+</div>
+<div class="row mt-2">
+    <div class="col-md-12">
+        <app-admin-list></app-admin-list>
+    </div>
+</div>

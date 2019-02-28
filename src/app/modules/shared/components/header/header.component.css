@@ -1,0 +1,7 @@
+header.header-mobile .navbar-mobile {
+  display: block;
+  position: absolute;
+  width: 100%;
+  top: 88px;
+  z-index: 20;
+}

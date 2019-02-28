@@ -1,0 +1,48 @@
+.table-top-campaign.table tr.empty td:last-child {
+  text-align: center;
+  color: #808080;
+}
+table.table-top-campaign > thead > tr > th {
+  border-top: none;
+  border-bottom: 1px solid #dee2e6;
+  padding: .75rem 0
+}
+
+table.table-top-campaign > thead > tr > th:first-child {
+  text-align: left;
+}
+
+table.table-top-campaign > thead > tr > th:last-child {
+  text-align: right;
+}
+
+.table-item:hover {
+  border-bottom: 1px solid #dee2e6;
+  box-shadow: 0 0 11px rgba(33,33,33,.2);
+  cursor: pointer;
+}
+
+.vacancy-list {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border: 1px solid #e5e5e5;
+  list-style: none;
+  text-align: left;
+  padding: 0.5em;
+  min-width: 150px;
+  position: absolute;
+  right: 3em;
+}
+.vacancy-list > li {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.vacancy-list > li > label {
+  margin-bottom: 0;
+  margin-left: 5px;
+}
+.vacancy-list-icon {
+  cursor: pointer;
+}

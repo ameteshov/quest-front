@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="overview-wrap">
+            <h2 class="title-1" translate>USERS.LIST</h2>
+            <a routerLink="/users/new" class="au-btn au-btn-icon au-btn--blue" translate>
+                <i class="zmdi zmdi-plus"></i>BUTTONS.ADD</a>
+        </div>
+    </div>
+</div>
+<div class="row mt-2">
+    <div class="col-md-12">
+        <div class="table-responsive m-b-40">
+            <table class="table table-borderless table-data3">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th translate>USERS.TABLE.EMAIL</th>
+                        <th translate>USERS.TABLE.NAME</th>
+                        <th translate>USERS.TABLE.PLAN</th>
+                        <th translate>USERS.TABLE.STATUS</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="users.length > 0">
+                    <tr *ngFor="let user of users; index as i">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ user?.name }}</td>
+                        <td>{{ user?.email }}</td>
+                        <td>{{ user?.questionnaires_count }}</td>
+                        <td>
+                            <label class="switch switch-default switch-pill switch-primary mr-2">
+                                <input [checked]="user.is_active" 
+                                       (change)="toggle(user.id)"
+                                       type="checkbox"
+                                       class="switch-input">
+                                <span class="switch-label"></span>
+                                <span class="switch-handle"></span>
+                            </label>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody *ngIf="users.length === 0">
+                    <tr>
+                        <td translate colspan="5">USERS.TABLE.EMPTY</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- END DATA TABLE-->
+    </div>
+</div>

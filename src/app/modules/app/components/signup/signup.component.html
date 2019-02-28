@@ -1,0 +1,98 @@
+<div class="page-wrapper">
+  <div class="page-content--bge5">
+      <div class="container">
+          <div class="login-wrap">
+              <div class="login-content">
+                  <!-- <div class="login-logo">
+                      <a href="#">
+                          <img src="images/icon/logo.png" alt="CoolAdmin">
+                      </a>
+                  </div> -->
+                  <div class="login-form">
+                      <form [formGroup]="form" (submit)="onSubmit()">
+                          <div class="form-group">
+                              <input formControlName="name" 
+                                     class="au-input au-input--full"
+                                     type="text"
+                                     placeholder="{{ 'SIGN_UP.NAME' | translate }}">
+                              <span *ngIf="formService.hasError(form, 'name', 'required')"
+                                    translate
+                                    class="help-block text-danger">ERRORS.REQUIRED</span>
+                          </div>
+                          <div class="form-group">
+                              <input formControlName="email"
+                                     class="au-input au-input--full"
+                                     type="email"
+                                     placeholder="{{ 'SIGN_UP.EMAIL' | translate }}">
+                              <span *ngIf="formService.hasError(form, 'email', 'required')"
+                                    translate
+                                    class="help-block text-danger">ERRORS.REQUIRED</span>
+                              <span *ngIf="formService.hasError(form, 'email', 'email')"
+                                    translate
+                                    class="help-block text-danger">ERRORS.EMAIL</span>
+                              <span *ngIf="formService.hasError(form, 'email', 'apiError')"
+                                    translate
+                                    class="help-block text-danger">ERRORS.EMAIL_BUSY</span>
+                          </div>
+                          <div class="form-group">
+                              <input formControlName="password"
+                                     class="au-input au-input--full"
+                                     type="password"
+                                     placeholder="{{ 'SIGN_UP.PASSWORD' | translate }}">
+                              <span *ngIf="formService.hasError(form, 'password', 'required')"
+                                    translate
+                                    class="help-block text-danger">ERRORS.REQUIRED</span>
+                          </div>
+                          <div class="form-group">
+                              <input formControlName="confirm"
+                                     class="au-input au-input--full"
+                                     type="password"
+                                     placeholder="{{ 'SIGN_UP.CONFIRM_PASSWORD' | translate }}">
+                              <span *ngIf="formService.hasError(form, 'confirm', 'required')"
+                                    translate
+                                    class="help-block text-danger">ERRORS.REQUIRED</span>
+                              <span *ngIf="formService.hasError(form, 'confirm', 'same')"
+                                    translate
+                                    class="help-block text-danger">ERRORS.EQUAL_PASSWORD</span>
+                          </div>
+                          <!-- <div class="login-checkbox">
+                              <label>
+                                  <input type="checkbox" name="aggree">Agree the terms and policy
+                              </label>
+                          </div> -->
+                          <button class="au-btn au-btn--block au-btn--green m-b-20"
+                                  translate
+                                  type="submit">SIGN_UP.SUBMIT_BTN</button>
+                          <div class="social-login-content">
+                              <div class="social-button">
+                                    <button translate
+                                            (click)="onSocialAuth('google')"
+                                            class="au-btn au-btn--block au-btn--red m-b-20"
+                                            type="button">LOGIN.SIGN_IN_GOOGLE</button>
+                                <!-- <button translate 
+                                        class="au-btn au-btn--block au-btn--blue m-b-20"
+                                        type="button">LOGIN.SIGN_IN_FACEBOOK</button> -->
+                                    <button (click)="onSocialAuth('vkontakte')"
+                                            translate
+                                            class="au-btn au-btn--block au-btn--blue2 m-b-20"
+                                            type="button">LOGIN.SIGN_IN_VK</button>
+                                    <button (click)="onSocialAuth('odnoklassniki')"
+                                            translate
+                                            class="au-btn au-btn--block au-btn--orange"
+                                            type="button">LOGIN.SIGN_IN_ODNOKLASSNIKI</button>
+                              </div>
+                          </div>
+                      </form>
+                      <div class="register-link">
+                          <p translate>
+                              SIGN_UP.ACCOUNT_EXISTS
+                              <a translate routerLink="/login">SIGN_UP.SIGN_IN</a>
+                          </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+</div>

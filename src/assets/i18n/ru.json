@@ -1,0 +1,203 @@
+{
+  "USER_SURVEY": {
+    "STATISTIC_HEAD": "Статистика",
+    "SURVEY_SENT": "Тестов отправлено",
+    "SURVEY_PASS": "Тестов пройдено",
+    "SURVEY_SUCCESS": "Пройдено успешно",
+    "BEST_CANDIDATE": "Лучшие кандидаты",
+    "SENT_SURVEY_FORM": {
+      "HEAD": "Отправить тест",
+      "SUBMIT": "Отправить",
+      "ADD_USER": "Добавить получателя",
+      "ADD_CANDIDATE": "Добавить кандидата",
+      "SUCCESS_MESSAGE": "Анкеты отправлены",
+      "VACANCY_ERROR": "Невозможно отправить анкеты на разные должности одному и тому же кандидату.<br> Ранее Вы отправляли: <br>"
+    },
+    "NO_CANDIDATES_FOUND": "Нет пройденных тестов",
+    "RECIPIENT_INFO": {
+      "PHONE": "Телефон",
+      "NAME": "Имя",
+      "EMAIL": "Почтовый адрес"
+    },
+    "NEW": {
+      "NAME": "ФИО кандидата",
+      "EMAIL": "Эл. почта",
+      "VAСANCY": "Должность",
+      "SUCCESS": "Анкета сохранена"
+    }
+  },
+  "PANEL": {
+    "FORMS_AVAILABLE": "Доступно {{value}} тестов",
+    "BUTTONS": {
+      "SUBMIT": "Отправить"
+    },
+    "HEADER_BUTTONS": {
+      "INCREASE_BUDGET": "Пополнить",
+      "LOGOUT": "Выйти"
+    }
+  },
+  "USER_PAY": {
+    "PAY_BTN": "Оплатить",
+    "SUCCESS": "Отлично! Вы пополнили баланс",
+    "MESSAGE": "После того, как придет подтверждение с сервиса Яндекс.Касса, Вам будут добавлены анкеты, которые Вы можете использовать.",
+    "FOOTER": "Спасибо, что пользуетесь нашим сервисом"
+  },
+  "LOGIN": {
+    "EMAIL": "Эл. почта",
+    "PASSWORD": "Пароль",
+    "DROP_PASSWORD": "Сбросить пароль",
+    "FORGOT_PASSWORD": "Забыли пароль?",
+    "HAVE_NO_ACCOUNT": "Нет аккаунта?",
+    "AUTHORISATION" : "Авторизация",
+    "SIGN_IN": "Войти",
+    "SIGN_UP": "Зарегистрироваться",
+    "SIGN_IN_GOOGLE": "Google",
+    "SIGN_IN_FACEBOOK": "Facebook",
+    "SIGN_IN_VK": "VKontakte",
+    "SIGN_IN_ODNOKLASSNIKI": "Одноклассники",
+    "SIGN_IN_TWITTER": "Twitter"
+  },
+  "SIGN_UP": {
+    "NAME": "Ваше имя",
+    "EMAIL": "Почтовый ящик",
+    "PASSWORD": "Пароль",
+    "NEW_PASSWORD": "Новый пароль",
+    "CONFIRM_PASSWORD": "Подтвердите пароль",
+    "CHANGE_PASSWORD" : "Изменить пароль",
+    "SUBMIT_BTN": "Зарегистрироваться",
+    "ACCOUNT_EXISTS": "Уже есть аккаунт?",
+    "SIGN_IN": "Войти"
+  },
+  "ERRORS": {
+    "HEADER": "Ошибка",
+    "REQUIRED": "Пожалуйста, заполните поле",
+    "EMAIL": "Некорректный адрес почтового ящика",
+    "EMAIL_BUSY": "Почтовый ящик уже зарегистрирован",
+    "EQUAL_PASSWORD": "Пароли не совпадают",
+    "PAYMENT_UNAVAILABLE": "В данный момент вы не можете совершить платеж"
+  },
+  "SUCCESS": {
+    "HEADER": "Успешно"
+  },
+  "ADMIN_NAVIGATION": {
+    "QUESTIONNAIRES": "Анкеты",
+    "USERS": "Пользователи",
+    "PLANS": "Тарифы",
+    "PAYMENTS": "Платежи",
+    "DASHBOARD": "Панель управления"
+  },
+  "USERS": {
+    "LIST": "Список пользователей",
+    "TABLE": {
+      "EMAIL": "Почта",
+      "NAME": "Имя",
+      "PLAN": "Доступно анкет",
+      "STATUS": "Статус",
+      "EMPTY": "Пользователей не найдено"
+    },
+    "FORM": {
+      "TITLE": "Добавление пользователя",
+      "EMAIL": "Почтовый ящик",
+      "NAME": "Имя",
+      "SUCCESS": "Пользователь был создан"
+    }
+  },
+  "QUESTIONNAIRES": {
+    "LIST": {
+      "TITLE": "Список анкет",
+      "NAME": "Название",
+      "USED_COUNT": "Отправлено",
+      "VISIBILITY": "Доступно на сайте"
+    },
+    "FORM": {
+      "NAME": "Название",
+      "SURVEY_POINTS": "Оценка теста",
+      "DESCRIPTION": "Описание",
+      "QUESTION": "Текст вопроса", 
+      "INPUT_NAME" : "Название теста",
+      "ANSWER": "Текст ответа",
+      "POINTS": "Балл",
+      "DEFAULT_RESULT_TYPE": "Характеристика сотрудника",
+      "DEFAULT_TYPE": "Тип подсчета",
+      "SUCCESS": "Анкета сохранена успешно",
+      "BTN_SUBMIT": "Создать",
+      "BTN_SAVE" : "Сохранить"
+    },
+    "TYPE_FORM": {
+      "TITLE": "Название характеристики",
+      "SUBMIT_BTN": "Отправить",
+      "SUCCESS": "Характеристика добавлена успешно"
+    }
+  },
+  "PLANS": {
+    "LIST": {
+      "TITLE": "Список тарифов",
+      "TABLE": {
+        "NAME": "Название",
+        "POINTS": "Количество анкет",
+        "PRICE": "Цена",
+        "VISIBLE": "Видимость на сайте",
+        "ACTIONS": "Действия",
+        "EMPTY": "Тарфиов не найдено"
+      }
+    },
+    "FORM": {
+      "NAME": "Название",
+      "VISIBLE": "Видимость",
+      "POINTS": "Кол-во анкет",
+      "PRICE": "Цена",
+      "SLUG": "Идентификатор для ссылки на метрике",
+      "DESCRIPTION": "Описание",
+      "SUCCESS": "Тариф сохранен успешно",
+      "ERROR": "Ошибка"
+    },
+    "TYPES": {
+      "PURCHASE": "Единоразовая оплата",
+      "SUBSCRIPTION": "Подписка"
+    }
+  },
+  "FORM": {
+    "SUCCESS": "Тест отправлен. Спасибо за Ваше время",
+    "ERROR": "Тест уже был пройден",
+    "INFO": {
+      "TITLE": "Анкета",
+      "EMAIL": "Почтовый адрес",
+      "NAME": "Имя",
+      "BIRTHDAY": "Дата рождения",
+      "PHONE": "Номер телефона",
+      "CONTINUE_BTN": "Начать тестирование",
+      "RETURN_BTN": "К предыдущему шагу"
+    }
+  },
+  "BEST_CANDIDATE": {
+    "NAME": "ФИО",
+    "POINTS": "Балл",
+    "VACANCY": "Должность",
+    "VIEW_DETAILS": "Смотреть результат",
+    "FILTER_BTN": "Применить"
+  },
+  "PAYMENTS": {
+    "TABLE": {
+      "TOKEN": "Токен",
+      "AMOUNT": "Сумма",
+      "USERNAME": "Пользователь",
+      "STATUS": "Статус",
+      "CREATED_AT": "Дата оплаты",
+      "EMPTY": "Ничего не найдено"
+    }
+  },
+  "BUTTONS": {
+    "ADD": "Добавить",
+    "SUBMIT": "Отправить",
+    "BACK": "Назад",
+    "NEW_SURVEY": "Создать тест"
+  },
+  "PAYMENT_METHODS": {
+    "BANK_CARD": "Банковская карта",
+    "YANDEX_MONEY": "Яндекс деньги",
+    "SBERBANK": "Сбербанк онлайн",
+    "B2B_SBERBANK": "Сбербанк онлайн Бизнес",
+    "QIWI": "QIWI Кошелек",
+    "WEBMONEY": "Web-money"
+  }
+}

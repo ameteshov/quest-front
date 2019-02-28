@@ -1,0 +1,71 @@
+<div class="create-edit-all">
+<div class="create-edit-wrapper">
+  <div *ngIf="isNew" class="create-edit-title">Создать новый тест</div>
+  <div *ngIf="!isNew" class="create-edit-title">Редактирование <br class="br-hide">"{{ survey?.name}}"</div>
+  <div class="create-edit-body">
+    <form [formGroup]="form" class="form-add-edit">
+      <div class="form-input-wrapper">
+        <input formControlName="name"
+                type="text"
+                class="form-control-add"
+                placeholder="{{ 'QUESTIONNAIRES.FORM.INPUT_NAME' | translate }}">
+                <span class="alias-placeholder-control-add">Текст вопроса</span>
+      </div>
+      <div *ngFor="let question of questions.controls; let i=index" [formGroup]="question" class="create-text-wrapper">
+        <div class="create-text-block">
+          <img class="delete-text-mob" (click)="onRemoveQuestion(i)" src="/assets/images/delete-mob.png">
+          <textarea formControlName="text" class="form-control-add form-control-add-area" placeholder="{{'QUESTIONNAIRES.FORM.QUESTION' | translate}}"></textarea>
+          <span class="alias-placeholder-control-add">Текст вопроса</span>
+        </div>
+        <button (click)="onRemoveQuestion(i)" class="delete-text">
+          <img src="/assets/images/delete-text.png">
+        </button>
+      </div>
+      <button (click)="onAddQuestion()" class="add-text-wrapper">
+        <img class="add-text-img" src="/assets/images/add.png">
+        <span class="add-text-pre">Добавить вопрос</span>
+      </button>
+      <div class="submit-form-btns">
+        <button *ngIf="isNew" (click)="onCancel()" translate class="back-test-btn">BUTTONS.BACK</button>
+        <button *ngIf="!isNew" (click)="onCancel()" translate class="back-test-btn">Отмена</button>
+        <button *ngIf="isNew" (click)="onSubmit()" translate class="create-test-btn">QUESTIONNAIRES.FORM.BTN_SUBMIT</button>
+        <button *ngIf="!isNew" (click)="onSubmit()" translate class="create-test-btn">QUESTIONNAIRES.FORM.BTN_SAVE</button>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+
+<!-- <div class="col-8">
+    <div class="card">
+      <form [formGroup]="form" class="card-body card-block">
+        <div class="form-group row">
+          <div class="col-6">
+            <input formControlName="name"
+                   type="text"
+                   class="form-control"
+                   placeholder="{{ 'QUESTIONNAIRES.FORM.NAME' | translate }}">
+          </div>
+        </div>
+        <hr>
+        <div *ngFor="let question of questions.controls; let i=index" [formGroup]="question" class="form-group row">
+          <div class="col-11 pr-0">
+            <textarea formControlName="text" class="form-control" placeholder="{{'QUESTIONNAIRES.FORM.QUESTION' | translate}}"></textarea>
+          </div>
+          <div class="col-1 d-flex flex-column">
+            <span (click)="onRemoveQuestion(i)" class="mr-auto my-auto">
+              <i class="fa fa-minus-circle"></i>
+            </span>
+            <span (click)="onAddQuestion()" class="mr-auto my-auto">
+              <i class="fa fa-plus-circle"></i>
+            </span>
+          </div>
+        </div>
+        <hr>
+        <div class="form-group d-flex justify-content-end">
+          <button (click)="onCancel()" translate class="btn btn-secondary ml-2">BUTTONS.BACK</button>
+          <button (click)="onSubmit()" translate class="btn btn-success ml-2">QUESTIONNAIRES.FORM.BTN_SUBMIT</button>
+        </div>
+      </form>
+    </div>
+  </div> -->

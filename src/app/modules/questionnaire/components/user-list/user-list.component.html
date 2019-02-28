@@ -1,0 +1,14 @@
+<mat-accordion>
+<mat-expansion-panel *ngFor="let item of list">
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{ item?.name }}</mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="vue-lists">
+        <ol class="vue-ordered">
+            <li *ngFor="let question of item?.content">
+              {{ question?.text }}
+            </li>
+        </ol>
+    </div>
+  </mat-expansion-panel>
+  </mat-accordion>
