@@ -781,7 +781,12 @@ flex-direction: column; */
 }
 
 .candidate-item {
+  cursor: pointer;
   color: #2E3B5C;
+}
+
+.candidate-item:hover {
+  background: #B8D4FF;
 }
 
 .candidate-item td:first-child {
