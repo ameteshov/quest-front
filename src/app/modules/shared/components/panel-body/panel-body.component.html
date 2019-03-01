@@ -5,10 +5,11 @@
   <aside class="menu-sidebar2" [ngClass]="{ 'open-mob-menu' : showMenu }">
 
     <div class="menu-side-box">
-      <div class="logo">
+      <a routerLink="/panel/forms/1" class="logo-link-main"><div class="logo">
         <img class="logo-menu-pc" src="assets/images/TOPhunter.png" alt="logo">
         <img class="logo-menu-mob" src="assets/images/Th.png" alt="logo">
       </div>
+    </a>
       <!-- <div class="scrollbar-menu"> -->
       <perfect-scrollbar class="scrollbar-menu">
         <app-panel-navigation-component></app-panel-navigation-component>

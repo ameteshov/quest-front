@@ -20,14 +20,20 @@ export class PanelBodyComponent implements OnInit {
   openShop(){
     this.showUser = false;
     this.showShop = !this.showShop;
-    setTimeout(() => this.showShop = false, 7000)
+    setTimeout(() => this.showShop = false, 5000)
   }
   openUser(){
     this.showShop = false;
     this.showUser = !this.showUser;
-    setTimeout(() => this.showUser = false, 7000)
+    setTimeout(() => this.showUser = false, 5000)
   }
   openMenu(){
+    if(this.showMenu == false){
+      document.body.style.overflow = "hidden"
+    }
+    if(this.showMenu == true){
+      document.body.style.overflow = "auto"
+    }
     this.showMenu = !this.showMenu;
   }
   public user: IUser;

@@ -16,14 +16,14 @@
                 {{ survey.description }}
               </mat-expansion-panel>
             </div>
-            <button *ngIf="user.id === survey?.user_id" (click)="onEdit()" class="edit-test-btn delete-from-mob">
+            <button *ngIf="user.id === survey?.user_id" (click)="onEdit()" class="edit-test-btn delete-from-mob button-mob-hd">
               <span class="value-btn">Редактировать</span><img src="/assets/images/edit.png">
             </button>
-            <button *ngIf="user.id === survey?.user_id" (click)="onDelete()" class="delete-test-btn delete-from-mob">
+            <button *ngIf="user.id === survey?.user_id" (click)="onDelete()" class="delete-test-btn delete-from-mob button-mob-hd">
               <span class="value-btn">Удалить</span><img src="/assets/images/delete-text.png">
             </button>
           </div>
-          <div class="settings-form-mob show-block-mob">
+          <div class="settings-form-mob show-block-mob button-mob-dif" *ngIf="user.id === survey?.user_id">
             <button *ngIf="user.id === survey?.user_id" (click)="onEdit()" class="edit-test-btn-mob">Редактировать</button>
             <button *ngIf="user.id === survey?.user_id" (click)="onDelete()" class="delete-test-btn-mob">Удалить</button>
           </div>
@@ -36,7 +36,7 @@
       </div>
       <div class="main-block main-block--send">
         <div class="descriptions-expansion">
-          <h3 class="title-static-send">{{ 'USER_SURVEY.SENT_SURVEY_FORM.HEAD' | translate }}</h3>
+          <h3 class="title-static-send">{{ 'USER_SURVEY.SENT_SURVEY_FORM.HEAD_CANDIDATE' | translate }}</h3>
           <form [formGroup]="sendForm" class="form-main-send">
             <div *ngFor="let user of list.controls; index as i; first as isFirst" [formGroup]="user" class="send-form-block">
               <div class="candidate-number-delete">
@@ -50,8 +50,8 @@
               <div class="groupe-label">
                 <div class="groupe-one-wrapper">
                   <label class="label-send-form">
-                    <input formControlName="email" placeholder="{{'USER_SURVEY.NEW.EMAIL' | translate}}" class="form-control-add form-control-add--send">
-                    <span class="alias-label-send">{{'USER_SURVEY.NEW.EMAIL' | translate}}</span>
+                    <input formControlName="email" placeholder="{{'USER_SURVEY.NEW.EMAIL_CANDIDATE' | translate}}" class="form-control-add form-control-add--send">
+                    <span class="alias-label-send">{{'USER_SURVEY.NEW.EMAIL_CANDIDATE' | translate}}</span>
                   </label>
                 </div>
                 <div class="groupe-one-wrapper">
