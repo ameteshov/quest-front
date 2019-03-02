@@ -11,6 +11,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./form-best-candidate.component.css']
 })
 export class FormBestCandidateComponent implements OnInit, OnChanges {
+  listUp = false;
   public results: Array<IBestCandidate>;
   public vacancyListOpen: boolean;
   public vacancies: Array<string>;

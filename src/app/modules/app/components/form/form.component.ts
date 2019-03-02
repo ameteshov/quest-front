@@ -76,6 +76,9 @@ export class FormComponent implements OnInit {
         .submit(this.hash, this.form.value)
         .subscribe(this.onSuccess(), this.onError());
     }
+    else{
+      swal('', 'Нужно ответить на все вопросы', 'error');
+    }
   }
 
   public onChangeStep(): void {
@@ -140,7 +143,9 @@ export class FormComponent implements OnInit {
   }
 
   protected onError(): ((value: any) => void) {
+    
     return (error: HttpErrorResponse) => {
+      
       console.log(error);
     };
   }

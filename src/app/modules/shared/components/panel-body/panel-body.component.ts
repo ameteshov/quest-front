@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../services/auth.service';
 import { IUser } from '../../../../interfaces/IUser';
 import { Router } from '@angular/router';
-
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-panel-body',
@@ -20,12 +20,13 @@ export class PanelBodyComponent implements OnInit {
   openShop(){
     this.showUser = false;
     this.showShop = !this.showShop;
-    setTimeout(() => this.showShop = false, 5000)
+    setTimeout(() => this.showShop = false, 3000)
   }
   openUser(){
     this.showShop = false;
     this.showUser = !this.showUser;
-    setTimeout(() => this.showUser = false, 5000)
+    // swal('', 'Нужно ответить на все вопросы', 'error');
+    setTimeout(() => this.showUser = false, 3000)
   }
   openMenu(){
     if(this.showMenu == false){

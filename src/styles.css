@@ -2108,7 +2108,7 @@ flex-direction: column; */
     display: block;
   }
   .test-title-main {
-    font-size: 23px;
+    font-size: 22px;
     display: flex;
     justify-content: center;
     text-align: center;

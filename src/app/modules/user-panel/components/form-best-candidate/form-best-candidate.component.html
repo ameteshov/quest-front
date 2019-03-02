@@ -8,8 +8,8 @@
         <th translate>BEST_CANDIDATE.POINTS</th>
         <th class="vacancy-box">
           <span translate class="">BEST_CANDIDATE.VACANCY</span>
-          <img class="filter-img" src="/assets/images/filter.png" (click)="onToggleVacancyList($event)">
-          <ul *ngIf="vacancyListOpen" class="vacancy-list-all" [ngClass]="{ 'vacancy-list-all-up' : listUp  }">
+          <img class="filter-img" src="/assets/images/filter.png" id="btn-filter" (click)="onToggleVacancyList($event)">
+          <ul *ngIf="vacancyListOpen" id="list-filter" class="vacancy-list-all" [ngClass]="{ 'vacancy-list-all-up' : listUp  }">
             <li *ngFor="let vacancy of vacancies" class="vacancy-item">
               <label class="vacancy-label">
                 <input (change)="onFilterChange($event)" [checked]="isFilterActive(vacancy)" value="{{vacancy}}" type="checkbox"
@@ -160,7 +160,7 @@
 
 
 
-<ngx-smart-modal #modal identifier="candidateDetails" customClass="nsm-centered">
+<ngx-smart-modal #modal identifier="candidateDetails">
   <div *ngIf="modal.hasData()" class="col mt-5">
     <div class="row">
       <div class="col-md-4">Имя</div>
