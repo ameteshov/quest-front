@@ -36,7 +36,9 @@
     "HEADER_BUTTONS": {
       "INCREASE_BUDGET": "Пополнить",
       "LOGOUT": "Выйти"
-    }
+    },
+    "USER_AGREEMENT": "Я согласен с условиями",
+    "USER_AGREEMENT_SUBJECT": "пользовательского соглашения"
   },
   "USER_PAY": {
     "PAY_BTN": "Оплатить",
@@ -161,6 +163,7 @@
   "FORM": {
     "SUCCESS": "Тест отправлен. Спасибо за Ваше время",
     "ERROR": "Тест уже был пройден",
+    "NOT_ALL_QUESTIONS": "Нужно ответить на все вопросы",
     "INFO": {
       "TITLE": "Анкета",
       "EMAIL": "Почтовый адрес",

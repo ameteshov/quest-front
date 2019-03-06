@@ -34,6 +34,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 
 import {MatExpansionModule} from '@angular/material/expansion';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { PricePipe } from '../../pipes/price.pipe';
 
 export function jwtTokenGetter() {
   return localStorage.getItem('token');
@@ -65,7 +66,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    
     JwtModule.forRoot({
       config: {
         tokenGetter: jwtTokenGetter
@@ -88,7 +88,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SharedModule,
     MatExpansionModule
   ],
-  exports: [ PerfectScrollbarModule, TranslateModule, MatExpansionModule ],
+  exports: [ PerfectScrollbarModule, TranslateModule, MatExpansionModule],
   providers: [
     FormService,
     AuthApiService,

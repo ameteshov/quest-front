@@ -13,11 +13,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatMenuModule} from '@angular/material/menu';
+import { PricePipe } from '../../../pipes/price.pipe';
 
 @NgModule({
   declarations: [
     NavigationComponent, HeaderComponent, SubHeaderComponent, BodyComponent,
-    PanelBodyComponent, PanelNavigationComponentComponent, ProgressBarGraphComponent
+    PanelBodyComponent, PanelNavigationComponentComponent, ProgressBarGraphComponent,
+    PricePipe
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import {MatMenuModule} from '@angular/material/menu';
   ],
   exports: [
     NavigationComponent, HeaderComponent, SubHeaderComponent, BodyComponent,
-    PanelBodyComponent, PanelNavigationComponentComponent, ProgressBarGraphComponent
+    PanelBodyComponent, PanelNavigationComponentComponent, ProgressBarGraphComponent,
+    PricePipe
   ]
 })
 export class SharedModule { }

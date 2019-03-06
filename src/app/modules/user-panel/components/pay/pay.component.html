@@ -6,9 +6,9 @@
           <li>
             <h2 class="plan-title">{{ plan?.name }}</h2>
           </li>
-          <li class="count-test-plan">300 тестов</li>
+          <li *ngIf="plan?.points" class="count-test-plan">{{ plan?.points }} тестов</li>
           <li class="plan-price">
-            <h3>{{ fixedSum(plan?.price) }}<span>руб.</span></h3>
+            <h3>{{ plan?.price | price}}<span>руб.</span></h3>
           </li>
           <li><div *ngFor="let item of plan?.description" class="text-plan-div"><div class="text-plan">{{ item.text }}</div></div></li>   
           <li class="bay-plan-li">
@@ -54,7 +54,13 @@
           </div>
         </div>
         <div class="text-center">
-          <button translate (click)="onPay()" class="btn btn-primary">USER_PAY.PAY_BTN</button>
+          <div [formGroup]="agreement" class="">
+            <label>
+              <input formControlName="checked" type="checkbox" class="mr-2">{{'PANEL.USER_AGREEMENT'|translate}}
+              <a href="#" class="user-agreement">{{'PANEL.USER_AGREEMENT_SUBJECT'|translate}}</a>
+            </label>
+          </div>
+          <button translate (click)="onPay()" [disabled]="canPay" class="btn btn-primary">USER_PAY.PAY_BTN</button>
         </div>
       </div>
   </div>

@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // apiUrl: 'http://localhost:80',
-  apiUrl: 'https://api.hr-tophunter.ru',
+  apiUrl: 'http://localhost:80',
+  // apiUrl: 'https://api.hr-tophunter.ru',
   planDescriptionLength: 4
 };
 

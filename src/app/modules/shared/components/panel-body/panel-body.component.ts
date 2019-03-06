@@ -13,31 +13,32 @@ export class PanelBodyComponent implements OnInit {
   showShop = false;
   showUser = false;
   showMenu = false;
-  closeMiniModal() {
+  public user: IUser;
+
+  public closeMiniModal(): void {
     this.showUser = false;
     this.showShop = false;
   }
-  openShop(){
+  public openShop(): void {
     this.showUser = false;
     this.showShop = !this.showShop;
-    setTimeout(() => this.showShop = false, 3000)
+    setTimeout(() => this.showShop = false, 3000);
   }
-  openUser(){
+  public openUser(): void {
     this.showShop = false;
     this.showUser = !this.showUser;
-    // swal('', 'Нужно ответить на все вопросы', 'error');
-    setTimeout(() => this.showUser = false, 3000)
+    setTimeout(() => this.showUser = false, 3000);
   }
-  openMenu(){
-    if(this.showMenu == false){
-      document.body.style.overflow = "hidden"
+  public openMenu(): void {
+    if (this.showMenu === false) {
+      document.body.style.overflow = 'hidden';
     }
-    if(this.showMenu == true){
-      document.body.style.overflow = "auto"
+    if (this.showMenu === true) {
+      document.body.style.overflow = 'auto';
     }
     this.showMenu = !this.showMenu;
   }
-  public user: IUser;
+
   constructor(
     public authService: AuthService,
     private router: Router

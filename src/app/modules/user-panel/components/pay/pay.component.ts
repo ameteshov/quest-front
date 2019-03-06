@@ -7,6 +7,7 @@ import swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { PaymentMethods } from '../../../../enums/payment-methods.enum';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-pay',
@@ -16,6 +17,7 @@ import { PaymentMethods } from '../../../../enums/payment-methods.enum';
 export class PayComponent implements OnInit {
   public plans: Array<IPlan>;
   public paymentMethods: any;
+  public agreement: FormGroup;
   private step: number;
   private planId: number;
   private method: string;
@@ -23,12 +25,16 @@ export class PayComponent implements OnInit {
   constructor(
     private planService: PlanApiService,
     private translationService: TranslateService,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder
   ) {
     this.step = 1;
     this.planId = null;
     this.paymentMethods = PaymentMethods;
     this.method = '';
+    this.agreement = this.fb.group({
+      checked: [false]
+    });
   }
 
   public ngOnInit(): void {
@@ -83,9 +89,8 @@ export class PayComponent implements OnInit {
   public get isPayStep(): boolean {
     return this.step === 2;
   }
-  public fixedSum(sum){
-    sum = parseFloat(sum).toFixed(0);
-    var newsum = new Intl.NumberFormat('ru-RU', { style: 'decimal'}).format(sum);
-    return newsum;
+
+  public get canPay(): boolean {
+    return !this.agreement.get('checked').value;
   }
 }

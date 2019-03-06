@@ -75,9 +75,13 @@ export class FormComponent implements OnInit {
       this.questionnarieService
         .submit(this.hash, this.form.value)
         .subscribe(this.onSuccess(), this.onError());
-    }
-    else{
-      swal('', 'Нужно ответить на все вопросы', 'error');
+    } else {
+      this.translateService
+        .get('FORM.NOT_ALL_QUESTIONS')
+        .toPromise()
+        .then((value) => {
+          swal('', value, 'error');
+        });
     }
   }
 
@@ -137,15 +141,13 @@ export class FormComponent implements OnInit {
         .toPromise()
         .then(value => swal('', value, 'success'))
         .then(() => {
-          document.location.href = '/';
+          document.location.href = 'https://mail.ru';
         });
     };
   }
 
   protected onError(): ((value: any) => void) {
-    
     return (error: HttpErrorResponse) => {
-      
       console.log(error);
     };
   }
