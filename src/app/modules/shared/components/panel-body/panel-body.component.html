@@ -44,7 +44,7 @@
           <div class="img-user-wrapper" (click)="openUser()"><img src="/assets/images/user-mob.svg"></div>
           <div class="mini-modal" [ngClass]="{ 'open-user' : showUser }">
             <div class="triangle"></div>
-            <div class="mini-modal-title">Василий Петрович</div>
+            <div class="mini-modal-title">{{ user?.email || user?.name }}</div>
             <div class="mini-modal-btn" translate (click)="authService.logout()">PANEL.HEADER_BUTTONS.LOGOUT</div>
           </div>
         </div>

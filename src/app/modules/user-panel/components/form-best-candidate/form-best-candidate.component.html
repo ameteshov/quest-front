@@ -76,89 +76,8 @@
         <div *ngIf="results.length === 0" class="empty-candidate" translate>USER_SURVEY.NO_CANDIDATES_FOUND</div>
       </div>
     </div>
-
-
-
-
-
-
-
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <h3 class="title text-center">{{ 'USER_SURVEY.BEST_CANDIDATE' | translate }}</h3>
-<div class="table-responsive">
-  <table class="table table-top-campaign">
-    <thead>
-      <tr>
-        <th translate>BEST_CANDIDATE.NAME</th>
-        <th translate>BEST_CANDIDATE.POINTS</th>
-        <th>
-          <span translate class="">BEST_CANDIDATE.VACANCY</span>
-          <i (click)="onToggleVacancyList($event)" class="fa fa-caret-square-o-down vacancy-list-icon m-l-5"></i>
-          <ul *ngIf="vacancyListOpen" class="vacancy-list">
-            <li *ngFor="let vacancy of vacancies">
-              <input (change)="onFilterChange($event)" [checked]="isFilterActive(vacancy)" value="{{vacancy}}" type="checkbox">
-              <label>{{ vacancy | titlecase}}</label>
-            </li>
-            <li class="justify-content-center m-t-5">
-              <button translate
-                      (click)="updateStatistic()"
-                      [disabled]="vacancyListUpdating"
-                      class="btn btn-sm btn-secondary">BEST_CANDIDATE.FILTER_BTN<i *ngIf="vacancyListUpdating" class="fa fa-spinner fa-spin fa-fw"></i>
-              </button>
-            </li>
-          </ul>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of results; let i = index" (click)="onInfo(item?.email)" class="table-item">
-        <td>{{ i + 1 }}. {{ item?.recipient_name }}</td>
-        <td>{{ item?.score_sum }} / {{ item?.score_max }}</td>
-        <td>{{ item?.vacancy }}</td>
-      </tr>
-      <tr *ngIf="results.length === 0" class="empty">
-        <td translate colspan="3">USER_SURVEY.NO_CANDIDATES_FOUND</td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <ngx-smart-modal #modal identifier="candidateDetails">
   <div *ngIf="modal.hasData()" class="col mt-5">
