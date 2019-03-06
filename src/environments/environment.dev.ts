@@ -4,9 +4,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:80',
-  // apiUrl: 'https://api.hr-tophunter.ru',
-  planDescriptionLength: 4
+  // apiUrl: 'http://localhost:80',
+  apiUrl: 'https://api.hr-tophunter.ru',
+  planDescriptionLength: 4,
+  agreementLink: 'https://api.hr-tophunter.ru/soglashenie.pdf'
 };
 
 /*

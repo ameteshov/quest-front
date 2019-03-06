@@ -57,7 +57,7 @@
           <div [formGroup]="agreement" class="">
             <label>
               <input formControlName="checked" type="checkbox" class="mr-2">{{'PANEL.USER_AGREEMENT'|translate}}
-              <a href="#" class="user-agreement">{{'PANEL.USER_AGREEMENT_SUBJECT'|translate}}</a>
+              <a href="{{ agreementLink }}" target="_blank" class="user-agreement">{{'PANEL.USER_AGREEMENT_SUBJECT'|translate}}</a>
             </label>
           </div>
           <button translate (click)="onPay()" [disabled]="canPay" class="btn btn-primary">USER_PAY.PAY_BTN</button>

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { PaymentMethods } from '../../../../enums/payment-methods.enum';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-pay',
@@ -15,6 +16,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   styleUrls: ['./pay.component.css']
 })
 export class PayComponent implements OnInit {
+  public agreementLink: string;
   public plans: Array<IPlan>;
   public paymentMethods: any;
   public agreement: FormGroup;
@@ -32,6 +34,7 @@ export class PayComponent implements OnInit {
     this.planId = null;
     this.paymentMethods = PaymentMethods;
     this.method = '';
+    this.agreementLink = environment.agreementLink;
     this.agreement = this.fb.group({
       checked: [false]
     });
