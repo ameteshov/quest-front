@@ -2629,3 +2629,7 @@ flex-direction: column; */
     width: 290px;
   }
 }
+
+#jivo_chat_widget{
+	display: none;
+}
