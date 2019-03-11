@@ -46,3 +46,8 @@ table.table-top-campaign > thead > tr > th:last-child {
 .vacancy-list-icon {
   cursor: pointer;
 }
+
+a.link:hover {
+  cursor: pointer;
+  color: #1356BC;
+}

@@ -28,8 +28,8 @@
       </tr>
       <tr *ngFor="let item of results; let i = index" (click)="onInfo(item?.email)" class="candidate-item">
         <td>{{ item?.recipient_name }}</td>
-        <td><span class="candidate-score">{{ item?.score_sum }}</span><span class="candidate-score-max"> /{{
-            item?.score_max }}</span></td>
+        <td><span class="candidate-score">{{ item?.score_sum != '0' ? item?.score_sum : '-' }}</span><span class="candidate-score-max"> /{{
+            item?.score_max || ' -' }}</span></td>
         <td>{{ item?.vacancy }}</td>
       </tr>
       <tr *ngIf="results.length === 0" class="empty-candidate">
@@ -51,7 +51,7 @@
                 <input (change)="onFilterChange($event)" [checked]="isFilterActive(vacancy)" value="{{vacancy}}" type="checkbox"
                   class="vacancy-checkbox">
                 <div class="alias-checkbox-filter"></div>
-                <div class="vacancy-name">{{ vacancy | titlecase}}</div>
+                <div class="vacancy-name">{{ vacancy | titlecase }}</div>
               </label>
             </li>
             <li class="vacancy-filter-btn-li">
@@ -97,7 +97,7 @@
       <div>{{ test.name }}</div>
       <div *ngIf="test.type_id !== null" class="ml-auto">{{ test.score }} / {{ test.max_score }}</div>
       <div *ngIf="test.type_id === null" class="ml-auto">
-        <a (click)="onViewDetails($event, test.id)" translate>BEST_CANDIDATE.VIEW_DETAILS</a>
+        <a (click)="onViewDetails($event, test.id)" translate class="link">BEST_CANDIDATE.VIEW_DETAILS</a>
       </div>
     </div>
   </div>
