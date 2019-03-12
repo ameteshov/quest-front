@@ -9,6 +9,7 @@ export interface IUser {
   points: number;
   created_at: string;
   updated_at: string;
+  subscribed_before: string;
 
   isAdmin?: boolean;
 }

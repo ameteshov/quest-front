@@ -34,7 +34,8 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 
 import {MatExpansionModule} from '@angular/material/expansion';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { PricePipe } from '../../pipes/price.pipe';
+import localeRu from '@angular/common/locales/ru';
+import { registerLocaleData } from '@angular/common';
 
 export function jwtTokenGetter() {
   return localStorage.getItem('token');
@@ -43,6 +44,8 @@ export function jwtTokenGetter() {
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
+
+registerLocaleData(localeRu, 'ru');
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true

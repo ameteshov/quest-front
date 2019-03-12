@@ -29,7 +29,8 @@
         </div>
       </div>
       <div class="user-available-block">
-        <div class="user-available-count" translate [translateParams]="{ value: user.points }">PANEL.FORMS_AVAILABLE</div>
+        <div *ngIf="!hasSubscription" translate [translateParams]="{ value: user.points }" class="user-available-count">PANEL.FORMS_AVAILABLE</div>
+        <div *ngIf="hasSubscription" class="user-available-count">{{'PANEL.SUBSCRIPTION_AVAILABLE' | translate}} {{ user.subscribed_before | date:'longDate':'undefined':'ru' }}</div>
         <div translate (click)="onPay()" class="user-available-buy">PANEL.HEADER_BUTTONS.INCREASE_BUDGET</div>
       </div>
     </header>
@@ -53,9 +54,10 @@
             <div class="shop-mob-wrapper" (click)="openShop()"><img src="/assets/images/shop.svg">
                 <span class="tests-bay-mob" translate [translateParams]="{ value: user.points }">{{ user.points }}</span>
             </div>
-            <div class="mini-modal" [ngClass]="{ 'open-user' : showShop }">
+            <div [ngClass]="{ 'open-user' : showShop }" class="mini-modal">
               <div class="triangle"></div>
-              <div class="mini-modal-title" translate [translateParams]="{ value: user.points }">PANEL.FORMS_AVAILABLE</div>
+              <div *ngIf="!hasSubscription" class="mini-modal-title" translate [translateParams]="{ value: user.points }">PANEL.FORMS_AVAILABLE</div>
+              <div *ngIf="hasSubscription" class="mini-modal-title">{{'PANEL.SUBSCRIPTION_AVAILABLE' | translate}} {{ user.subscribed_before | date:'longDate':'undefined':'ru' }}</div>
               <div class="mini-modal-btn mini-modal-btn--points" translate (click)="onPay()">PANEL.HEADER_BUTTONS.INCREASE_BUDGET</div>
             </div>
           </div>

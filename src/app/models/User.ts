@@ -12,6 +12,7 @@ export class User implements IUser {
   public points: number;
   public created_at: string;
   public updated_at: string;
+  public subscribed_before: string;
 
   public constructor(data: any = {}) {
     this.id = data.id || '';
@@ -24,6 +25,7 @@ export class User implements IUser {
     this.is_active = data.is_active || null;
     this.created_at = data.created_at || '';
     this.updated_at = data.updated_at || '';
+    this.subscribed_before = data.subscribed_before || '';
   }
 
   public get isAdmin(): boolean {

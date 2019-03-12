@@ -30,6 +30,7 @@
   },
   "PANEL": {
     "FORMS_AVAILABLE": "Доступно {{value}} тестов",
+    "SUBSCRIPTION_AVAILABLE": "Подписка до:",
     "BUTTONS": {
       "SUBMIT": "Отправить"
     },

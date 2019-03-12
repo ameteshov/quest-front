@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../services/auth.service';
 import { IUser } from '../../../../interfaces/IUser';
 import { Router } from '@angular/router';
-import swal from 'sweetalert2';
+import { timer } from 'rxjs';
+import { switchMap, filter, map } from 'rxjs/operators';
+import { UserApiService } from '../../../../services/user-api.service';
 
 @Component({
   selector: 'app-panel-body',
@@ -10,10 +12,18 @@ import swal from 'sweetalert2';
   styleUrls: ['./panel-body.component.css']
 })
 export class PanelBodyComponent implements OnInit {
-  showShop = false;
-  showUser = false;
-  showMenu = false;
+  public showShop = false;
+  public showUser = false;
+  public showMenu = false;
   public user: IUser;
+
+  constructor(
+    public authService: AuthService,
+    private userService: UserApiService,
+    private router: Router
+  ) {
+    this.user = this.authService.getUser();
+  }
 
   public closeMiniModal(): void {
     this.showUser = false;
@@ -39,20 +49,36 @@ export class PanelBodyComponent implements OnInit {
     this.showMenu = !this.showMenu;
   }
 
-  constructor(
-    public authService: AuthService,
-    private router: Router
-  ) {
-    this.user = this.authService.getUser();
-  }
-
   public ngOnInit(): void {
     this.authService.userUpdated.subscribe(() => {
       this.user = this.authService.getUser();
     });
+
+    timer(1000, 30000)
+      .pipe(
+        switchMap(() => {
+          return this.userService.read(this.authService.getUser().id);
+        }),
+        filter((user: IUser) => {
+          return user.points !== this.authService.getUser().points ||
+            user.subscribed_before !== this.authService.getUser().subscribed_before;
+        }),
+        map((user: IUser) => {
+          this.authService.setUser(user);
+        })
+      )
+      .subscribe();
   }
 
   public onPay(): void {
     this.router.navigate(['panel/pay']);
+  }
+
+  public get hasSubscription(): boolean {
+    return (this.user.subscribed_before !== null) && (this.user.subscribed_before !== '');
+  }
+
+  public get notSubscribed(): boolean {
+    return this.user.subscribed_before === null || this.user.subscribed_before === '';
   }
 }
